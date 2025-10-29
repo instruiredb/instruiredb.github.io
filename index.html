@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meniu - Teste Profesionale Feroviare</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .menu-container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            padding: 40px;
+            text-align: center;
+        }
+
+        .menu-header h1 {
+            color: #764ba2;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .menu-header p {
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .test-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .test-list li {
+            margin-bottom: 15px;
+        }
+
+        .test-list a {
+            display: block;
+            background: #667eea;
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background 0.3s ease, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+        }
+
+        .test-list a:hover {
+            background: #5a6fe0;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.6);
+        }
+
+        .test-list a:active {
+            transform: translateY(0);
+        }
+
+        .version-tag {
+            font-size: 12px;
+            font-weight: normal;
+            opacity: 0.8;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <div class="menu-header">
+            <h1>Selectați Testul Profesional</h1>
+            <p>Trimestrul IV - 2025</p>
+        </div>
+        
+        <ul class="test-list">
+            <li>
+                <a href="Test mec t4-2025.html">
+                    Test 1: Mecanic Locomotivă (T4 2025)
+                    <span class="version-tag">(24 Întrebări)</span>
+                </a>
+            </li>
+            <li>
+                <a href="Test mec aj t4-2025.html">
+                    Test 2: Mecanic Ajutor Locomotivă (T4 2025)
+                    <span class="version-tag">(20 Întrebări)</span>
+                </a>
+            </li>
+            <li>
+                <a href="Pregatiri Iarna- 2025.html">
+                    Test 3: Pregătiri Iarnă 2025
+                    <span class="version-tag">(Întrebări specifice)</span>
+                </a>
+            </li>
+            <li>
+                <a href="Test LDE 2100 cp.html">
+                    Test LDE 2100 cp 2025
+                    <span class="version-tag">(Întrebări specifice)</span>
+                </a>
+            </li>
+            <li>
+                <a href="Test LDE 232 Ludmila.html">
+                    Test LDE 232 Ludmila
+                    <span class="version-tag">(Întrebări specifice)</span>
+                </a>
+            </li>
+        </ul>
+
+        <div style="margin-top: 30px; font-size: 14px; color: #888;">
+            Acces Offline - Salvați rezultatele prin export text/printare.
+        </div>
+    </div>
+</body>
+</html>

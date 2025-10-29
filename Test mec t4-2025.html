@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mecanic Locomotivă - Trim IV 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .personal-info {
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .personal-info h2 {
+            color: #667eea;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="date"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group input[type="date"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .radio-label:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .quiz-content {
+            padding: 30px;
+        }
+
+        .question-block {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .question-number {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .question-text {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            color: #2c3e50;
+        }
+
+        .options {
+            margin-top: 15px;
+        }
+
+        .option {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .option input[type="radio"] {
+            margin-right: 12px;
+            margin-top: 3px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .option label {
+            cursor: pointer;
+            flex: 1;
+            line-height: 1.5;
+        }
+
+        .option.correct {
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .option.incorrect {
+            background: #f8d7da;
+            border-color: #dc3545;
+        }
+
+        .option.correct::before {
+            content: "✓ ";
+            color: #28a745;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .option.incorrect::before {
+            content: "✗ ";
+            color: #dc3545;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 14px; /* Adăugat pentru a arăta mai bine pe tabel */
+        }
+        
+        .matching-table th, .matching-table td { /* Adăugat th pentru consistență */
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+        }
+
+        .matching-table th { /* Adăugat th pentru consistență */
+            background: #e9eefd;
+            color: #667eea;
+        }
+
+        .matching-table td:first-child {
+            font-weight: 600;
+            background: #f8f9fa;
+            width: 40%;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin: 30px 0;
+            padding: 0 30px;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        .results {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 30px;
+            text-align: center;
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .results h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .results .score {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .score-message {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        .reset-btn {
+            background: white;
+            color: #f5576c;
+            margin-top: 20px;
+        }
+
+        .export-section {
+            text-align: center;
+            margin: 20px 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .export-section.show {
+            display: block;
+        }
+
+        .export-section h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .export-btn {
+            background: #28a745;
+            margin: 5px;
+        }
+
+        .export-btn:hover {
+            background: #218838;
+        }
+
+        .summary-text {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+        
+        /* 🟢 MODIFICARE 2: Adaugă stilul pentru poziționarea semnăturii în dreapta */
+        .signature-section {
+            padding: 20px 30px 40px;
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .signature {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #2c3e50;
+            font-weight: 700;
+            display: inline-block;
+            border-top: 1px solid #ccc; /* Linie sub semnătură */
+            padding-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚂 Test Mecanic Locomotivă</h1>
+            <p>Trimestrul IV - 2025</p>
+        </div>
+
+        <div class="personal-info" id="personalInfo">
+            <h2>Date Personale</h2>
+            <div class="form-group">
+                <label for="nume">Nume și Prenume *</label>
+                <input type="text" id="nume" required placeholder="Ex: Popescu Ion">
+            </div>
+            <div class="form-group">
+                <label>Funcția *</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="functie" value="Mecanic" required>
+                        Mecanic
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="functie" value="Mecanic Ajutor" required>
+                        Mecanic Ajutor
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="data">Data *</label>
+                <input type="date" id="data" required>
+            </div>
+            <button class="btn" onclick="startQuiz()">Începe Testul</button>
+        </div>
+
+        <div class="quiz-content" id="quizContent" style="display:none;"></div>
+
+        <div class="btn-container">
+            <button class="btn" id="checkBtn" onclick="checkAnswers()">Verifică Răspunsurile</button>
+            <button class="btn reset-btn" id="resetBtn" onclick="resetQuiz()" style="display:none;">Reia Testul</button>
+        </div>
+
+        <div class="results" id="results"></div>
+
+        <div class="export-section" id="exportSection">
+            <h3>📥 Exportă Rezultatele</h3>
+            <button class="btn export-btn" onclick="exportToText()">💾 Descarcă ca Text</button>
+            <button class="btn export-btn" onclick="copyToClipboard()">📋 Copiază în Clipboard</button>
+            <button class="btn export-btn" onclick="printResults()">🖨️ Printează</button>
+            <div class="summary-text" id="summaryText"></div>
+        </div>
+
+        <div class="signature-section">
+            <div style="font-size: 14px; margin-bottom: 5px; color: #555;">Întocmit</div>
+            <div class="signature">Ecobici Marian</div>
+        </div>
+        </div>
+
+    <script>
+        const questions = [
+            {
+                id: 1,
+                text: "Ce obligație are personalul de locomotivă, în cazul unui tren aflat în circulație, când constată un obstacol neprevăzut care necesită închiderea liniei curente?",
+                options: [
+                    "A) va aviza acest fapt impiegatului de mișcare din stația cea mai apropiată și va solicita împingerea trenului în stație.",
+                    "B) va da semnale de \"Pericol\" repetate și va aviza acest fapt impiegatului de mișcare din prima stație unde trenul are prevăzută oprire.",
+                    "C) va aviza acest fapt, prin radiotelefon, impiegaților de mișcare din stațiile vecine și mecanicilor tuturor trenurilor expediate care circulă în linie curentă."
+                ],
+                correct: 2
+            },
+            {
+                id: 2,
+                text: "Utilizați corespunzător indicațiile semnalelor acustice în funcție de felul lor:",
+                type: "matching",
+                content: `
+                    <table class="matching-table">
+                        <thead>
+                            <tr><th>Semnal (i)</th><th>Indicația semnalului (r)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>i1) "Pornire"</td><td>r4) se dă cu fluierul locomotivei la fel ca și semnalul "atenție"</td></tr>
+                            <tr><td>i2) "Pericol"</td><td>r3) înseamnă trei sunete scurte, repetate, date cu fluierul</td></tr>
+                            <tr><td>i3) "Agentul de la urma trenului să plece la acoperirea obstacolului"</td><td>r1) acest semnal se dă dacă trenul s-a oprit în linie curentă și periclitează circulația pe linia vecină</td></tr>
+                            <tr><td>i4) "Slăbește frâna"</td><td>r2) acest semnal se dă la pornirea trenului, în locul semnalului "atenție", dacă trenul este frânat de mână sau mixt</td></tr>
+                        </tbody>
+                    </table>
+                `,
+                options: [
+                    "A) (i1-r6) (i2-r5) (i3-r3) (i4-r1)",
+                    "B) (i1-r2) (i2-r1) (i3-r6) (i4-r5)",
+                    "C) (i1-r4) (i2-r3) (i3-r1) (i4-r2)"
+                ],
+                correct: 2
+            },
+            {
+                id: 3,
+                text: "Dacă în parcurs apare necesitatea opririi neprevăzute a unui tren în linie curentă, în cazul trenurilor care circulă fără șef de tren, care din obligațiile șefului de tren îi revin mecanicului trenului?",
+                options: [
+                    "A) să dea semnale de \"Pericol\" repetate cu fluierul sau sirena locomotivei.",
+                    "B) să ia legătura cu conductorul de bilete, în cazul în care acesta există și să stabilească împreună măsurile și condițiile pentru circulația în continuare a trenului.",
+                    "C) să ia măsuri pentru acoperirea obstacolului sau a locului care constituie un pericol în circulația trenurilor pe liniile vecine, dacă este cazul."
+                ],
+                correct: 2
+            },
+            {
+                id: 4,
+                text: "Ce obligație are personalul cu responsabilități în siguranța circulației feroviare, în timpul serviciului, atunci când observă o neregulă în legătură cu siguranța circulației feroviare?",
+                options: [
+                    "A) să remedieze neregula observată.",
+                    "B) să sesizeze verbal și în scris, prin raport de eveniment, adresat conducătorului subunității din care face parte, orice neregulă observată în legătură cu siguranța pe calea ferată, indiferent de domeniul de activitate feroviară în care s-a produs.",
+                    "C) să avizeze în primul rând organele de poliție TF."
+                ],
+                correct: 1
+            },
+            {
+                id: 5,
+                text: "În cazurile în care s-au înregistrat loviri ale vehiculelor rutiere de către trenurile în circulație, personalul de locomotivă oprește și face o evaluare a urmărilor impactului și dacă nu s-au înregistrat victime omenești sau accidentați, solicită prezența organelor Poliției TF.",
+                options: [
+                    "A) Adevărat",
+                    "B) Fals"
+                ],
+                correct: 1
+            },
+            {
+                id: 6,
+                text: "În ce categorie se încadrează \"lovirea de vehicule rutiere la trecerile la nivel de către vehiculele feroviare aflate în mișcare\"?",
+                options: [
+                    "A) Accident feroviar.",
+                    "B) Incident feroviar grupa A.",
+                    "C) Accident feroviar grav."
+                ],
+                correct: 0
+            },
+            {
+                id: 7,
+                text: "Pentru care accidente nu se face investigarea?",
+                options: [
+                    "A) Pentru deraieri de vehicule feroviare din compunerea trenurilor la manevră.",
+                    "B) Pentru incendii la vehiculele feroviare din compunerea trenurilor în circulație și manevră.",
+                    "C) Pentru loviri ale vehiculelor rutiere la trecerile la nivel de către trenuri în circulație sau loviri ale persoanelor de către vehicule feroviare aflate în mișcare, cu excepția cazurilor de suicid."
+                ],
+                correct: 2
+            },
+            {
+                id: 8,
+                text: "În cazurile în care s-au înregistrat loviri ale vehiculelor rutiere de către trenurile în circulație, iar dacă s-au înregistrat victime omenești sau accidentați mecanicul de locomotivă oprește și face o evaluare a urmărilor impactului și, în funcție de acestea își continuă drumul, dacă are avizul celui care face investigarea accidentului.",
+                options: [
+                    "A) Adevărat",
+                    "B) Fals"
+                ],
+                correct: 0
+            },
+            {
+                id: 9,
+                text: "Ce obligații are personalul de locomotivă în timpul parcursului dacă constată că linia de contact are depuneri de gheață sau chiciură?",
+                options: [
+                    "A) trebuie să anunțe dispeceratul electroenergetic despre acest fenomen prin intermediul IDM.",
+                    "B) trebuie să deconecteze imediat instalația de forță și serviciile auxiliare și din mers să ridice și al doilea pantograf și numai după aceea să repună instalațiile în funcțiune.",
+                    "C) să oprească trenul, să deconecteze disjunctorul și să ridice numai pantograful din față, după care continuă mersul."
+                ],
+                correct: 1
+            },
+            {
+                id: 10,
+                text: "Mecanicii de locomotivă de la trenurile în circulație sunt obligați să comunice datele referitoare la eventualele suluri de zăpadă pe care le întâlnesc în parcurs primei stații de cale ferată care urmează după locul unde a făcut constatarea - prin radio, telefon sau către mecanicii de locomotivă pe care îi întâlnesc, în parcurs, pe linia vecină.",
+                options: [
+                    "A) Adevărat",
+                    "B) Fals"
+                ],
+                correct: 0
+            },
+            {
+                id: 11,
+                text: "Se interzice darea înapoi a trenului, din linie curentă, fără o înțelegere prealabilă cu IDM din stația care l-a expediat, în următoarele cazuri:",
+                options: [
+                    "A) pe timp cu ceață, viscol și alte împrejurări nefavorabile, când vizibilitatea semnalelor este redusă.",
+                    "B) în cazul în care nu există al doilea agent la urma trenului.",
+                    "C) pe secții de circulație cu BLA, cu excepția trenurilor oprite fără să depășească al doilea sector de bloc."
+                ],
+                correct: 0
+            },
+            {
+                id: 12,
+                text: "În cazuri bine justificate (ceață, viscol, întreruperea tuturor mijloacelor de comunicație, vizibilitate necorespunzătoare a semnalelor) comunicările radiotelefonice pot înlocui indicația semnalelor și a instalațiilor de siguranță a circulației.",
+                options: [
+                    "A) Adevărat",
+                    "B) Fals"
+                ],
+                correct: 0
+            },
+            {
+                id: 13,
+                text: "Analizele de siguranță circulației, care reprezintă o componentă a sistemului de management al siguranței circulației, se vor programa periodic la subunitățile de cale ferată.",
+                options: [
+                    "A) Adevărat",
+                    "B) Fals"
+                ],
+                correct: 0
+            },
+            {
+                id: 14,
+                text: "Semnalele luminoase care nu afișează nici o indicație, semafoarele neiluminate pe timp de noapte, semnalele care dau indicații care se contrazic, semnalele care dau indicații dubioase, precum și semnalizarea nereglementară ordonă oprirea.",
+                options: [
+                    "A) Adevărat",
+                    "B) Fals"
+                ],
+                correct: 0
+            },
+            {
+                id: 15,
+                text: "Ce obligații are mecanicul de locomotivă dacă pe timp de noapte întâlnește un semafor cu indicația de noapte pe oprire, iar indicația de zi este pe liber, respectiv reducere de viteză sau felinarele sunt neiluminate?",
+                options: [
+                    "A) Va opri în fața semaforului, așteptând ordinul de circulație de la IDM.",
+                    "B) Va lua în considerare indicația de zi dacă semnalul respectiv nu a fost avizat ca fiind defect.",
+                    "C) Va circula cu viteza de maxim 20 km/h."
+                ],
+                correct: 1
+            },
+            {
+                id: 16,
+                text: "Corelați corespunzător semnalele date de agenți cu instrumente portative cu indicația semnalului pe timp de zi:",
+                type: "matching",
+                content: `
+                    <table class="matching-table">
+                        <thead>
+                            <tr><th>Semnal (i)</th><th>Indicația semnalului (r)</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>i1) Înapoi</td><td>r3) se mișcă stegulețul galben în arc de cerc, jos, înaintea corpului și în același timp se dau două sunete lungi cu fluierul de mână</td></tr>
+                            <tr><td>i2) "Pornirea trenului" dat de impiegatul de mișcare</td><td>r1) impiegatul de mișcare ridică discul manual cu fața verde, spre mecanic</td></tr>
+                            <tr><td>i3) Trecerea fără oprire a trenului dată de impiegatul de mișcare, în stațiile fără semnal de ieșire</td><td>r2) impiegatul de mișcare mișcă discul manual cu fața verde spre mecanic, deasupra capului</td></tr>
+                        </tbody>
+                    </table>
+                `,
+                options: [
+                    "A) (i1-r5); (i2-r2); (i3-r1).",
+                    "B) (i1-r3); (i2-r1); (i3-r5).",
+                    "C) (i1-r3); (i2-r1); (i3-r2)."
+                ],
+                correct: 2
+            },
+            {
+                id: 17,
+                text: "Pentru o eficiență mai sporită a stingerii incendiilor, unde se va acționa cu jetul stingătoarelor?",
+                options: [
+                    "A) Indiferent cum se va acționa cu jetul stingătorului, eficiența este aceeași.",
+                    "B) Se va acționa la baza focarului de incendiu.",
+                    "C) Se va acționa dinspre margini spre mijloc astfel evitându-se extinderea incendiului."
+                ],
+                correct: 1
+            },
+            {
+                id: 18,
+                text: "Pentru prevenirea incendiilor personalul de locomotivă este obligat:",
+                options: [
+                    "A) Să scoată din funcție instalația antipatinaj;",
+                    "B) Să verifice starea sigiliilor la protecții (relee, contactoare, robineti), blocuri de aparate, capacele de acces la relee și alte agregate specifice;",
+                    "C) Să scurtcircuiteze protecțiile blocurilor de aparate;"
+                ],
+                correct: 1
+            },
+            {
+                id: 19,
+                text: "Mecanicul de locomotivă anunță prin radiotelefon sau alte mijloace de comunicare aflate la dispoziție prin intermediul IDM, agenți L, operatori RC, apariția fumului sau flăcării, comunicând următoarele:",
+                options: [
+                    "A) ora la care a apărut degajarea de fum sau flacără.",
+                    "B) conectează bateriile de acumulatori, prin închiderea întreruptorului acestuia.",
+                    "C) tipul de locomotivă."
+                ],
+                correct: 2
+            },
+            {
+                id: 20,
+                text: "În cazul apariției fumului sau flăcării la vehiculul feroviar motor, în timpul intervenției de stingere a focarului, se folosesc:",
+                options: [
+                    "A) În toate situațiile se utilizează stingătoarele cu apă.",
+                    "B) stingătoarele cu bioxid de carbon pentru echipamentul electric, iar cele cu spumă chimică sau praf și CO2 pentru restul echipamentului.",
+                    "C) stingătoarele cu spumă chimică sau praf pentru echipamentul electric, iar cele cu bioxid de carbon..."
+                ],
+                correct: 1
+            },
+            {
+                id: 21,
+                text: "Se consideră incendiu arderea rapidă care se dezvoltă fără control în timp și spațiu, și care poate provoca distrugeri importante de bunuri materiale, sau poate pune în pericol viața oamenilor, pentru a cărei lichidare este necesară utilizarea metodelor, procedeelor, mijloacelor și substanțelor de stingere adecvate.",
+                options: [
+                    "A) Adevărat",
+                    "B) Fals"
+                ],
+                correct: 0
+            },
+            {
+                id: 22,
+                text: "Ce se verifică, din punct de vedere al prevenirii incendiilor, după pornirea motoarelor diesel?",
+                options: [
+                    "A) deconectarea releelor sau contactorilor, care asigură pornirea motorului diesel pentru a fi sigură funcționarea.",
+                    "B) Se verifică încă o dată indicațiile nivelului lichidului de răcire și combustibil.",
+                    "C) dacă toate instalațiile funcționează normal și numai după aceea va pune locomotiva în mișcare."
+                ],
+                correct: 2
+            },
+            {
+                id: 23,
+                text: "La revizia efectuată în sala mașinilor în timpul parcursului, mecanicul ajutor va urmări, din punct de vedere al prevenirii incendiilor, ca temperatura uleiului să nu depășească temperatura maximă de funcționare.",
+                options: [
+                    "A) Adevărat",
+                    "B) Fals"
+                ],
+                correct: 0
+            },
+            {
+                id: 24,
+                text: "Pentru prevenirea incendiilor personalul de locomotivă este obligat:",
+                options: [
+                    "A) Să scoată din funcție instalația antipatinaj;",
+                    "B) Să scurtcircuiteze protecțiile blocurilor de aparate;",
+                    "C) Să verifice starea sigiliilor la protecții (relee, contactoare, robineti), blocuri de aparate, capacele de acces la relee și alte agregate specifice;"
+                ],
+                correct: 2
+            }
+        ];
+
+        let userAnswers = {};
+        let checked = false;
+        let personalData = {};
+
+        function startQuiz() {
+            const nume = document.getElementById('nume').value.trim();
+            const functie = document.querySelector('input[name="functie"]:checked');
+            const data = document.getElementById('data').value;
+
+            if (!nume || !functie || !data) {
+                alert('⚠️ Te rog completează toate câmpurile obligatorii!');
+                return;
+            }
+
+            personalData = {
+                nume: nume,
+                functie: functie.value,
+                data: data
+            };
+
+            document.getElementById('personalInfo').style.display = 'none';
+            document.getElementById('quizContent').style.display = 'block';
+            renderQuiz();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderQuiz() {
+            const quizContent = document.getElementById('quizContent');
+            let html = '';
+
+            questions.forEach((q, index) => {
+                html += `
+                    <div class="question-block" id="q${q.id}">
+                        <div class="question-number">Întrebarea ${q.id}</div>
+                        <div class="question-text">${q.text}</div>
+                        ${q.type === 'matching' ? q.content : ''}
+                        <div class="options">
+                `;
+
+                q.options.forEach((option, optIndex) => {
+                    html += `
+                        <div class="option" onclick="selectOption(${q.id}, ${optIndex})">
+                            <input type="radio" name="q${q.id}" id="q${q.id}_opt${optIndex}" value="${optIndex}">
+                            <label for="q${q.id}_opt${optIndex}">${option}</label>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+            });
+
+            quizContent.innerHTML = html;
+        }
+
+        function selectOption(questionId, optionIndex) {
+            if (checked) return;
+            
+            userAnswers[questionId] = optionIndex;
+            const radio = document.getElementById(`q${questionId}_opt${optionIndex}`);
+            radio.checked = true;
+        }
+
+        function checkAnswers() {
+            if (checked) return;
+            
+            checked = true;
+            let score = 0;
+
+            questions.forEach(q => {
+                const options = document.querySelectorAll(`#q${q.id} .option`);
+                const userAnswer = userAnswers[q.id];
+
+                options.forEach((opt, index) => {
+                    opt.style.pointerEvents = 'none';
+                    
+                    if (index === q.correct) {
+                        opt.classList.add('correct');
+                    }
+                    
+                    if (userAnswer !== undefined && index === userAnswer && userAnswer !== q.correct) {
+                        opt.classList.add('incorrect');
+                    }
+                });
+
+                if (userAnswer === q.correct) {
+                    score++;
+                }
+            });
+
+            const percentage = Math.round((score / questions.length) * 100);
+            let message = '';
+            let calificativ = ''; // Adăugat calificativ
+
+            // Logica de calificare bazată pe grila adaptată pentru 24 de întrebări:
+            // A: 23-24 (95.8% – 100%)
+            // B: 18-22 (75.0% – 91.6%)
+            // C: 13-17 (54.1% – 70.8%)
+            // D: 1-12 (4.1% – 50.0%)
+            let status = '❌ NECORESPUNZĂTOR';
+
+
+            if (score >= 23) {
+                calificativ = 'A';
+                message = '🎉 Excelent! Cunoști foarte bine materia!';
+                status = '✅ CORESPUNZĂTOR';
+            } else if (score >= 18) {
+                calificativ = 'B';
+                message = '👍 Foarte bine! Continuă să înveți!';
+                status = '✅ CORESPUNZĂTOR';
+            } else if (score >= 13) {
+                calificativ = 'C';
+                message = '📚 Bine, dar mai este loc de îmbunătățire!';
+                status = '✅ CORESPUNZĂTOR';
+            } else {
+                calificativ = 'D';
+                message = '📖 Trebuie să mai studiezi materia!';
+            }
+
+            document.getElementById('results').innerHTML = `
+                <h2>Rezultate Test</h2>
+                <div class="score">${score} / ${questions.length}</div>
+                <div class="score-message">${percentage}% - Calificativ: ${calificativ} - ${status}</div>
+                <div class="score-message">${message}</div>
+            `;
+            document.getElementById('results').classList.add('show');
+            document.getElementById('checkBtn').style.display = 'none';
+            document.getElementById('resetBtn').style.display = 'inline-block';
+
+            generateSummary(score, percentage, calificativ, status); // Actualizat cu calificativ și status
+            document.getElementById('exportSection').classList.add('show');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function generateSummary(score, percentage, calificativ, status) {
+            const date = new Date(personalData.data);
+            const formattedDate = date.toLocaleDateString('ro-RO', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            const totalQuestions = questions.length;
+
+
+            let summary = `
+╔════════════════════════════════════════════════════════════════╗
+║          TEST MECANIC LOCOMOTIVĂ - TRIMESTRUL IV 2025          ║
+║                        (${totalQuestions} ÎNTREBĂRI)                        ║
+╚════════════════════════════════════════════════════════════════╝
+
+📋 DATE PERSONALE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Nume și Prenume: ${personalData.nume}
+   Funcția: ${personalData.functie}
+   Data testului: ${formattedDate}
+
+📊 REZULTATE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Punctaj: ${score} / ${questions.length}
+   Procent: ${percentage}%
+   Calificativ: ${calificativ}
+   Status: ${status}
+
+📝 RĂSPUNSURI DETALIATE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+`;
+
+            questions.forEach(q => {
+                const userAnswer = userAnswers[q.id];
+                const isCorrect = userAnswer === q.correct;
+                const statusIcon = isCorrect ? '✓' : '✗';
+                
+                const givenAnswerText = userAnswer !== undefined ? q.options[userAnswer] : 'Niciun răspuns';
+                const correctAnswerText = q.options[q.correct];
+
+                summary += `
+${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
+   ${q.text}
+   
+   Răspuns dat: ${givenAnswerText.replace(/^[A-C]\)\s*/, '')}
+   Răspuns corect: ${correctAnswerText.replace(/^[A-C]\)\s*/, '')}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+`;
+            });
+
+            summary += `
+                                                          Întocmit
+                                                          Ecobici Marian
+╔════════════════════════════════════════════════════════════════╗
+║  Document generat automat - ${new Date().toLocaleString('ro-RO')}  ║
+╚════════════════════════════════════════════════════════════════╝
+`;
+
+
+            document.getElementById('summaryText').textContent = summary;
+            return summary;
+        }
+
+        function exportToText() {
+            const summary = document.getElementById('summaryText').textContent;
+            const blob = new Blob([summary], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Test_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function copyToClipboard() {
+            const summary = document.getElementById('summaryText').textContent;
+            navigator.clipboard.writeText(summary).then(() => {
+                alert('✅ Rezultatele au fost copiate în clipboard!');
+            }).catch(err => {
+                alert('❌ Eroare la copierea în clipboard: ' + err);
+            });
+        }
+
+        function printResults() {
+            const summary = document.getElementById('summaryText').textContent;
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <html>
+                <head>
+                    <title>Test Mecanic Locomotivă - ${personalData.nume}</title>
+                    <style>
+                        body { font-family: 'Courier New', monospace; padding: 20px; }
+                        pre { white-space: pre-wrap; line-height: 1.6; }
+                    </style>
+                </head>
+                <body>
+                    <pre>${summary}</pre>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        function resetQuiz() {
+            checked = false;
+            userAnswers = {};
+            personalData = {};
+            
+            document.getElementById('results').classList.remove('show');
+            document.getElementById('exportSection').classList.remove('show');
+            document.getElementById('checkBtn').style.display = 'inline-block';
+            document.getElementById('resetBtn').style.display = 'none';
+            document.getElementById('personalInfo').style.display = 'block';
+            document.getElementById('quizContent').style.display = 'none';
+            
+            document.getElementById('nume').value = '';
+            document.getElementById('data').value = '';
+            document.querySelectorAll('input[name="functie"]').forEach(r => r.checked = false);
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Setează data curentă ca default
+        document.addEventListener('DOMContentLoaded', function() {
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('data').value = today;
+        });
+    </script>
+</body>
+</html>
