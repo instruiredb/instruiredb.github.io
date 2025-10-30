@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Studiu de Caz - Incident Feroviar Drăgănești Olt</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #c31432 0%, #240b36 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .alert-banner {
+            background: #ff4444;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .summary-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-left: 5px solid #e17055;
+            padding: 25px;
+            margin: 30px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .summary-box h2 {
+            color: #d63031;
+            margin-bottom: 15px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .info-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .info-item strong {
+            color: #667eea;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        section {
+            margin: 40px 0;
+        }
+        
+        h2 {
+            color: #2d3436;
+            font-size: 1.8em;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        
+        h3 {
+            color: #636e72;
+            font-size: 1.4em;
+            margin: 25px 0 15px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #667eea;
+        }
+        
+        .timeline-item.critical::before {
+            background: #d63031;
+            box-shadow: 0 0 0 3px #d63031;
+        }
+        
+        .timeline-time {
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .error-box {
+            background: #fff5f5;
+            border-left: 5px solid #d63031;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .success-box {
+            background: #f0fff4;
+            border-left: 5px solid #00b894;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        
+        .checklist {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            padding: 10px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #0984e3;
+        }
+        
+        .barrier-chain {
+            background: linear-gradient(180deg, #fff 0%, #ffe8e8 100%);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .barrier-item {
+            background: white;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 2px solid #d63031;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .arrow {
+            font-size: 2em;
+            color: #d63031;
+            margin: 10px 0;
+        }
+        
+        .questions {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .question-level {
+            margin: 25px 0;
+        }
+        
+        .question-level h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        
+        .question-item {
+            background: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .conclusion-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .conclusion-box h2 {
+            color: white;
+            border: none;
+            font-size: 2em;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .action-btn {
+            background: white;
+            color: #667eea;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        footer {
+            background: #2d3436;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        .tech-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .spec-card {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .spec-card h4 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+            
+            .info-grid, .tech-specs {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚂 STUDIU DE CAZ</h1>
+            <h2>INCIDENT FEROVIAR DRĂGĂNEȘTI OLT</h2>
+            <p style="font-size: 1.2em; margin-top: 20px;">04 septembrie 2025</p>
+        </header>
+        
+        <div class="alert-banner">
+            ⚠️ INCIDENT GRAV - DEPĂȘIREA LIMITEI STAȚIEI FĂRĂ AUTORIZAȚIE
+        </div>
+        
+        <div class="content">
+            <div class="summary-box">
+                <h2>📋 REZUMAT EXECUTIV</h2>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>📅 Data:</strong>
+                        04 septembrie 2025, ora 14:10-14:25
+                    </div>
+                    <div class="info-item">
+                        <strong>📍 Locație:</strong>
+                        Stația Drăgănești Olt, linia I → linia III, cap X
+                    </div>
+                    <div class="info-item">
+                        <strong>🏢 Operator:</strong>
+                        Deutsche Bahn Cargo Romania SRL (DBCR)
+                    </div>
+                    <div class="info-item">
+                        <strong>⚠️ Încadrare:</strong>
+                        Art. 8, Grupa B, pct. 2.1 - Incident feroviar
+                    </div>
+                    <div class="info-item">
+                        <strong>👥 Victime:</strong>
+                        Nici o victimă, nici un rănit
+                    </div>
+                    <div class="info-item">
+                        <strong>💰 Pagube:</strong>
+                        Fără pagube materiale
+                    </div>
+                </div>
+                
+                <div class="error-box" style="margin-top: 20px;">
+                    <strong>🚨 GRAVITATE:</strong> Deși nu s-au produs consecințe materiale sau umane, acest incident reprezintă o încălcare gravă a regulamentelor de siguranță care putea conduce la o coliziune cu un tren circulând pe BLA cu consecințe catastrofale.
+                </div>
+            </div>
+
+            <section>
+                <h2>1. CONTEXTUL INCIDENTULUI</h2>
+                
+                <h3>1.1 Localizare și Infrastructură</h3>
+                <p><strong>Stația Drăgănești Olt</strong> este situată pe secția de circulație Craiova - Roșiori Nord, pe linie dublă electrificată, fiind o stație importantă pe magistrala 200 București - Timișoara.</p>
+                
+                <div class="tech-specs">
+                    <div class="spec-card">
+                        <h4>📏 Configurație Geometrică</h4>
+                        <ul style="list-style: none;">
+                            <li>• Distanță vârf macaz nr. 1 → semnal Xn: <strong>448 metri</strong></li>
+                            <li>• Lungime convoi (locomotivă + 32 vagoane): <strong>684 metri</strong></li>
+                            <li>• <span style="background: #d63031; padding: 5px 10px; border-radius: 5px;">DEFICIT: 236 metri</span></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="spec-card">
+                        <h4>⚙️ Caracteristici Tehnice</h4>
+                        <ul style="list-style: none;">
+                            <li>• Instalații: Centralizare electronică</li>
+                            <li>• Vizibilitate: Bună (zi senină)</li>
+                            <li>• Firul I închis pentru lucrări</li>
+                            <li>• Tensiune scoasă pe linia nr. III</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>1.2 Personal Implicat</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <strong>DBCR:</strong>
+                        <ul>
+                            <li>Mecanic de locomotivă (DA 1014)</li>
+                            <li>Mecanic ajutor (DA 1014)</li>
+                            <li>Șef tren/Conducător de manevră OTF</li>
+                            <li>Manevrant de vagoane OTF</li>
+                        </ul>
+                    </div>
+                    <div class="info-item">
+                        <strong>CFR SA:</strong>
+                        <ul>
+                            <li>IDM dispozitor</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>1.3 Material Rulant</h3>
+                <div class="spec-card" style="margin: 20px 0;">
+                    <h4>🚂 Locomotiva DA 1704</h4>
+                    <ul>
+                        <li>Stare tehnică: corespunzătoare</li>
+                        <li>Lungime: 25 metri</li>
+                        <li>Echipamente verificate: Frâna automată și directă, DSV, INDUSI, RER</li>
+                    </ul>
+                </div>
+                
+                <div class="spec-card" style="background: linear-gradient(135deg, #fdcb6e 0%, #e17055 100%);">
+                    <h4>🚃 Convoi de Manevră</h4>
+                    <ul>
+                        <li><strong>32 vagoane goale seria Tadgs</strong></li>
+                        <li>Greutate: 765 tone</li>
+                        <li>Lungime vagoane: 659 metri</li>
+                        <li><strong>LUNGIME TOTALĂ: 684 metri</strong></li>
+                        <li>Stare tehnică corespunzătoare</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2>2. CRONOLOGIA EVENIMENTELOR</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-time">03.09.2025, 17:07</div>
+                        <strong>Operator RC emite dispoziția RC nr. 101</strong>
+                        <p>Trenul 66556002 să fie primit la linia I pentru descompunere</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">04.09.2025, 11:08</div>
+                        <strong>Sosire tren 66556002 la linia I</strong>
+                        <p>Compunere: DA 1014 + 32 vagoane goale Tadgs</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">04.09.2025, 10:20</div>
+                        <strong>Prezentare șef tren și manevrant</strong>
+                        <p>Verificare cu etilotest de către IDM</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">04.09.2025, 11:00</div>
+                        <strong>Șef tren solicită plan de manevră</strong>
+                    </div>
+                    
+                    <div class="timeline-item critical">
+                        <div class="timeline-time">~ 11:00</div>
+                        <strong>IDM întocmește plan de manevră B nr. 25</strong>
+                        <div class="error-box" style="margin-top: 10px;">
+                            <strong>❌ GREȘEALĂ:</strong> Nu verifică lungimea vs. distanță disponibilă<br>
+                            <strong>❌ GREȘEALĂ:</strong> Nu menționează depășirea limitei stației
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item critical">
+                        <div class="timeline-time">14:10</div>
+                        <strong>🚨 ÎNCEPEREA MANEVREI</strong>
+                        <p>Prin tragere cu DA 1014, cap X</p>
+                    </div>
+                    
+                    <div class="timeline-item critical">
+                        <div class="timeline-time">14:10-14:25</div>
+                        <strong>⚠️ MOMENT CRITIC: Ieșire pe fir II Drăgănești Olt - Radomirești</strong>
+                        <div class="error-box" style="margin-top: 10px;">
+                            <p><strong>🚨 Depășire limită stație cu 236 metri!</strong></p>
+                            <p>Mecanic observă depășirea și comunică prin RER cu IDM</p>
+                            <p><strong>IDM răspunde: "Continuă, eu fac ce trebuie"</strong></p>
+                            <p style="color: #d63031; font-weight: bold;">❌ GREȘEALĂ GRAVĂ - lipsă dispoziție RC!</p>
+                            <p>Convoi depășește incinta stației cu 236 m (Locomotivă + ~9 vagoane pe BLA)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-time">14:25</div>
+                        <strong>Finalizare manevră</strong>
+                        <p>32 vagoane garate la linia III. Asigurare vagoane cu frâne de mână și sabot.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>3. DESCRIEREA DETALIATĂ A INCIDENTULUI</h2>
+                
+                <h3>3.1 Planificarea Defectuoasă</h3>
+                
+                <div class="error-box">
+                    <h4>❌ Conducătorul de manevră DBCR:</h4>
+                    <ul>
+                        <li>Nu a calculat lungimea totală necesară</li>
+                        <li>Nu a verificat distanța disponibilă în stație</li>
+                        <li>Nu a realizat că va depăși limita stației</li>
+                    </ul>
+                </div>
+                
+                <div class="error-box">
+                    <h4>❌ IDM Drăgănești Olt - Deficiențe critice:</h4>
+                    <ol>
+                        <li>Nu a calculat dacă manevra e posibilă fără depășire</li>
+                        <li>Nu a refuzat manevra când rezulta depășirea limitei</li>
+                        <li>Nu a avizat operatorul RC pentru dispoziție scrisă</li>
+                        <li>Nu a solicitat prin formula nr. 6 către Radomirești blocarea expedierilor pe BLA</li>
+                        <li>Nu a întocmit ordin de circulație pentru mecanic</li>
+                        <li>Nu a precizat intervalul orar pentru depășirea limitei</li>
+                    </ol>
+                </div>
+
+                <h3>3.2 Executarea Periculoasă</h3>
+                
+                <div class="info-item" style="background: #fff5f5; border-color: #d63031;">
+                    <strong>Analiza comportamentului mecanicului:</strong>
+                    <p style="margin-top: 10px;">✅ A OBSERVAT depășirea (conștientizare situației)</p>
+                    <p style="color: #d63031; font-weight: bold;">
+                        ❌ A CONTINUAT în lipsa ordinului de circulație<br>
+                        ❌ A ACCEPTAT asigurarea verbală a IDM<br>
+                        ❌ Nu a INSISTAT pentru documentație scrisă<br>
+                        ❌ Nu a OPRIT până la clarificarea situației
+                    </p>
+                </div>
+                
+                <div class="success-box">
+                    <h4>✅ Ce TREBUIA să facă mecanicul:</h4>
+                    <ol>
+                        <li>Observare depășire limită → <strong>OPRIRE IMEDIATĂ</strong></li>
+                        <li>Comunicare RER: "IDM, depășesc limita stației!"</li>
+                        <li>Așteptare ordin de circulație scris</li>
+                        <li>Verificare conținut ordin (interval orar, distanță)</li>
+                        <li>Abia apoi continuare manevră</li>
+                    </ol>
+                </div>
+                
+                <div class="error-box" style="background: #ffe8e8;">
+                    <strong>💬 Declarație cheie a mecanicului:</strong>
+                    <p style="font-style: italic; margin-top: 10px;">"Am observat că în timpul manevrei depășesc limita stației. Am comunicat prin RER cu IDM care mi-a spus să continui manevra, că va face el ce trebuie."</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>4. ANALIZA CAUZELOR</h2>
+                
+                <div class="error-box">
+                    <h3>4.1 CAUZA DIRECTĂ</h3>
+                    <p><strong>Nerespectarea de către IDM din stația Drăgănești Olt și a mecanicului aparținând OTF DBCR a reglementărilor specifice în cazul depășirii la manevră a limitei stației.</strong></p>
+                </div>
+                
+                <h3>4.2 Factori Care Au Contribuit</h3>
+                <p><strong>Nu au fost identificați factori suplimentari care au contribuit.</strong></p>
+                <p>Incidentul este rezultatul direct al nerespectării instrucțiunilor de către personalul implicat.</p>
+                
+                <h3>4.3 Cauze Subiacente</h3>
+                <p><strong>Nu au fost constatate cauze subiacente.</strong></p>
+                <p>Toate sistemele tehnice au funcționat corect:</p>
+                <ul>
+                    <li>Instalațiile SCB funcționale</li>
+                    <li>Comunicațiile RER operaționale</li>
+                    <li>Material rulant în stare tehnică corespunzătoare</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>5. ANALIZA FACTORILOR UMANI</h2>
+                
+                <h3>5.1 Lanțul Erorilor</h3>
+                
+                <div class="barrier-chain">
+                    <h4 style="margin-bottom: 20px; font-size: 1.3em;">BARIERE DE SIGURANȚĂ CARE AU EȘUAT:</h4>
+                    
+                    <div class="barrier-item">
+                        ❌ Calcul preliminar lungime convoi vs. distanță
+                        <div style="font-weight: bold; color: #d63031;">NESOCOTIT</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    
+                    <div class="barrier-item">
+                        ❌ Observare imposibilitate manevră în limita stației
+                        <div style="font-weight: bold; color: #d63031;">IGNORAT</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    
+                    <div class="barrier-item">
+                        ❌ Avizare operator RC pentru dispoziție
+                        <div style="font-weight: bold; color: #d63031;">OCOLIT</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    
+                    <div class="barrier-item">
+                        ❌ Solicitare formula nr. 6 către Radomirești
+                        <div style="font-weight: bold; color: #d63031;">OCOLIT</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    
+                    <div class="barrier-item">
+                        ❌ Întocmire ordin de circulație
+                        <div style="font-weight: bold; color: #d63031;">NESOCOTIT</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    
+                    <div class="barrier-item">
+                        ❌ Refuz mecanic în lipsa ordinului
+                        <div style="font-weight: bold; color: #d63031;">NEEFECTUAT</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    
+                    <div class="barrier-item">
+                        ❌ Oprire la observarea depășirii
+                        <div style="font-weight: bold; color: #d63031;">IGNORAT</div>
+                    </div>
+                    <div class="arrow">↓</div>
+                    
+                    <div style="background: #d63031; color: white; padding: 20px; border-radius: 10px; font-size: 1.5em; font-weight: bold;">
+                        🚨 INCIDENT
+                    </div>
+                </div>
+                
+                <div class="error-box">
+                    <h4>Observație critică:</h4>
+                    <p><strong>Sistemele de siguranță existau, dar NU au fost folosite!</strong></p>
+                    <p>Bariere care AR FI PUTUT funcționa DAR NU au fost activate:</p>
+                    <ul>
+                        <li>❌ Formula nr. 6 către HM Radomirești (ar fi blocat expedierile pe BLA)</li>
+                        <li>❌ Dispoziția RC (ar fi coordonat cele două stații)</li>
+                        <li>❌ Ordinul de circulație (ar fi impus mecanicului respectarea intervalului)</li>
+                    </ul>
+                </div>
+
+                <h3>5.2 Psihologia Greșelilor</h3>
+                
+                <div class="info-grid">
+                    <div class="info-item" style="background: #fff5f5; border-color: #d63031;">
+                        <strong>💭 IDM:</strong>
+                        <ul style="list-style: none;">
+                            <li>"E doar o mișcare simplă de vagoane goale..."</li>
+                            <li>"Firul I e închis oricum, ce s-ar putea întâmpla?"</li>
+                            <li>"Nu mai complic cu hârtii pentru o manevră de 15 minute"</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="info-item" style="background: #fff5f5; border-color: #d63031;">
+                        <strong>💭 Mecanic:</strong>
+                        <ul style="list-style: none;">
+                            <li>"IDM știe ce face, el coordonează traficul"</li>
+                            <li>"Mi-a zis să continui, înseamnă că e OK"</li>
+                            <li>"Nu e prima dată când depășim limita stației la manevră"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>5.3 Ce s-ar fi întâmplat dacă...?</h3>
+                <div class="error-box" style="background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);">
+                    <h4>❓ Scenarii alternative:</h4>
+                    <p style="font-size: 1.2em; color: #d63031; font-weight: bold; margin-top: 15px;">
+                        Dacă exista un alt tren pe traseul de manevră?<br>
+                        → Coliziune cu victime și pagube masive
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2>6. LECȚII ÎNVĂȚATE</h2>
+                
+                <h3>6.1 Pentru Mecanici de Locomotivă</h3>
+                
+                <div class="alert-banner" style="margin: 20px 0; font-size: 1.2em;">
+                    🚨 REGULA ZERO: "NICIODATĂ NU DEPĂȘEȘTI LIMITA STAȚIEI FĂRĂ ORDIN DE CIRCULAȚIE"
+                </div>
+                
+                <div class="checklist">
+                    <h4 style="margin-bottom: 20px; font-size: 1.2em;">✅ Checklist OBLIGATORIU înainte de manevră cu posibilă depășire:</h4>
+                    
+                    <div class="checklist-item">☐ Am calculat lungimea convoiului (locomotivă + vagoane)</div>
+                    <div class="checklist-item">☐ Cunosc distanța până la limita stației (semnal + macaz)</div>
+                    <div class="checklist-item">☐ Dacă lungime convoi > distanță disponibilă:</div>
+                    <div class="checklist-item" style="margin-left: 20px;">☐ Am primit ordin de circulație SCRIS de la IDM</div>
+                    <div class="checklist-item" style="margin-left: 20px;">☐ Ordinul specifică intervalul orar autorizat</div>
+                    <div class="checklist-item" style="margin-left: 20px;">☐ Ordinul specifică distanța maximă de depășire</div>
+                    <div class="checklist-item">☐ Am comunicat prin RER cu IDM înainte de începere</div>
+                    <div class="checklist-item">☐ Am înțeles și semnat ordinul de circulație</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>7. ÎNTREBĂRI PENTRU DISCUȚIE</h2>
+                
+                <div class="questions">
+                    <div class="question-level">
+                        <h4>📚 Nivel 1: Cunoștințe de bază</h4>
+                        <div class="question-item">1. Care este lungimea standard a unei locomotive DA?</div>
+                        <div class="question-item">2. Cum se calculează lungimea totală a unui convoi?</div>
+                        <div class="question-item">3. Ce document trebuie să primească mecanicul pentru depășirea limitei stației?</div>
+                        <div class="question-item">4. Ce este formula nr. 6 și când se utilizează?</div>
+                    </div>
+                    
+                    <div class="question-level">
+                        <h4>🔍 Nivel 2: Analiza situației</h4>
+                        <div class="question-item">5. De ce IDM trebuia să calculeze lungimea convoiului înainte de a aproba manevra?</div>
+                        <div class="question-item">6. Ce ar fi trebuit să facă mecanicul când a observat că depășește limita stației?</div>
+                        <div class="question-item">7. Câte bariere de siguranță au eșuat în acest incident? Enumerați-le.</div>
+                        <div class="question-item">8. De ce este periculos să depășești limita stației pe un fir activ (BLA)?</div>
+                    </div>
+                    
+                    <div class="question-level">
+                        <h4>⚖️ Nivel 3: Judecată critică</h4>
+                        <div class="question-item">9. Identificați toate momentele în care incidentul putea fi prevenit.</div>
+                        <div class="question-item">10. Comparați acest incident cu cel de la Craiova. Ce factori comuni observați?</div>
+                        <div class="question-item">11. De ce credibilitatea verbală a IDM ("eu fac ce trebuie") nu este suficientă?</div>
+                    </div>
+                    
+                    <div class="question-level">
+                        <h4>🤔 Nivel 4: Dileme</h4>
+                        <div class="question-item" style="background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%); border-color: #e17055;">
+                            <strong>Situație:</strong>
+                            <p style="margin-top: 10px;">• Ești mecanic. Observi că depășești limita stației.</p>
+                            <p>• IDM îți spune prin RER: "Continuă, eu rezolv!"</p>
+                            <p>• Nu ai ordin de circulație scris.</p>
+                            <p style="font-weight: bold; color: #d63031; margin-top: 15px;">Ce faci? Cum comunici refuzul?</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>8. MĂSURI LUATE ȘI RECOMANDĂRI</h2>
+                
+                <h3>8.1 Măsuri Imediate (Luate)</h3>
+                <div class="success-box">
+                    <p style="font-size: 1.1em;">✅ <strong>Suspendarea autorizației mecanicului de locomotivă</strong> de serviciu pe DA 1014</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>10. CONCLUZII</h2>
+                
+                <div class="conclusion-box">
+                    <h2>🎯 REZULTAT</h2>
+                    <p style="font-size: 1.2em; margin: 20px 0;">Incident feroviar fără consecințe materiale sau umane</p>
+                    
+                    <div style="background: rgba(255,255,255,0.2); padding: 30px; border-radius: 10px; margin: 30px 0;">
+                        <h3 style="color: white; font-size: 1.8em; margin-bottom: 20px;">DAR... CE S-AR FI PUTUT ÎNTÂMPLA:</h3>
+                        <div style="font-size: 1.2em; text-align: left; max-width: 600px; margin: 0 auto;">
+                            <p>💀 Coliziune frontală cu tren personal (sute de victime)</p>
+                            <p>💀 Coliziune cu tren marfă (pagube de milioane €)</p>
+                            <p>💀 Deraiare (blocare magistrală)</p>
+                            <p>💀 Traumă pentru mecanicul trenului care lovea obstacol</p>
+                            <p>💀 Cariere distruse, familii afectate, încredere publică pierdută</p>
+                        </div>
+                    </div>
+                    
+                    <h3 style="color: white; font-size: 1.8em; margin: 30px 0;">Mesajul CHEIE:</h3>
+                    <p style="font-size: 1.3em; font-weight: bold; background: white; color: #667eea; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        ACEST INCIDENT PUTEA FI EVITAT ÎN ORICE MOMENT
+                    </p>
+                    
+                    <div style="background: rgba(255,255,255,0.2); padding: 30px; border-radius: 10px; margin: 30px 0;">
+                        <h4 style="color: white; font-size: 1.3em; margin-bottom: 15px;">Nu a fost:</h4>
+                        <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                            <p>❌ O defecțiune tehnică imprevizibilă</p>
+                            <p>❌ O situație de forță majoră</p>
+                            <p>❌ O problemă fără soluție</p>
+                            <p>❌ Un caz izolat imposibil de anticipat</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.2); padding: 30px; border-radius: 10px; margin: 30px 0;">
+                        <h4 style="color: white; font-size: 1.3em; margin-bottom: 15px;">A fost:</h4>
+                        <div style="text-align: left; max-width: 600px; margin: 0 auto;">
+                            <p>✅ O serie de <strong>DECIZII GREȘITE</strong></p>
+                            <p>✅ O <strong>ALEGERE CONȘTIENTĂ</strong> de a ocoli procedurile</p>
+                            <p>✅ O <strong>NORMALIZARE</strong> a comportamentului riscant</p>
+                            <p>✅ O <strong>LIPSĂ DE CURAJ</strong> de a spune "NU" când trebuie</p>
+                        </div>
+                    </div>
+                    
+                    <div style="background: white; color: #667eea; padding: 30px; border-radius: 15px; margin: 30px 0;">
+                        <h4 style="font-size: 1.5em; margin-bottom: 20px;">🤔 Întrebarea pentru fiecare dintre noi:</h4>
+                        <p style="font-size: 1.2em; font-style: italic; color: #2d3436;">
+                            "Vreau să fiu următorul studiu de caz? Sau vreau să fiu modelul care a prevenit catastrofa?"
+                        </p>
+                    </div>
+                    
+                    <h3 style="color: white; font-size: 1.8em; margin: 30px 0;">⚡ ACȚIONEAZĂ:</h3>
+                    <div class="action-buttons">
+                        <div class="action-btn">✅ Cere ordin scris</div>
+                        <div class="action-btn">✅ Verifică semnalele</div>
+                        <div class="action-btn">✅ Ai curajul să oprești</div>
+                        <div class="action-btn">✅ Raportează neconformitățile</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p><strong>Data elaborare studiu de caz:</strong> Octombrie 2025</p>
+            <p><strong>Autor:</strong> Ecobici Marian</p>
+            <p><strong>Scop:</strong> Material educațional pentru prevenirea repetării incidentelor similare</p>
+            <p style="margin-top: 20px; font-size: 0.9em;">© 2025 - Studiu de caz incident feroviar Drăgănești Olt</p>
+        </footer>
+    </div>
+</body>
+</html>
