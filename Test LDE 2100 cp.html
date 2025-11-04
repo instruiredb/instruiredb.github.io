@@ -161,7 +161,8 @@
             transform: translateX(5px);
         }
 
-        .option input[type="radio"] {
+        .option input[type="radio"],
+        .option input[type="checkbox"] {
             margin-right: 12px;
             margin-top: 3px;
             cursor: pointer;
@@ -482,13 +483,13 @@
             },
             {
                 id: 10,
-                text: "Care sunt elementele componente ale instalației hidrostat?",
+                text: "Care sunt elementele componente ale instalației hidrostat? (Selectați toate răspunsurile corecte)",
                 options: [
-                    "A) Pompa hidrostatică, Cilindri ",
-                    "B) Motor hidrostatic ",
+                    "A) Pompa hidrostatică, Cilindri",
+                    "B) Motor hidrostatic",
                     "C) Cilindri de comandă ai jaluzelelor."
                 ],
-                correct: 0, 1, 2 
+                correct: [0, 1, 2]
             },
             {
                 id: 11,
@@ -501,23 +502,23 @@
             },
             {
                 id: 12,
-                text: "Când se aduce MD la mers în gol și întreruperea tracțiunii? (Selectați răspunsurile corecte)",
+                text: "Când se aduce MD la mers în gol și întreruperea tracțiunii? (Selectați toate răspunsurile corecte)",
                 options: [
-                    "A) Când presiunea din conducta generală a instalației de frână scade sub 1 kgf/cm² ",
+                    "A) Când presiunea din conducta generală a instalației de frână scade sub 1 kgf/cm²",
                     "B) SAU când nivelul apei de răcire din rezervorul de compensare scade sub 160 l.",
                     "C) Când apare punere la masă pe circuitul de forță."
                 ],
-                correct: 0, 1 
+                correct: [0, 1]
             },
             {
                 id: 13,
-                text: "Când se comandă oprirea necomandată a MD? (Selectați răspunsurile corecte)",
+                text: "Când se comandă oprirea necomandată a MD? (Selectați toate răspunsurile corecte)",
                 options: [
-                    "A) Când presiunea uleiului din instalația de ungere a MD scade sub valoarea de 0,85 kgf/cm² ",
+                    "A) Când presiunea uleiului din instalația de ungere a MD scade sub valoarea de 0,85 kgf/cm²",
                     "B) Când apare punere la masă pe circuitul auxiliar.",
                     "C) Când presiunea apei din instalația de răcire a MD scade sub valoarea de 0,4 kgf/cm²."
                 ],
-                correct: 0, 2 
+                correct: [0, 2]
             },
             {
                 id: 14,
@@ -540,6 +541,7 @@
         ];
 
         let userAnswers = {};
+        let userMultipleAnswers = {};
         let checked = false;
         let personalData = {};
 
@@ -570,6 +572,9 @@
             let html = '';
 
             questions.forEach((q) => {
+                const isMultipleAnswer = Array.isArray(q.correct);
+                const inputType = isMultipleAnswer ? 'checkbox' : 'radio';
+                
                 html += `
                     <div class="question-block" id="q${q.id}">
                         <div class="question-number">Întrebarea ${q.id}</div>
@@ -578,12 +583,21 @@
                 `;
 
                 q.options.forEach((option, optIndex) => {
-                    html += `
-                        <div class="option" onclick="selectOption(${q.id}, ${optIndex})">
-                            <input type="radio" name="q${q.id}" id="q${q.id}_opt${optIndex}" value="${optIndex}">
-                            <label for="q${q.id}_opt${optIndex}">${option}</label>
-                        </div>
-                    `;
+                    if (isMultipleAnswer) {
+                        html += `
+                            <div class="option" onclick="selectMultipleOption(${q.id}, ${optIndex})">
+                                <input type="checkbox" name="q${q.id}" id="q${q.id}_opt${optIndex}" value="${optIndex}">
+                                <label for="q${q.id}_opt${optIndex}">${option}</label>
+                            </div>
+                        `;
+                    } else {
+                        html += `
+                            <div class="option" onclick="selectOption(${q.id}, ${optIndex})">
+                                <input type="radio" name="q${q.id}" id="q${q.id}_opt${optIndex}" value="${optIndex}">
+                                <label for="q${q.id}_opt${optIndex}">${option}</label>
+                            </div>
+                        `;
+                    }
                 });
 
                 html += `
@@ -603,6 +617,25 @@
             radio.checked = true;
         }
 
+        function selectMultipleOption(questionId, optionIndex) {
+            if (checked) return;
+            
+            const checkbox = document.getElementById(`q${questionId}_opt${optionIndex}`);
+            checkbox.checked = !checkbox.checked;
+            
+            if (!userMultipleAnswers[questionId]) {
+                userMultipleAnswers[questionId] = [];
+            }
+            
+            if (checkbox.checked) {
+                if (!userMultipleAnswers[questionId].includes(optionIndex)) {
+                    userMultipleAnswers[questionId].push(optionIndex);
+                }
+            } else {
+                userMultipleAnswers[questionId] = userMultipleAnswers[questionId].filter(idx => idx !== optionIndex);
+            }
+        }
+
         function checkAnswers() {
             if (checked) return;
             
@@ -612,22 +645,53 @@
 
             questions.forEach(q => {
                 const options = document.querySelectorAll(`#q${q.id} .option`);
-                const userAnswer = userAnswers[q.id];
-
-                options.forEach((opt, index) => {
-                    opt.style.pointerEvents = 'none';
+                const isMultipleAnswer = Array.isArray(q.correct);
+                
+                let isCorrect = false;
+                
+                if (isMultipleAnswer) {
+                    const userSelectedAnswers = userMultipleAnswers[q.id] || [];
                     
-                    if (index === q.correct) {
-                        opt.classList.add('correct');
-                    }
+                    const correctAnswersSet = new Set(q.correct);
+                    const userAnswersSet = new Set(userSelectedAnswers);
                     
-                    if (userAnswer !== undefined && index === userAnswer && userAnswer !== q.correct) {
-                        opt.classList.add('incorrect');
+                    isCorrect = correctAnswersSet.size === userAnswersSet.size && 
+                               [...correctAnswersSet].every(ans => userAnswersSet.has(ans));
+                    
+                    options.forEach((opt, index) => {
+                        opt.style.pointerEvents = 'none';
+                        
+                        if (q.correct.includes(index)) {
+                            opt.classList.add('correct');
+                        }
+                        
+                        if (userSelectedAnswers.includes(index) && !q.correct.includes(index)) {
+                            opt.classList.add('incorrect');
+                        }
+                    });
+                    
+                    if (isCorrect) {
+                        score++;
                     }
-                });
-
-                if (userAnswer === q.correct) {
-                    score++;
+                } else {
+                    const userAnswer = userAnswers[q.id];
+                    isCorrect = userAnswer === q.correct;
+                    
+                    options.forEach((opt, index) => {
+                        opt.style.pointerEvents = 'none';
+                        
+                        if (index === q.correct) {
+                            opt.classList.add('correct');
+                        }
+                        
+                        if (userAnswer !== undefined && index === userAnswer && userAnswer !== q.correct) {
+                            opt.classList.add('incorrect');
+                        }
+                    });
+                    
+                    if (isCorrect) {
+                        score++;
+                    }
                 }
             });
 
@@ -704,22 +768,42 @@
 `;
 
             questions.forEach(q => {
-                const userAnswer = userAnswers[q.id];
-                const isCorrect = userAnswer === q.correct;
-                const statusIcon = isCorrect ? '✓' : '✗';
+                const isMultipleAnswer = Array.isArray(q.correct);
                 
-                const givenAnswerText = userAnswer !== undefined ? q.options[userAnswer] : 'Niciun răspuns';
-                const correctAnswerText = q.options[q.correct];
-
-                const cleanGivenAnswer = givenAnswerText.replace(/^[A-C]\)\s*/, '');
-                const cleanCorrectAnswer = correctAnswerText.replace(/^[A-C]\)\s*/, '');
+                let isCorrect;
+                let correctAnswerText;
+                let givenAnswerText;
+                
+                if (isMultipleAnswer) {
+                    const userSelectedAnswers = userMultipleAnswers[q.id] || [];
+                    const correctAnswersSet = new Set(q.correct);
+                    const userAnswersSet = new Set(userSelectedAnswers);
+                    
+                    isCorrect = correctAnswersSet.size === userAnswersSet.size && 
+                               [...correctAnswersSet].every(ans => userAnswersSet.has(ans));
+                    
+                    correctAnswerText = q.correct.map(idx => q.options[idx].replace(/^[A-C]\)\s*/, '')).join(' + ');
+                    
+                    if (userSelectedAnswers.length > 0) {
+                        givenAnswerText = userSelectedAnswers.map(idx => q.options[idx].replace(/^[A-C]\)\s*/, '')).join(' + ');
+                    } else {
+                        givenAnswerText = 'Niciun răspuns';
+                    }
+                } else {
+                    const userAnswer = userAnswers[q.id];
+                    isCorrect = userAnswer === q.correct;
+                    correctAnswerText = q.options[q.correct].replace(/^[A-C]\)\s*/, '');
+                    givenAnswerText = userAnswer !== undefined ? q.options[userAnswer].replace(/^[A-C]\)\s*/, '') : 'Niciun răspuns';
+                }
+                
+                const statusIcon = isCorrect ? '✓' : '✗';
 
                 summary += `
 ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
    ${q.text}
    
-   Răspuns dat: ${cleanGivenAnswer}
-   Răspuns corect: ${cleanCorrectAnswer}
+   Răspuns dat: ${givenAnswerText}
+   Răspuns corect: ${correctAnswerText}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 `;
             });
@@ -782,6 +866,7 @@ Ecobici Marian
         function resetQuiz() {
             checked = false;
             userAnswers = {};
+            userMultipleAnswers = {};
             personalData = {};
             
             document.getElementById('results').classList.remove('show');
@@ -803,5 +888,4 @@ Ecobici Marian
         });
     </script>
 </body>
-
 </html>
