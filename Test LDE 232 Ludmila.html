@@ -139,27 +139,18 @@
             line-height: 1.6;
             color: #2c3e50;
         }
-        
-        /* Stil pentru imagini în întrebări */
+
         .question-image {
-            max-width: 100%;
-            height: auto;
-            margin-top: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .image-placeholder { /* Pastrat pentru notă, dacă nu ai imaginea */
-            margin-top: 10px;
-            padding: 15px;
-            border: 2px dashed #ffc107; 
-            color: #6c757d;
-            background: #fff3cd;
-            border-radius: 5px;
-            font-style: italic;
+            margin: 15px 0;
             text-align: center;
-            font-size: 14px;
         }
 
+        .question-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
 
         .options {
             margin-top: 15px;
@@ -422,7 +413,7 @@
                     "B) Se afla in sala masini.",
                     "C) PC II."
                 ],
-                correct: 2 
+                correct: 0 
             },
             {
                 id: 2,
@@ -466,16 +457,14 @@
             },
             {
                 id: 6,
-                text: "Prin ce componentă trece mai întâi combustibilul?",
+                text: "Ce componenta este reprezentata in imagine?",
+                image: "images/232.6.jpg",
                 options: [
                     "A) Filtru fin de combustibil.",
                     "B) Filtru centrifugal pentru ulei MD.",
                     "C) Filtrul brut de combustibil."
                 ],
                 correct: 2, 
-                //image: 'calea/catre/imaginea_intrebarii_6.jpg', 
-                //image_alt: 'Imagine cu un Filtru Brut de Combustibil (LDE 232).',
-               // image_placeholder: '⚠️ Atenție: Imaginea nu este disponibilă. Înlocuiește "calea/catre/imaginea_intrebarii_6.jpg" cu fișierul real.'
             },
             {
                 id: 7,
@@ -489,16 +478,14 @@
             },
             {
                 id: 8,
-                text: "Componenta care realizează filtrarea uleiului si este echipată cu un diferenţial de presiune este?",
+                text: "Ce componenta este reprezentata in imagine?",
+                image: "images/232.8.jpg",
                 options: [
                     "A) Instalatia tip AST-LOOS.",
                     "B) Filtrul micronic.",
                     "C) Filtrul de ulei centrifugal."
                 ],
                 correct: 1, 
-               // image: 'calea/catre/imaginea_intrebarii_8.jpg', 
-               // image_alt: 'Imagine cu un Filtrul Micronic (LDE 232).',
-               // image_placeholder: '⚠️ Atenție: Imaginea nu este disponibilă. Înlocuiește "calea/catre/imaginea_intrebarii_8.jpg" cu fișierul real.'
             },
             {
                 id: 9,
@@ -603,24 +590,25 @@
             let html = '';
 
             questions.forEach((q) => {
-                const inputType = q.type === 'multiple' ? 'checkbox' : 'radio';
-                const inputName = q.type === 'multiple' ? `q${q.id}_opt` : `q${q.id}`;
-
+                const isMultipleAnswer = Array.isArray(q.correct);
+                const inputType = isMultipleAnswer ? 'checkbox' : 'radio';
+                const inputName = `q${q.id}`;
+                
                 html += `
                     <div class="question-block" id="q${q.id}">
                         <div class="question-number">Întrebarea ${q.id}</div>
                         <div class="question-text">${q.text}</div>
                 `;
-                
-                // Adaugă imaginea dacă există (cu placeholder pentru imaginea lipsă)
+
                 if (q.image) {
-                    html += `<img src="${q.image}" alt="${q.image_alt || 'Imagine pentru întrebare'}" class="question-image">`;
-                    html += `<div class="image-placeholder">${q.image_placeholder || '⚠️ Atenție: Imaginea nu este disponibilă. Înlocuiește "calea/catre/imaginea_ta.jpg" cu fișierul real.'}</div>`;
+                    html += `
+                        <div class="question-image">
+                            <img src="${q.image}" alt="Imagine întrebarea ${q.id}">
+                        </div>
+                    `;
                 }
 
-                html += `
-                        <div class="options">
-                `;
+                html += `<div class="options">`;
 
                 q.options.forEach((option, optIndex) => {
                     // Verifică starea anterioară pentru a menține selecția la reset/re-render
@@ -852,7 +840,8 @@
 
                 summary += `
 ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
-   ${q.text}${q.image_alt ? ` (Imagine: ${q.image_alt})` : ''}
+   ${q.text}
+   ${q.image ? `   [Imagine: ${q.image}]` : ''}
    
    Răspuns dat: ${givenAnswerText}
    Răspuns corect: ${correctAnswerText}
@@ -940,5 +929,4 @@ Ecobici Marian
         });
     </script>
 </body>
-
 </html>

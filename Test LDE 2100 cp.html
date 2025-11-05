@@ -140,6 +140,18 @@
             color: #2c3e50;
         }
 
+        .question-image {
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .question-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
         .options {
             margin-top: 15px;
         }
@@ -443,7 +455,8 @@
             },
             {
                 id: 6,
-                text: "Ce tip de filtru de ulei este utilizat în instalația de ungere a MD compus dintr-un filtru brut cu fante şi un filtru fin?",
+                text: "Ce reprezinta componenta incercuita din imagine?",
+                image: "images/lde.6.jpg",
                 options: [
                     "A) Filtrul centrifugal de ulei.",
                     "B) Filtrul combinat de ulei.",
@@ -463,7 +476,8 @@
             },
             {
                 id: 8,
-                text: "Instalația compusă din filtrul combinat de ulei, filtrul de ulei al regulatorului mecanic şi centrifugele de ulei, se numește:",
+                text: "Instalatia din imagine reprezinta?",
+                image: "images/lde.8.jpg",
                 options: [
                     "A) Instalația de combustibil.",
                     "B) Instalația de răcire cu apă.",
@@ -485,7 +499,7 @@
                 id: 10,
                 text: "Care sunt elementele componente ale instalației hidrostat? (Selectați toate răspunsurile corecte)",
                 options: [
-                    "A) Pompa hidrostatică, Cilindri",
+                    "A) Pompa hidrostatică",
                     "B) Motor hidrostatic",
                     "C) Cilindri de comandă ai jaluzelelor."
                 ],
@@ -505,7 +519,7 @@
                 text: "Când se aduce MD la mers în gol și întreruperea tracțiunii? (Selectați toate răspunsurile corecte)",
                 options: [
                     "A) Când presiunea din conducta generală a instalației de frână scade sub 1 kgf/cm²",
-                    "B) SAU când nivelul apei de răcire din rezervorul de compensare scade sub 160 l.",
+                    "B) Când nivelul apei de răcire din rezervorul de compensare scade sub 160 l.",
                     "C) Când apare punere la masă pe circuitul de forță."
                 ],
                 correct: [0, 1]
@@ -579,8 +593,17 @@
                     <div class="question-block" id="q${q.id}">
                         <div class="question-number">Întrebarea ${q.id}</div>
                         <div class="question-text">${q.text}</div>
-                        <div class="options">
                 `;
+
+                if (q.image) {
+                    html += `
+                        <div class="question-image">
+                            <img src="${q.image}" alt="Imagine întrebarea ${q.id}">
+                        </div>
+                    `;
+                }
+
+                html += `<div class="options">`;
 
                 q.options.forEach((option, optIndex) => {
                     if (isMultipleAnswer) {
@@ -801,6 +824,7 @@
                 summary += `
 ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
    ${q.text}
+   ${q.image ? `   [Imagine: ${q.image}]` : ''}
    
    Răspuns dat: ${givenAnswerText}
    Răspuns corect: ${correctAnswerText}
