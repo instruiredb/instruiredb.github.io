@@ -1,145 +1,181 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meniu - Teste Profesionale Feroviare</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            margin: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instruire Feroviară DB Cargo România</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      margin: 0;
+    }
 
-        .menu-container {
-            max-width: 600px;
-            width: 100%;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            padding: 40px;
-            text-align: center;
-        }
+    .menu-container {
+      width: 100%;
+      max-width: 900px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      padding: 30px 40px;
+    }
 
-        .menu-header h1 {
-            color: #764ba2;
-            font-size: 28px;
-            margin-bottom: 10px;
-        }
+    h1 {
+      color: #764ba2;
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
 
-        .menu-header p {
-            color: #555;
-            margin-bottom: 30px;
-            font-size: 16px;
-        }
+    p.subtitle {
+      text-align: center;
+      color: #666;
+      margin-bottom: 40px;
+    }
 
-        .test-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    details {
+      background: #f8f9fa;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
 
-        .test-list li {
-            margin-bottom: 15px;
-        }
+    details[open] summary {
+      background: #667eea;
+      color: white;
+    }
 
-        .test-list a {
-            display: block;
-            background: #667eea;
-            color: white;
-            padding: 15px 20px;
-            text-decoration: none;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: 600;
-            transition: background 0.3s ease, transform 0.2s;
-            box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
-        }
+    summary {
+      font-size: 18px;
+      font-weight: 600;
+      padding: 15px 20px;
+      cursor: pointer;
+      background: #eef0ff;
+      color: #333;
+      user-select: none;
+      outline: none;
+      transition: all 0.3s ease;
+    }
 
-        .test-list a:hover {
-            background: #5a6fe0;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.6);
-        }
+    summary:hover {
+      background: #dde0ff;
+    }
 
-        .test-list a:active {
-            transform: translateY(0);
-        }
+    ul.test-list {
+      list-style: none;
+      padding: 10px 25px 20px;
+      margin: 0;
+    }
 
-        .version-tag {
-            font-size: 12px;
-            font-weight: normal;
-            opacity: 0.8;
-            margin-left: 10px;
-        }
-    </style>
+    ul.test-list li {
+      margin-bottom: 12px;
+    }
+
+    ul.test-list a {
+      display: block;
+      background: #667eea;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 600;
+      transition: all 0.25s ease;
+      box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+    }
+
+    ul.test-list a:hover {
+      background: #5a6fe0;
+      transform: translateX(5px);
+    }
+
+    /* indentare pentru submeniuri */
+    details details {
+      margin-left: 20px;
+    }
+
+    .version-tag {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-left: 5px;
+      font-weight: normal;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <div class="menu-container">
-        <div class="menu-header">
-            <h1>Selectați Testul Profesional</h1>
-            <p>Trimestrul IV - 2025</p>
-        </div>
-        
-        <ul class="test-list">
-            <li>
-                <a href="Test mec t4-2025.html">
-                    Test 1: Mecanic Locomotivă (T4 2025)
-                    <span class="version-tag">(24 Întrebări)</span>
-                </a>
-            </li>
-            <li>
-                <a href="Test mec aj t4-2025.html">
-                    Test 2: Mecanic Ajutor Locomotivă (T4 2025)
-                    <span class="version-tag">(20 Întrebări)</span>
-                </a>
-            </li>
-            <li>
-                <a href="Pregatiri Iarna- 2025.html">
-                    Test 3: Pregătiri Iarnă 2025
-                    <span class="version-tag">(Întrebări specifice)</span>
-                </a>
-            </li>
-            <li>
-                <a href="Test LDE 2100 cp.html">
-                    Test LDE 2100 cp 2025
-                    <span class="version-tag">(Întrebări specifice)</span>
-                </a>
-            </li>
-            <li>
-                <a href="Test LDE 232 Ludmila.html">
-                    Test LDE 232 Ludmila
-                    <span class="version-tag">(Întrebări specifice)</span>
-                </a>
-            </li>
-            <li>
-                <a href="Test LDH BR 290.html">
-                    Test LDH BR 290
-                    <span class="version-tag">(Întrebări specifice)</span>
-                </a>
-            </li>
-            <li>
-                <a href="studiu-caz-draganesti.html">
-                    Studiu de caz Dragăneşti-Olt
-                    <span class="version-tag">(Întrebări specifice)</span>
-                </a>
-            </li>
-            <li>
-                <a href="studiu-caz-craiova.html">
-                    Studiu de caz Craiova
-                    <span class="version-tag">(Întrebări specifice)</span>
-                </a>
-            </li>
-        </ul>
+  <div class="menu-container">
+    <h1>Instruire Feroviară DB Cargo România</h1>
+    <p class="subtitle"></p>
 
-        <div style="margin-top: 30px; font-size: 14px; color: #888;">
-            Acces Offline - Salvați rezultatele prin export text/printare.
-        </div>
-    </div>
+    <!-- Categoria principală -->
+    <details open>
+      <summary>📅 Teste Personal Locomotivă</summary>
+      <ul class="test-list">
+
+        <!-- Subcategorie pentru trimestrul IV -->
+        <li>
+          <details>
+            <summary>🧭 Trimestrul IV - 2025</summary>
+            <ul class="test-list">
+
+              <li><a href="Test mec t4-2025.html">Test Mecanic Locomotivă <span class="version-tag">(24 întrebări)</span></a></li>
+              <li><a href="Test mec aj t4-2025.html">Test Mecanic Ajutor Locomotivă <span class="version-tag">(20 întrebări)</span></a></li>
+
+              <li><a href="Pregatiri Iarna- 2025.html">Pregătiri Iarnă 2025 <span class="version-tag">(întrebări specifice)</span></a></li>
+
+              <li>
+                <details>
+                  <summary>⚙️ Teste pe tipuri de locomotive</summary>
+                  <ul class="test-list">
+                    <li><a href="Test LDE 2100 cp.html">LDE 2100 CP <span class="version-tag">(întrebări specifice)</span></a></li>
+                    <li><a href="Test LDE 232 Ludmila.html">LDE 232 „Ludmila” <span class="version-tag">(întrebări specifice)</span></a></li>
+                    <li><a href="Test LDH BR 290.html">LDH BR 290 <span class="version-tag">(întrebări specifice)</span></a></li>
+                  </ul>
+                </details>
+              </li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </details>
+
+    <!-- Alte categorii independente -->
+    <details>
+      <summary>🧩 Studii de caz</summary>
+      <ul class="test-list">
+        <li><a href="studiu-caz-draganesti.html">Studiu de caz: Dragăneşti-Olt</a></li>
+        <li><a href="studiu-caz-craiova.html">Studiu de caz: Craiova</a></li>
+      </ul>
+    </details>
+    
+        <details>
+      <summary>🧩 Tematica Instruire</summary>
+      <ul class="test-list">
+        <li>
+          <details>
+            <summary>🧭 Trimestrul IV - 2025</summary>
+            <ul class="test-list">
+
+              <li><a href="tematica mecanic.html">Tematică Mecanic Locomotivă <span class="version-tag"></span></a></li>
+              <li><a href="tematica mecanic ajutor.html">Tematică Mecanic Ajutor Locomotivă <span class="version-tag"></span></a></li>
+      </ul>
+    </details>
+
+    <footer>Acces offline - Rezultatele pot fi exportate ca text sau printate</footer>
+  </div>
 </body>
 </html>
