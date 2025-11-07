@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Circulația trenurilor — BLA (Fișe de învățare)</title>
+  <style>
+    body {font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#1e3c72 0%,#2a5298 100%);color:#2d3436;margin:0;padding:40px;display:flex;flex-direction:column;align-items:center;line-height:1.6;}
+    h1 {font-size:2rem;text-align:center;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:white;padding:1.2rem 2rem;border-radius:15px;box-shadow:0 10px 25px rgba(0,0,0,0.3);width:fit-content;margin-bottom:2rem;}
+    .section {width:100%;max-width:1200px;background:#f8f9fa;padding:30px;border-radius:20px;margin-bottom:2rem;box-shadow:0 10px 40px rgba(0,0,0,0.2);}
+    .section-title {font-size:1.6rem;color:white;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);padding:1rem 1.5rem;border-radius:10px;margin-bottom:1.5rem;text-align:center;box-shadow:0 6px 15px rgba(0,0,0,0.2);}
+    .cards {display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+    .card {background:white;border-radius:15px;padding:1.5rem;box-shadow:0 10px 30px rgba(0,0,0,0.2);cursor:pointer;transition:all 0.3s ease;border-left:6px solid #667eea;position:relative;}
+    .card:hover {transform:translateY(-5px);background:#f0f4f8;}
+    .card h2 {margin:0 0 0.5rem 0;font-size:1.1rem;color:#667eea;}
+    .card .desc {color:#2d3436;font-size:1rem;font-weight:500;}
+    .card .details {display:none;margin-top:0.6rem;font-size:0.95rem;color:#333;background:#f8f9fa;padding:0.8rem;border-left:4px solid #764ba2;border-radius:8px;}
+    .card.active .details {display:block;animation:fadeIn 0.3s ease;}
+    @keyframes fadeIn {from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+    .highlight {font-weight:bold;color:#d62828;}
+    .speed {font-weight:bold;color:#1d3557;background:#e0f7fa;padding:0.2rem 0.4rem;border-radius:6px;}
+  </style>
+</head>
+<body>
+  <h1>Circulația trenurilor după sistemul blocului de linie automat</h1>
+
+  <div class="section">
+    <div class="section-title">Art. 206 — Reguli generale</div>
+    <div class="cards">
+      <div class="card" tabindex="0">
+        <div class="desc">Circulația pe secțiile cu BLA</div>
+        <div class="details">Pe secțiile de circulație înzestrate cu BLA, circulația trenurilor se face la intervale de sector de bloc.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Art. 207 — Primirea trenului</div>
+    <div class="cards">
+      <div class="card" tabindex="0"><h2>a)</h2><div class="desc">Înregistrează avizul de plecare</div><div class="details">IDM dispozitor înregistrează avizul de plecare al trenului transmis de la stația vecină.</div></div>
+      <div class="card" tabindex="0"><h2>b)</h2><div class="desc">Oprește manevra</div><div class="details">Dă ordin de retragere și oprire a manevrei înainte de primirea trenului.</div></div>
+      <div class="card" tabindex="0"><h2>c)</h2><div class="desc">Închide barierele</div><div class="details">Închide sau dă ordin de închidere a barierelor din incinta stației.</div></div>
+      <div class="card" tabindex="0"><h2>d)</h2><div class="desc">Verifică linia și parcursul</div><div class="details">Verifică pe luminoschemă sau display dacă linia de primire și parcursul de intrare sunt libere.</div></div>
+      <div class="card" tabindex="0"><h2>e)</h2><div class="desc">Execută parcursul de intrare</div><div class="details">Manipulează semnalul de intrare pe liber și verifică executarea corectă a parcursului.</div></div>
+      <div class="card" tabindex="0"><h2>f)</h2><div class="desc">Întâmpină trenul</div><div class="details">Supraveghează trenul prin defilare până la garare.</div></div>
+      <div class="card" tabindex="0"><h2>g)</h2><div class="desc">Confirmă gararea</div><div class="details">Se convinge că trenul a garat complet.</div></div>
+      <div class="card" tabindex="0"><h2>h)</h2><div class="desc">Notează sosirea</div><div class="details">Înregistrează ora și linia garării, transmite reavizul de sosire și raportează operatorului.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Art. 208 — Expedierea trenului</div>
+    <div class="cards">
+      <div class="card" tabindex="0"><h2>a)</h2><div class="desc">Verifică linia liberă</div><div class="details">Se convinge că linia până la stația vecină nu este ocupată de UAM sau vehicule ce pot fi scoase cu brațele.</div></div>
+      <div class="card" tabindex="0"><h2>b)</h2><div class="desc">Verifică reavizul</div><div class="details">Se asigură că a primit reavizul de sosire de la stația vecină.</div></div>
+      <div class="card" tabindex="0"><h2>c)</h2><div class="desc">Oprește manevra</div><div class="details">Retrage și oprește manevra înainte de plecarea trenului.</div></div>
+      <div class="card" tabindex="0"><h2>d)</h2><div class="desc">Închide barierele</div><div class="details">Închide sau dă ordin de închidere a barierelor din incinta stației.</div></div>
+      <div class="card" tabindex="0"><h2>e)</h2><div class="desc">Anunță posturile de barieră</div><div class="details">Anunță trenul la posturile de barieră din linia curentă.</div></div>
+      <div class="card" tabindex="0"><h2>f)</h2><div class="desc">Execută parcursul de ieșire</div><div class="details">Verifică pe luminoschemă dacă parcursul și semnalele corespund trenului și direcției.</div></div>
+      <div class="card" tabindex="0"><h2>g)</h2><div class="desc">Dă semnalul de plecare</div><div class="details">Dă personal semnalul „Pornirea trenului” sau transmite ordinul de plecare.</div></div>
+      <div class="card" tabindex="0"><h2>h)</h2><div class="desc">Supraveghează plecarea</div><div class="details">Supraveghează trenul prin defilare la plecare sau trecere.</div></div>
+      <div class="card" tabindex="0"><h2>i)</h2><div class="desc">Verifică ieșirea completă</div><div class="details">Se asigură pe luminoschemă că trenul a ieșit complet din stație.</div></div>
+      <div class="card" tabindex="0"><h2>j)</h2><div class="desc">Transmite avizul</div><div class="details">Trimite stației vecine avizul de plecare.</div></div>
+      <div class="card" tabindex="0"><h2>k)</h2><div class="desc">Raportează operatorului</div><div class="details">Notează ora plecării/trecerii și linia de expediere, raportând operatorului de circulație.</div></div>
+      <div class="card" tabindex="0"><h2>l)</h2><div class="desc">Expedierea de pe linii fără semnal luminos</div><div class="details">În cazul în care necesităţile impun expedierea unui tren de pe o linie neînzestrată cu semnal luminos de ieşire, expedierea se face în condiţiile prevăzute pentru cazurile defectării semnalului luminos de ieşire.</div></div>
+      <div class="card" tabindex="0"><h2>m)</h2><div class="desc">Înapoierea trenului sau a locomotivei</div><div class="details">Înapoierea în staţie a unui tren expediat până la un punct din linie curentă, respectiv a locomotivei împingătoare nelegată la tren, se face în baza condiţiilor fixate prin ordinul de circulaţie.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Art. 209 — Semnale luminoase BLA defecte sau dubioase</div>
+    <div class="cards">
+      <div class="card" tabindex="0"><h2>(1)</h2><div class="desc">Obligațiile mecanicului</div><div class="details">Dacă mecanicul unui tren constată că două sau mai multe semnale luminoase de trecere ale BLA dau indicaţia roşu, indicaţii dubioase sau sunt stinse, acesta comunică prin radiotelefon către IDM dispozitor din prima staţie denumirea semnalelor respective. Dacă radiotelefonul nu funcţionează, mecanicul opreşte trenul în prima staţie şi comunică cele constatate IDM-ului dispozitor.</div></div>
+      <div class="card" tabindex="0"><h2>(2)</h2><div class="desc">Circulația primului tren</div><div class="details">Primul tren expediat pe bază de cale liberă trece fără să oprească în faţa semnalelor comunicate ca defecte, circulând cu viteza de cel mult <span class="speed">20 km/h</span> până la primul semnal permisiv, cu excepția semnalelor care fac și funcția de semnale de avarie la trecerile la nivel.<br><br>Mecanicul este avizat prin <span class="highlight">ordin de circulație</span> în care se menționează:<ul><li><span class="highlight">„circulați până la stația… pe baza înțelegerii telefonice – cale liberă”</span>;</li><li><span class="highlight">„nu opriți în fața semnalelor luminoase de trecere … cu indicația roșu, cu indicații dubioase sau stinse”</span> (cu excepția celor care sunt semnale de avarie la trecerile la nivel);</li><li><span class="highlight">„circulați cu viteza de cel mult 20 km/h”</span> pe sectoarele acoperite de semnalele defecte.</li></ul><br>Mecanicul comunică IDM dispozitor constatările, care se înscriu în RRLISC și foaia de parcurs.</div></div>
+      <div class="card" tabindex="0"><h2>(3)</h2><div class="desc">Circulația următorului tren</div><div class="details">Dacă primul tren nu a constatat nimic deosebit, următorul tren se expediază tot pe bază de cale liberă, cu viteză stabilită, fără oprire în fața semnalelor comunicate anterior, cu excepția celor care sunt semnale de avarie la trecerile la nivel.<br><br>Mecanicul este avizat prin <span class="highlight">ordin de circulație</span> în care se menționează:<ul><li><span class="highlight">„circulați până la stația… pe baza înțelegerii telefonice – cale liberă”</span>;</li><li><span class="highlight">„circulați cu viteză stabilită fără oprire în fața semnalelor luminoase defecte”</span>;</li></ul></div></div>
+      <div class="card" tabindex="0"><h2>(4)</h2><div class="desc">Semnale suplimentar defecte</div><div class="details">Dacă, în timpul circulației, mecanicul constată alte semnale luminoase de trecere BLA defecte, dubioase sau stinse, comunică IDM dispozitor din prima stație, care aplică aceleași proceduri ca la alin. (2) și (3).</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Art. 210 — Neînfuncționarea BLA</div>
+    <div class="cards">
+      <div class="card" tabindex="0"><div class="desc">Constatarea și măsuri</div><div class="details">Când IDM dispozitor constată că BLA nu funcţionează, înscrie acest fapt în RRLISC, avizează operatorul de circulaţie şi personalul SCB. Circulaţia se face pe baza înţelegerii telefonice – cale liberă. Până la stabilirea cauzei, trenurile circulă conform Regulamentului de semnalizare CFR, iar condiţiile se comunică mecanicului prin ordin de circulaţie.</div></div>
+    </div>
+  </div>
+
+ <div class="section">
+    <div class="section-title">Art. 211 — Scoaterea din funcțiune a BLA</div>
+    <div class="cards">
+      <div class="card" tabindex="0"><h2>(1)</h2><div class="desc">Scoaterea din funcțiune</div><div class="details">BLA poate fi declarat defect și scos din funcțiune doar de personalul SCB, care înscrie în RRLISC cauzele și condițiile de circulație. IDM dispozitor comunică operatorului și șefului stației, iar operatorul informează toate stațiile prin dispoziție scrisă.</div></div>
+      <div class="card" tabindex="0"><h2>(2)</h2><div class="desc">Avizarea mecanicului</div><div class="details">Mecanicul este avizat prin ordin de circulație emis din ultima stație cu oprire, pe baza dispoziției operatorului. Dispoziția se transmite tuturor stațiilor de pe secția respectivă.</div></div>
+      <div class="card" tabindex="0"><h2>(3)</h2><div class="desc">Măsuri pentru trenurile aflate în circulație</div><div class="details">Operatorul și IDM-urile stabilesc trenurile neavizate și dispun oprirea acestora pentru avizarea mecanicilor privind condițiile de circulație.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Art. 212 — Scoaterea programată din funcțiune a BLA</div>
+    <div class="cards">
+      <div class="card" tabindex="0"><div class="desc">Lucrări planificate</div><div class="details">Dacă scoaterea din funcțiune este programată și avizată din timp pentru lucrări, iar personalul este instruit conform prescripțiilor, mecanicul nu mai este avizat prin ordin de circulație. Semnalele se semnalizează conform Regulamentului de semnalizare CFR ca semnale scoase din funcțiune.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Art. 213 — Repunerea în funcțiune a BLA</div>
+    <div class="cards">
+      <div class="card" tabindex="0"><h2>(1)</h2><div class="desc">Repunerea în funcțiune</div><div class="details">Repunerea în funcțiune a BLA se face doar de personalul SCB, care stabilește condițiile de circulație. După repunere, IDM anunță operatorul de circulație, care informează toate stațiile și dispune revenirea la circulația normală pe baza BLA.</div></div>
+      <div class="card" tabindex="0"><h2>(2)</h2><div class="desc">Verificări și avizări</div><div class="details">Operatorul și IDM-urile verifică trenurile deja avizate pentru scoaterea din funcțiune a BLA și opresc trenurile în mișcare pentru a înmâna mecanicilor ordinul de circulație privind reluarea traficului normal.</div></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Art. 214 — Neînfuncționarea instalației TC</div>
+    <div class="cards">
+      <div class="card" tabindex="0"><div class="desc">Comunicarea către mecanic</div><div class="details">Dacă instalația TC a operatorului de circulație nu funcționează, încunoștințarea mecanicului despre scoaterea sau repunerea în funcțiune a BLA se face de către IDM din stațiile care delimitează distanța pe care BLA este scos din funcțiune.</div></div>
+    </div>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', function() {
+          this.classList.toggle('active');
+        });
+        card.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            this.classList.toggle('active');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
