@@ -111,7 +111,6 @@
         .radio-label input[type="radio"] {
             margin-right: 8px;
             cursor: pointer;
-            /* De asemenea, scoatem checked implicit din HTML (rândul 241) */
         }
 
         .quiz-content {
@@ -345,7 +344,6 @@
             white-space: pre-wrap;
         } 
         
-        /* Secțiunea de stil pentru Semnătură (nou adăugată pentru poziționare) */
         .signature-section {
             padding: 20px 30px 40px;
             text-align: right;
@@ -358,7 +356,7 @@
             color: #2c3e50;
             font-weight: 700;
             display: inline-block;
-            border-top: 1px solid #ccc; /* Linie sub semnătură */
+            border-top: 1px solid #ccc;
             padding-top: 5px;
         }
     </style>
@@ -399,7 +397,7 @@
         <div class="quiz-content" id="quizContent" style="display:none;"></div>
 
         <div class="btn-container">
-            <button class="btn" id="checkBtn" onclick="checkAnswers()">Verifică Răspunsurile</button>
+            <button class="btn" id="checkBtn" onclick="checkAnswers()" style="display:none;">Verifică Răspunsurile</button>
             <button class="btn reset-btn" id="resetBtn" onclick="resetQuiz()" style="display:none;">Reia Testul</button>
         </div>
 
@@ -417,7 +415,9 @@
             <div style="font-size: 14px; margin-bottom: 5px; color: #555;">Întocmit</div>
             <div class="signature">Ecobici Marian</div>
         </div>
-    </div> <script>
+    </div> 
+    
+    <script>
         const questions = [
             {
                 id: 1,
@@ -426,7 +426,7 @@
                     "A) Adevarat",
                     "B) Fals"
                 ],
-                correct: 1 // Răspunsul este 'b' (Fals) conform PDF.
+                correct: 1
             },
             {
                 id: 2,
@@ -436,7 +436,7 @@
                     "B) Incident feroviar grupa A.",
                     "C) Accident feroviar grav."
                 ],
-                correct: 0 // Răspunsul este 'a' (Accident feroviar) conform PDF.
+                correct: 0
             },
             {
                 id: 3,
@@ -446,7 +446,7 @@
                     "B) Pentru incendii la vehiculele feroviare din compunerea trenurilor în circulatie si manevra.",
                     "C) Pentru loviri ale vehiculelor rutiere la trecerile la nivel de catre trenuri în circulatie sau loviri ale persoanelor de catre vehicule feroviare aflate în miscare, cu exceptia cazurilor de suicid."
                 ],
-                correct: 2 // Răspunsul este 'C' conform PDF.
+                correct: 2
             },
             {
                 id: 4,
@@ -455,7 +455,7 @@
                     "A) Adevarat",
                     "B) Fals"
                 ],
-                correct: 0 // Răspunsul este 'a' (Adevarat) conform PDF.
+                correct: 0
             },
             {
                 id: 5,
@@ -465,7 +465,7 @@
                     "B) trebuie sa deconecteze imediat instalatia de forta si serviciile auxiliare si din mers sa ridice si al doilea pantograf si numai dupa aceea sa repuna instalatiile în functiune.",
                     "C) sa opreasca trenul, sa deconecteze disjunctorul si sa ridice numai pantograful din fata, dupa care continua mersul."
                 ],
-                correct: 1 // Răspunsul este 'b' conform PDF.
+                correct: 1
             },
             {
                 id: 6,
@@ -474,7 +474,7 @@
                     "A) Adevarat",
                     "B) Fals"
                 ],
-                correct: 0 // Răspunsul este 'a' (Adevarat) conform PDF.
+                correct: 0
             },
             {
                 id: 7,
@@ -484,7 +484,7 @@
                     "B) în cazul în care nu exista al doilea agent la urma trenului.",
                     "C) pe sectii de circulatie cu BLA, cu exceptia trenurilor oprite fara sa depaseasca al doilea sector de bloc."
                 ],
-                correct: 0 // Răspunsul este 'a' conform PDF.
+                correct: 0
             },
             {
                 id: 8,
@@ -493,7 +493,7 @@
                     "A) Adevarat",
                     "B) Fals"
                 ],
-                correct: 0 // Răspunsul este 'a' (Adevarat) conform PDF.
+                correct: 0
             },
             {
                 id: 9,
@@ -502,7 +502,7 @@
                     "A) Adevarat",
                     "B) Fals"
                 ],
-                correct: 0 // Răspunsul este 'a' (Adevarat) conform PDF.
+                correct: 0
             },
             {
                 id: 10,
@@ -511,7 +511,7 @@
                     "A) Adevarat",
                     "B) Fals"
                 ],
-                correct: 0 // Răspunsul este 'a' (Adevarat) conform PDF.
+                correct: 0
             },
             {
                 id: 11,
@@ -521,35 +521,31 @@
                     "B) Va lua în considerare indicatia de zi daca semnalul respectiv nu a fost avizat ca fiind defect.",
                     "C) Va circula cu viteza de maxim 20 km/h."
                 ],
-                correct: 1 // Răspunsul este 'b' conform PDF.
+                correct: 1
             },
-            // Întrebarea 12: Adaptată la formatul "matching"
             {
                 id: 12,
                 text: "Corelați corespunzător semnalele date de agenți cu instrumente portative cu indicația semnalului pe timp de zi.",
                 type: "matching",
-                // Secțiune HTML pentru a afișa detaliile de potrivire (i1-i3 cu r1-r5)
                 content: `
                     <table class="matching-table">
                         <thead>
                             <tr><th>Semnal (i)</th><th>Indicația semnalului (r)</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td>i1) Înapoi</td><td>r1) impiegatul de mișcare ridică discul manual cu fața verde, spre mecanic.</td></tr>
-                            <tr><td>i2) “Pornirea trenului" dat de impiegatul de mișcare</td><td>r2) impiegatul de mișcare mișcă discul manual cu fața verde spre mecanic, deasupra capului.</td></tr>
-                            <tr><td>i3) Trecerea fără oprire a trenului dată de impiegatul de mișcare, în stațiile fără semnal de ieșire</td><td>r3) se mișcă stegulețul galben în arc de cerc, jos, înaintea corpului și în același timp se dau două sunete lungi cu fluierul de mână.</td></tr>
+                            <tr><td>i1) Înapoi</td><td>r3) se mișcă stegulețul galben în arc de cerc, jos, înaintea corpului și în același timp se dau două sunete lungi cu fluierul de mână.</td></tr>
+                            <tr><td>i2) “Pornirea trenului" dat de impiegatul de mișcare</td><td>r1) impiegatul de mișcare ridică discul manual cu fața verde, spre mecanic.</td></tr>
+                            <tr><td>i3) Trecerea fără oprire a trenului dată de impiegatul de mișcare, în stațiile fără semnal de ieșire</td><td>r2) impiegatul de mișcare mișcă discul manual cu fața verde spre mecanic, deasupra capului.</td></tr>
                             <tr><td></td><td>r4) se mișcă stegulețul galben de sus în jos și apoi orizontal, înaintea corpului, descriind un "T" răsturnat.</td></tr>
                             <tr><td></td><td>r5) se mișcă încet, lanterna cu lumina verde, în sus și în jos, cu brațul întins orizontal și în același timp se dau mai multe sunete lungi cu fluierul de mână.</td></tr>
                         </tbody>
                     </table>
                 `,
-                // Opțiunile finale (A, B, C)
                 options: [
                     "A) (i1-r5); (i2-r2); (i3-r1).",
                     "B) (i1-r3); (i2-r1); (i3-r5).",
                     "C) (i1-r3); (i2-r1); (i3-r2)."
                 ],
-                // Potrivirea corectă este C: i1 (Înapoi) -> r3; i2 (Pornire) -> r1; i3 (Trecere fără oprire) -> r2.
                 correct: 2
             },
             {
@@ -560,7 +556,7 @@
                     "B) Se va actiona la baza focarului de incendiu.",
                     "C) Se va actiona dinspre margini spre mijloc astfel evitându-se extinderea incendiului."
                 ],
-                correct: 1 // Răspunsul este 'b' conform PDF.
+                correct: 1
             },
             {
                 id: 14,
@@ -570,7 +566,7 @@
                     "B) Sa verifice starea sigiliilor la protectii (relee, contactoare, robineti), blocuri de aparate, capacele de acces la relee si alte agregate specifice;",
                     "C) Sa scurtcircuiteze protectiile blocurilor de aparate;"
                 ],
-                correct: 1 // Răspunsul este 'b' conform PDF.
+                correct: 1
             },
             {
                 id: 15,
@@ -580,7 +576,7 @@
                     "B) conecteaza bateriile de acumulatori, prin închiderea întrerupatorului acestuia.",
                     "C) tipul de locomotiva."
                 ],
-                correct: 2 // Răspunsul este 'C' (tipul de locomotivă) conform PDF.
+                correct: 2
             },
             {
                 id: 16,
@@ -590,7 +586,7 @@
                     "B) stingatoarele cu bioxid de carbon pentru echipamentul electric, iar cele cu spuma chimica sau praf si CO2 pentru restul echipamentului.",
                     "C) stingatoarele cu spuma chimica sau praf pentru echipamentul electric, iar cele cu bioxid de carbon si CO2 pentru restul echipamentului."
                 ],
-                correct: 1 // Răspunsul este 'b' conform PDF.
+                correct: 1
             },
             {
                 id: 17,
@@ -599,7 +595,7 @@
                     "A) Adevarat",
                     "B) Fals"
                 ],
-                correct: 0 // Răspunsul este 'a' (Adevarat) conform PDF.
+                correct: 0
             },
             {
                 id: 18,
@@ -609,7 +605,7 @@
                     "B) Se verifica înca o data indicatiile nivelului lichidului de racire si combustibil.",
                     "C) daca toate instalatiile functioneaza normal si numai dupa aceea va pune locomotiva în miscare."
                 ],
-                correct: 2 // Răspunsul este 'C' conform PDF.
+                correct: 2
             },
             {
                 id: 19,
@@ -618,7 +614,7 @@
                     "A) Adevarat",
                     "B) Fals"
                 ],
-                correct: 0 // Răspunsul este 'a' (Adevarat) conform PDF.
+                correct: 0
             },
             {
                 id: 20,
@@ -628,13 +624,17 @@
                     "B) Sa scurtcircuiteze protectiile blocurilor de aparate;",
                     "C) Să verifice starea sigiliilor la protecții (relee, contactoare, robineti), blocuri de aparate, capacele de acces la relee și alte agregate specifice;"
                 ],
-                correct: 2 // Răspunsul este 'C' conform PDF.
+                correct: 2
             }
         ];
 
         let userAnswers = {};
         let checked = false;
         let personalData = {};
+        const totalQuestions = questions.length;
+        
+        // NOU: Identificator unic al testului pentru numele fișierului
+        const TEST_SLUG = "MecAj_Trim_IV_2025"; 
 
         function startQuiz() {
             const nume = document.getElementById('nume').value.trim();
@@ -655,6 +655,9 @@
             document.getElementById('personalInfo').style.display = 'none';
             document.getElementById('quizContent').style.display = 'block';
             renderQuiz();
+            
+            document.getElementById('checkBtn').style.display = 'inline-block';
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -700,9 +703,14 @@
         function checkAnswers() {
             if (checked) return;
             
+            
+            if (Object.keys(userAnswers).length !== totalQuestions) {
+                alert(`⚠️ Te rog răspunde la toate cele ${totalQuestions} de întrebări înainte de a verifica! Ai răspuns la ${Object.keys(userAnswers).length} întrebări.`);
+                return;
+            }
+
             checked = true;
             let score = 0;
-            const totalQuestions = questions.length;
 
             questions.forEach(q => {
                 const options = document.querySelectorAll(`#q${q.id} .option`);
@@ -726,12 +734,6 @@
             });
 
             const percentage = Math.round((score / totalQuestions) * 100);
-            
-            // Logica de calificare bazată pe grila adaptată pentru 20 de întrebări:
-            // A: 19-20 (95.0% – 100%)
-            // B: 15-18 (75.0% – 90.0%)
-            // C: 11-14 (55.0% – 70.0%)
-            // D: 1-10 (5.0% – 50.0%)
             
             let message = '';
             let calificativ = '';
@@ -766,6 +768,12 @@
 
             generateSummary(score, percentage, calificativ, status);
             document.getElementById('exportSection').classList.add('show');
+            
+            // ACTIUNE NOUA: Descarcă automat rezultatul ca fișier text
+            exportToText(); 
+
+            // ACTIUNE: Copiază automat rezultatul în clipboard
+            copyToClipboard();
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -778,8 +786,7 @@
                 day: 'numeric' 
             });
 
-            const totalQuestions = questions.length;
-
+            
             let summary = `
 ╔════════════════════════════════════════════════════════════════╗
 ║          TEST MECANIC AJUTOR LOCOMOTIVĂ - TRIM. IV 2025        ║
@@ -839,7 +846,8 @@ ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Test_MecAj_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
+            // Nume de fișier cu identificatorul testului
+            a.download = `Test_${TEST_SLUG}_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -883,22 +891,20 @@ ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
             
             document.getElementById('results').classList.remove('show');
             document.getElementById('exportSection').classList.remove('show');
-            document.getElementById('checkBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').style.display = 'none'; 
             document.getElementById('resetBtn').style.display = 'none';
             document.getElementById('personalInfo').style.display = 'block';
             document.getElementById('quizContent').style.display = 'none';
             
             document.getElementById('nume').value = '';
-            document.querySelectorAll('input[name="functie"]').forEach(r => r.checked = false); // Debifează toate la reset
+            document.querySelectorAll('input[name="functie"]').forEach(r => r.checked = false); 
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Inițializare: Setează data curentă ca default, fără funcție pre-selectată (conform cererii inițiale).
         document.addEventListener('DOMContentLoaded', function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('data').value = today;
-            // Neasigurăm că niciun radio buton nu este selectat implicit (deși nu este necesar aici, e o bună practică)
             document.querySelectorAll('input[name="functie"]').forEach(r => r.checked = false);
         });
     </script>
