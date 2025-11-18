@@ -205,16 +205,16 @@
             background: white;
             border-radius: 8px;
             overflow: hidden;
-            font-size: 14px; /* Adăugat pentru a arăta mai bine pe tabel */
+            font-size: 14px;
         }
         
-        .matching-table th, .matching-table td { /* Adăugat th pentru consistență */
+        .matching-table th, .matching-table td {
             padding: 12px;
             border: 1px solid #e0e0e0;
             text-align: left;
         }
 
-        .matching-table th { /* Adăugat th pentru consistență */
+        .matching-table th {
             background: #e9eefd;
             color: #667eea;
         }
@@ -343,7 +343,6 @@
             white-space: pre-wrap;
         }
         
-        /* 🟢 MODIFICARE 2: Adaugă stilul pentru poziționarea semnăturii în dreapta */
         .signature-section {
             padding: 20px 30px 40px;
             text-align: right;
@@ -356,7 +355,7 @@
             color: #2c3e50;
             font-weight: 700;
             display: inline-block;
-            border-top: 1px solid #ccc; /* Linie sub semnătură */
+            border-top: 1px solid #ccc;
             padding-top: 5px;
         }
     </style>
@@ -397,7 +396,7 @@
         <div class="quiz-content" id="quizContent" style="display:none;"></div>
 
         <div class="btn-container">
-            <button class="btn" id="checkBtn" onclick="checkAnswers()">Verifică Răspunsurile</button>
+            <button class="btn" id="checkBtn" onclick="checkAnswers()" style="display:none;">Verifică Răspunsurile</button>
             <button class="btn reset-btn" id="resetBtn" onclick="resetQuiz()" style="display:none;">Reia Testul</button>
         </div>
 
@@ -683,6 +682,7 @@
         let userAnswers = {};
         let checked = false;
         let personalData = {};
+        const totalQuestions = questions.length; // Adăugat pentru claritate
 
         function startQuiz() {
             const nume = document.getElementById('nume').value.trim();
@@ -703,6 +703,10 @@
             document.getElementById('personalInfo').style.display = 'none';
             document.getElementById('quizContent').style.display = 'block';
             renderQuiz();
+            
+            // Afișează butonul de verificare
+            document.getElementById('checkBtn').style.display = 'inline-block';
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -748,6 +752,12 @@
         function checkAnswers() {
             if (checked) return;
             
+            // NOU: Verifică dacă s-a răspuns la toate întrebările
+            if (Object.keys(userAnswers).length !== totalQuestions) {
+                alert(`⚠️ Te rog răspunde la toate cele ${totalQuestions} de întrebări înainte de a verifica! Ai răspuns la ${Object.keys(userAnswers).length} întrebări.`);
+                return;
+            }
+            
             checked = true;
             let score = 0;
 
@@ -772,15 +782,9 @@
                 }
             });
 
-            const percentage = Math.round((score / questions.length) * 100);
+            const percentage = Math.round((score / totalQuestions) * 100);
             let message = '';
-            let calificativ = ''; // Adăugat calificativ
-
-            // Logica de calificare bazată pe grila adaptată pentru 24 de întrebări:
-            // A: 23-24 (95.8% – 100%)
-            // B: 18-22 (75.0% – 91.6%)
-            // C: 13-17 (54.1% – 70.8%)
-            // D: 1-12 (4.1% – 50.0%)
+            let calificativ = '';
             let status = '❌ NECORESPUNZĂTOR';
 
 
@@ -803,7 +807,7 @@
 
             document.getElementById('results').innerHTML = `
                 <h2>Rezultate Test</h2>
-                <div class="score">${score} / ${questions.length}</div>
+                <div class="score">${score} / ${totalQuestions}</div>
                 <div class="score-message">${percentage}% - Calificativ: ${calificativ} - ${status}</div>
                 <div class="score-message">${message}</div>
             `;
@@ -811,7 +815,7 @@
             document.getElementById('checkBtn').style.display = 'none';
             document.getElementById('resetBtn').style.display = 'inline-block';
 
-            generateSummary(score, percentage, calificativ, status); // Actualizat cu calificativ și status
+            generateSummary(score, percentage, calificativ, status);
             document.getElementById('exportSection').classList.add('show');
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -824,7 +828,7 @@
                 month: 'long', 
                 day: 'numeric' 
             });
-            const totalQuestions = questions.length;
+            
 
 
             let summary = `
@@ -841,7 +845,7 @@
 
 📊 REZULTATE:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   Punctaj: ${score} / ${questions.length}
+   Punctaj: ${score} / ${totalQuestions}
    Procent: ${percentage}%
    Calificativ: ${calificativ}
    Status: ${status}
@@ -931,13 +935,13 @@ ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
             
             document.getElementById('results').classList.remove('show');
             document.getElementById('exportSection').classList.remove('show');
-            document.getElementById('checkBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').style.display = 'none'; // Ascunde butonul de verificare
             document.getElementById('resetBtn').style.display = 'none';
             document.getElementById('personalInfo').style.display = 'block';
             document.getElementById('quizContent').style.display = 'none';
             
             document.getElementById('nume').value = '';
-            document.getElementById('data').value = '';
+            document.getElementById('data').value = new Date().toISOString().split('T')[0]; // Resetează data la cea curentă
             document.querySelectorAll('input[name="functie"]').forEach(r => r.checked = false);
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
