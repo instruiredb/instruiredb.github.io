@@ -682,7 +682,10 @@
         let userAnswers = {};
         let checked = false;
         let personalData = {};
-        const totalQuestions = questions.length; // Adăugat pentru claritate
+        const totalQuestions = questions.length;
+        
+        // NOU: Identificator unic al testului pentru numele fișierului
+        const TEST_SLUG = "Mecanic_Trim_IV_2025"; 
 
         function startQuiz() {
             const nume = document.getElementById('nume').value.trim();
@@ -704,7 +707,6 @@
             document.getElementById('quizContent').style.display = 'block';
             renderQuiz();
             
-            // Afișează butonul de verificare
             document.getElementById('checkBtn').style.display = 'inline-block';
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -752,7 +754,6 @@
         function checkAnswers() {
             if (checked) return;
             
-            // NOU: Verifică dacă s-a răspuns la toate întrebările
             if (Object.keys(userAnswers).length !== totalQuestions) {
                 alert(`⚠️ Te rog răspunde la toate cele ${totalQuestions} de întrebări înainte de a verifica! Ai răspuns la ${Object.keys(userAnswers).length} întrebări.`);
                 return;
@@ -817,6 +818,12 @@
 
             generateSummary(score, percentage, calificativ, status);
             document.getElementById('exportSection').classList.add('show');
+            
+            // ACTIUNE NOUA: Descarcă automat rezultatul ca fișier text
+            exportToText(); 
+
+            // ACTIUNE: Copiază automat rezultatul în clipboard
+            copyToClipboard(); 
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -891,7 +898,8 @@ ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Test_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
+            // Nume de fișier cu identificatorul testului
+            a.download = `Test_${TEST_SLUG}_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -935,13 +943,13 @@ ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
             
             document.getElementById('results').classList.remove('show');
             document.getElementById('exportSection').classList.remove('show');
-            document.getElementById('checkBtn').style.display = 'none'; // Ascunde butonul de verificare
+            document.getElementById('checkBtn').style.display = 'none';
             document.getElementById('resetBtn').style.display = 'none';
             document.getElementById('personalInfo').style.display = 'block';
             document.getElementById('quizContent').style.display = 'none';
             
             document.getElementById('nume').value = '';
-            document.getElementById('data').value = new Date().toISOString().split('T')[0]; // Resetează data la cea curentă
+            document.getElementById('data').value = new Date().toISOString().split('T')[0];
             document.querySelectorAll('input[name="functie"]').forEach(r => r.checked = false);
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
