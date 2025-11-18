@@ -6,7 +6,6 @@
     <title>Test Mecanic Locomotivă - Trim IV 2025 (Pregătiri Iarnă)</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* CSS-ul a rămas același pentru a păstra stilul uniform. */
         * {
             margin: 0;
             padding: 0;
@@ -27,7 +26,7 @@
             border-radius: 15px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
-            position: relative;
+            position: relative; /* Pentru a poziționa semnătura relativ la container */
         }
 
         .header {
@@ -200,6 +199,35 @@
             margin-right: 5px;
         }
 
+        .matching-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .matching-table th, .matching-table td {
+            padding: 12px;
+            border: 1px solid #e0e0e0;
+            text-align: left;
+        }
+        
+        .matching-table th {
+            background: #e9eefd;
+            color: #667eea;
+            font-weight: 700;
+        }
+
+        .matching-table td:first-child {
+            font-weight: 600;
+            background: #f8f9fa;
+            width: 30%;
+        }
+
         .btn-container {
             text-align: center;
             margin: 30px 0;
@@ -216,16 +244,17 @@
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            margin: 5px;
         }
 
         .btn:hover {
-            opacity: 0.9;
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
         }
 
-        .reset-btn {
-            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+        .btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            box-shadow: none;
         }
 
         .results {
@@ -237,34 +266,52 @@
             text-align: center;
             display: none;
         }
-        
+
         .results.show {
             display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .results h2 {
-            margin-bottom: 10px;
-            font-size: 28px;
+            font-size: 24px;
+            margin-bottom: 15px;
         }
 
-        .score {
+        .results .score {
             font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            font-family: 'Dancing Script', cursive;
+            font-weight: bold;
+            margin: 20px 0;
         }
 
         .score-message {
             font-size: 18px;
-            font-weight: 500;
+            margin-top: 10px;
+        }
+
+        .reset-btn {
+            background: white;
+            color: #f5576c;
+            margin-top: 20px;
         }
 
         .export-section {
-            padding: 30px;
             text-align: center;
+            margin: 20px 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
             display: none;
-            border-top: 1px solid #e0e0e0;
-            margin-top: 20px;
         }
 
         .export-section.show {
@@ -273,34 +320,54 @@
 
         .export-section h3 {
             color: #667eea;
-            margin-bottom: 20px;
-            font-size: 22px;
+            margin-bottom: 15px;
         }
 
         .export-btn {
             background: #28a745;
-            background: linear-gradient(135deg, #28a745 0%, #40a08e 100%);
+            margin: 5px;
         }
 
+        .export-btn:hover {
+            background: #218838;
+        }
+
+        .summary-text {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: left;
+            margin: 20px 0;
+            max-height: 400px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+        
         .signature-section {
+            padding: 20px 30px 40px;
             text-align: right;
-            padding: 0 30px 30px 30px;
-            color: #777;
+            margin-top: 20px;
         }
 
         .signature {
             font-family: 'Dancing Script', cursive;
-            font-size: 24px;
-            margin-top: 5px;
-            color: #333;
+            font-size: 28px;
+            color: #2c3e50;
+            font-weight: 700;
+            display: inline-block;
+            border-top: 1px solid #ccc; /* Linie sub semnătură */
+            padding-top: 5px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚂 Test Mecanic Locomotivă - Pregătiri Iarnă</h1>
-            <p>Trimestrul IV - 2025</p>
+            <h1>🚂 Test Pregătiri Iarnă</h1>
+            <p>Trimestrul IV - 2025 </p>
         </div>
 
         <div class="personal-info" id="personalInfo">
@@ -332,217 +399,197 @@
         <div class="quiz-content" id="quizContent" style="display:none;"></div>
 
         <div class="btn-container">
-            <button class="btn" id="checkBtn" onclick="checkAnswers()" style="display:none;">Verifică Răspunsurile</button>
+            <button class="btn" id="checkBtn" onclick="checkAnswers()">Verifică Răspunsurile</button>
             <button class="btn reset-btn" id="resetBtn" onclick="resetQuiz()" style="display:none;">Reia Testul</button>
         </div>
 
         <div class="results" id="results"></div>
 
-        <div class="export-section" id="exportSection" style="display:none;">
+        <div class="export-section" id="exportSection">
             <h3>📥 Exportă Rezultatele</h3>
             <button class="btn export-btn" onclick="exportToText()">💾 Descarcă ca Text</button>
             <button class="btn export-btn" onclick="copyToClipboard()">📋 Copiază în Clipboard</button>
             <button class="btn export-btn" onclick="printResults()">🖨️ Printează</button>
-            <div class="summary-text" id="summaryText" style="display:none;"></div>
+            <div class="summary-text" id="summaryText"></div>
         </div>
-
+        
         <div class="signature-section">
             <div style="font-size: 14px; margin-bottom: 5px; color: #555;">Întocmit</div>
             <div class="signature">Ecobici Marian</div>
         </div>
-    </div>
+        </div>
 
     <script>
         const questions = [
             {
                 id: 1,
-                text: "Mecanicii de locomotivă de la trenurile în circulație sunt obligați să comunice datele referitoare la eventualele precipitatii și restrictii neavizate pe care le întâlnesc în parcurs:",
+                text: "Cum se defineşte fenomenul meteorologic special \"chiciură\"?",
                 options: [
-                    "A) Către mecanicii de locomotivă pe care îi întâlnesc, în parcurs, pe linia vecină, prin radiotelefon, sau primei stații de cale ferată care urmează după locul unde a făcut constatarea.",
-                    "B) Doar către mecanicii de locomotivă pe care îi întâlnesc în parcurs, pe linia vecină.",
-                    "C) Mecanicii de locomotivă de la trenurile în circulatie sunt obligati sa comunice datele referitoare la eventualele precipitatii și restrictii neavizate pe care le întalnesc în parcurs primei statii de cale ferata care urmeaza dupa locul unde a facut constatarea - prin radio telefon sau catre mecanicii de locomotiva pe care îi întalnesc, în parcurs, pe linia vecina."
+                    "A) Depunere de stropi de apa pe obiecte, crengi, provenită în timpul iernii.",
+                    "B) Depunere de cristale de gheață pe obiecte, crengi, provenită în timpul iernii.",
+                    "C) Depunere de stropi de apă partial înghețati pe obiecte, crengi, provenită în timpul iernii."
                 ],
-                correct: 0
+                correct: 1 
             },
             {
                 id: 2,
-                text: "Mecanicul de locomotivă este obligat să dea semnalele de atenție înainte de începerea circulației cu locomotiva:",
+                text: "Cum se defineşte fenomenul meteorologic special \"furtuna de zăpadă\"?",
                 options: [
-                    "A) Când personalul de la manevră nu se află în raza sa vizuală.",
-                    "B) Dacă la tren se fac probele de frână cu frâna automată, în caz de ploaie, ninsoare sau ceață.",
-                    "C) După ce a pornit motorul Diesel."
+                    "A) Furtună de zăpadă, când viscolul general este însoţit şi de o cădere abundentă de ploaie care se transformă până la sol total sau parţial în zăpadă.",
+                    "B) Furtună de zăpadă, când viscolul general este însoţit şi de o cădere abundentă de zăpadă.",
+                    "C) Furtună de zăpadă, când viscolul general este însoţit şi de o cădere abundentă de lapoviţă la început care transformă până la final în zăpadă abundentă."
                 ],
-                correct: 0
+                correct: 1 
             },
             {
                 id: 3,
-                text: "Mecanicii de locomotivă de la trenurile în circulație sunt obligați să comunice datele referitoare la eventualele precipitații și restricții neavizate pe care le întâlnesc în parcurs primei stații de cale ferată care urmează după locul unde a făcut constatarea - prin radiotelefon sau către mecanicii de locomotivă pe care îi întâlnesc, în parcurs, pe linia vecină.",
+                text: "Ce sunt obligați mecanicii trenurilor în circulație pe timp cu ninsori ?",
                 options: [
-                    "A) Fals.",
-                    "B) Adevărat."
+                    "A) Mecanicii de locomotiva de la trenurile în circulatie sunt obligati sa comunice datele referitoare la eventualele suluri de zapada pe care le întalnesc în parcurs, primei statii de cale ferata care urmeaza dupa locul unde a facut constatarea - prin radio telefon sau catre mecanicii de locomotiva pe care îi întaînesc, în parcurs, pe linia vecina.",
+                    "B) Mecanicii de locomotiva de la trenurile în circulatie sunt obligati sa comunice datele referitoare la fenomenele meteorologice pe care le întalnesc în parcurs primei statii de cale ferata care urmeaza dupa locul unde a facut constatarea - prin radio telefon sau catre mecanicii de locomotiva pe care îi întalnesc, în parcurs, pe linia vecina.",
+                    "C) Mecanicii de locomotiva de la trenurile în circulatie sunt obligati sa comunice datele referitoare la eventualele precipitatii și restrictii neavizate pe care le întalnesc în parcurs primei statii de cale ferata care urmeaza dupa locul unde a facut constatarea - prin radio telefon sau catre mecanicii de locomotiva pe care îi întalnesc, în parcurs, pe linia vecina."
                 ],
-                correct: 1
+                correct: 0 
             },
             {
                 id: 4,
-                text: "Când poate fi ridicat pantograful de pe locomotivă?",
+                text: "Cand poate pune mecanicul în sarcina maxima MD şi maşinile electrice din circuitul de forţă dupa ieşirea din unitatile de tractiune sau stationari mai îndelungate?",
                 options: [
-                    "A) Când nu se semnalizează vizual la firul de contact prezența gheții.",
-                    "B) La oprire în linie curentă, în cazul unor căderi de zăpadă abundente care ar putea duce la înghețarea firului de contact, după ce se va aviza operatorul de circulație și apoi se va coborî pantograful și se va aștepta o perioadă pentru a se ridica pantograful din față și a se pleca spre prima stație de cale ferată.",
-                    "C) În cazul unor deranjamente ale instalației electrice de forță la locomotivă."
+                    "A) Pentru fiecare oră de stationare fara ca MD sau maşinile electrice din circuitul de forţă sa fie solicitate se considera necesare 5 minute de mers la valori mai reduse pentru încalzirea MD si a circuitelor de forţă.",
+                    "B) Punerea in sarcină apropiata de valoarea maxima a maşinilor electrice (motor tractiune, generator principal) cat și a motorului diesel se face dupa parcurgerea unei distante de circa 25 km.",
+                    "C) Punerea in sarcină apropiată de valoarea maxima a maşinilor electrice (motor tracțiune, generator principal) cat și a motorului diesel se face dupa circa 10-15 minute de functionare pe poziții inferioare a controlerului."
                 ],
-                correct: 1
+                correct: 2 
             },
             {
                 id: 5,
-                text: "Mecanicii de locomotivă vor avea în vedere ca circulația trenurilor să se desfășoare cu pantografele ridicate alternativ din două în două ore, pentru a avea o bună curățare a firului de contact.",
-                options: [
-                    "A) Fals.",
-                    "B) Adevărat."
-                ],
-                correct: 0
-            },
-            {
-                id: 6,
-                text: "Pe timpul iernii, înainte de intrarea în depou, la remorcare multiplă, la care trenul este deservit de două locomotive electrice, mecanicul de locomotivă va avea în vedere ca locomotiva din față să aibă pantograful coborât și locomotiva din spate să aibă pantograful ridicat.",
-                options: [
-                    "A) Fals.",
-                    "B) Adevărat."
-                ],
-                correct: 0
-            },
-            {
-                id: 7,
-                text: "Când poate avea loc o excepție de la regula de a avea pantografele ridicate alternativ din două în două ore?",
-                options: [
-                    "A) Excepția are loc în cazul remorcării unui tren în dubla tractiune cu ambele locomotive în capul trenului, când ambele locomotive vor circula cu ambele pantografe ridicate.",
-                    "B) Excepția are loc în cazul în care la una din locomotive are loc o defecțiune la unul din pantografe, și se va coborî cel defect.",
-                    "C) Excepția poate avea loc în cazul remorcării unui tren în dublă tracțiune cu ambele locomotive în capul trenului, cand prima locomotivă circulă cu ambele pantografe ridicate, iar a doua locomotivă circulă cu pantograful din spate ridicat. În cazul normalizarii situației la prima oprire se va trece la remorcarea cu pantografele ridicate spate spate."
-                ],
-                correct: 2
-            },
-            {
-                id: 8,
-                text: "Mecanicul de locomotivă pe timp de iarnă va urmării modul de ridicare și coborare a pantografului şi de executare a RAC fară abateri de la program.",
+                text: "În cazul remorcarii unui tren in dublă tractiune cu ambele locomotive in capul trenului ambele locomotive vor circula numai cu pantografele din spate ridicate.",
                 options: [
                     "A) Adevărat.",
                     "B) Fals."
                 ],
-                correct: 0
+                correct: 0 
+            },
+            {
+                id: 6,
+                text: "Pe timp de inghet, polei, chiciura - pornirea din loc a LE se face cu ambele pantografe ridicate in cazul simplei tractiuni.",
+                options: [
+                    "A) Adevărat.",
+                    "B) Fals."
+                ],
+                correct: 0 
+            },
+            {
+                id: 7,
+                text: "Ce masuri va lua personalul de locomotiva la dispariția flamării la linia de contact, când circulă cu locomotiva cu ambele pantografe ridicate în simplă sau dublă tracţiune?",
+                options: [
+                    "A) Prima locomotiva cu ambele pantografe ridicate și a doua cu cel din spate ridicat.",
+                    "B) Ambele locomotive vor avea ambele pantografe ridicate.",
+                    "C) În cazul normalizarii situatiei la prima oprire se va trece la remorcarea cu pantografele ridicate spate spate."
+                ],
+                correct: 2 
+            },
+            {
+                id: 8,
+                text: "Mecanicul de locomotivă pe timp de iarnă va urmarii modul de ridicare și coborare a pantografului şi de executare a RAC fară abateri de la program.",
+                options: [
+                    "A) Adevărat.",
+                    "B) Fals."
+                ],
+                correct: 0 
             },
             {
                 id: 9,
                 text: "Pe timp cu temperaturi scazute şi vânt puternic la circulatia mai multor locomotive electrice in zone cu rambleu, se recomanda sa ramana în functie (regim de tractiune) locomotiva din cap, iar la rotașă sa se coboare pantografele.",
                 options: [
-                    "A) Fals.",
-                    "B) Adevărat."
+                    "A) Adevărat.",
+                    "B) Fals."
                 ],
-                correct: 0
+                correct: 0 
             },
             {
                 id: 10,
-                text: "Pentru prevenirea degradării izolației la transformatoare, mașinile rotative și motoarele electrice de tracțiune (MET) din cauza condensului, personalul de locomotivă este obligat să:",
+                text: "Ce va urmarii mecanicul de locomotiva pe timp de iarna cu privire la echipamentul de acoperiş?",
                 options: [
-                    "A) Mențină în funcțiune aparatele de încălzire din cabine și din compartimentul mașinilor. În zonele de exploatare, când temperatura scade sub 0° C, personalul de locomotivă va asigura alimentarea cu energie electrică a mașinilor rotative, MET, transformatoarelor, etc. de la sursele de alimentare exterioare (la 1500 V/25 KV) sau direct de la cablul trifazat 380 V/50 Hz, prin racordul montat în exteriorul locomotivei.",
-                    "B) Mențină în funcțiune aparatele de încălzire din cabine și din compartimentul mașinilor numai dacă locomotiva se află pe linia de primire-expediere.",
-                    "C) În zonele de exploatare, când temperatura scade sub 0° C, personalul de locomotivă va asigura alimentarea cu energie electrică a mașinilor rotative, MET, transformatoarelor, etc. numai de la sursele de alimentare exterioare (la 1500 V/25 KV)."
+                    "A) Urmarirea modului de alimentare cu aer a echipamentului de pe acoperiş la punerea în functie a locomotivei.",
+                    "B) Urmarirea efectuarii scurgerii apei din echipamentul de pe acoperiş înainte de punerea în funcție a locomotivei.",
+                    "C) Urmarirea modului de ridicare și coborare a pantografului şi de executare a RAC fară abateri de la program."
                 ],
-                correct: 0
+                correct: 2 
             },
             {
                 id: 11,
-                text: "Pe timpul iernii, mecanicul de locomotivă va avea în vedere ca sistemul de ștergătoare și spălătoare de parbriz să funcționeze corect, în special la ieșirea din tunele sau în urma depășirilor de tren.",
+                text: "Pe timp de iarna mecanicul în cazul staționarilor mai mari de cinci minute va lua masuri de scurgerea apei prin deschiderea robinetului de la: rezervor principal şi auxiliar de aer; rezervor de regenerare; saci colectori şi separator ulei; robineti frontali; rezervorul de 12 I de la disjunctor; inversoarele de mers de la MT; separatorul compresorului auxiliar.",
                 options: [
-                    "A) Fals.",
-                    "B) Adevărat."
+                    "A) Adevărat.",
+                    "B) Fals."
                 ],
-                correct: 1
+                correct: 0 
             },
             {
                 id: 12,
-                text: "În cazul în care pe parcursul rutei întâmpină defecțiuni la sistemul de ștergătoare și spălătoare de parbriz, mecanicul de locomotivă va:",
+                text: "Pentru prevenirea deranjamentelor la pantografele locomotivelor electrice, în sezonul rece, în condițiile existentei temperaturilor scazute, a aparitiei chiciurii, poleiului, vantului puternic şi aparitiei conditiilor meteo nefavorabile care produc oscilatia firului de contact mecanicul de locomotiva va aviza IDM din statia cea mai apropiata, despre situatiile aparute în linia de contact pentru a transmite informatiile catre dispecerul energetic feroviar.",
                 options: [
-                    "A) Opri în linie curentă pentru a remedia defecțiunea sau, în cel mai rău caz, va solicita remorcare.",
-                    "B) Va merge până în stația de cale ferată următoare, unde va remedia defecțiunea, și în cel mai rău caz, va merge cu viteză redusă până în stația de cale ferată următoare unde va lua locomotive de ajutor.",
-                    "C) Va merge până în stația de cale ferată următoare, unde va remedia defecțiunea, iar în cel mai rău caz, va merge cu viteză redusă până în stația de cale ferată următoare."
+                    "A) Adevărat.",
+                    "B) Fals."
                 ],
-                correct: 2
+                correct: 0 
             },
             {
                 id: 13,
-                text: "Pe timp de iarnă, pentru a evita spargerea circuitului de frânare din cauza depunerilor de gheață și zăpadă, se recomandă ca la oprirea la semnale sau în stații, frâna să fie slăbită cât mai rar posibil, pentru a menține temperatura ridicată a garniturilor de frână.",
+                text: "Care sunt fenomenele meteorologice speciale?",
                 options: [
-                    "A) Fals.",
-                    "B) Adevărat."
+                    "A) Ceata, chiciura, bruma, înghetul la sol.",
+                    "B) Ploaie, burnita, bura, zapada.",
+                    "C) Lapovită, grindina, mazariche, zloata."
                 ],
-                correct: 0
+                correct: 0 
             },
             {
                 id: 14,
-                text: "Cum se interzice a fi ridicate pantografele în cazul remorcării unui tren în dublă tracțiune cu ambele locomotive în capul trenului, în cazul apariției de defecte la pantografe?",
+                text: "Cum se interzice a fi ridicate pantografele in cazul remorcarii unui tren in dubla tractiune cu ambele locomotive in capul trenului, in cazul aparitiei de defecte la pantografe ?",
                 options: [
-                    "A) Prima locomotivă cu pantograful din față ridicat, iar a doua cu cel din spate ridicat",
+                    "A) Prima locomotivă cu pantograful din faţă ridicat, iar a doua cu cel din spate ridicat",
                     "B) Ambele locomotive numai cu pantografele din spate ridicate",
-                    "C) Prima locomotivă cu ambele pantografe ridicate și a doua cu cel din spate ridicat."
+                    "C) Prima locomotivă cu ambele pantografe ridicate şi a doua cu cel din spate ridicat."
                 ],
-                correct: 0
+                correct: 0 
             },
             {
                 id: 15,
-                text: "Care sunt condițiile de pornire a MDA pe poziția REMIZAT",
+                text: "Care sunt conditiile de pornire a MDA pe pozitia REMIZAT",
                 options: [
                     "A) Temperatura apei scade sub 25 Grade si tensiune bateriei scade la 140 Vcc",
                     "B) MDA porneste automat cand temperatura ambientala scade sub 0 grade",
                     "C) Temperatura apei scade sub 40 Grade si tensiune bateriei scade la 140 Vcc"
                 ],
-                correct: 2
+                correct: 2 
             }
         ];
 
         let userAnswers = {};
         let checked = false;
         let personalData = {};
-        const totalQuestions = 15; // Totalul întrebărilor este 15
-        const TEST_SLUG = "Pregatiri_Iarna_Trim_IV_2025"; // SLUG UNIC
-
-        function selectOption(qId, optIndex) {
-            if (checked) return;
-            userAnswers[qId] = optIndex;
-
-            // Logica de evidențiere vizuală (rămâne neschimbată)
-            document.querySelectorAll(`#q${qId} .option`).forEach((opt, index) => {
-                opt.classList.remove('selected');
-                opt.querySelector('input').checked = false;
-                if (index === optIndex) {
-                    opt.classList.add('selected');
-                    opt.querySelector('input').checked = true;
-                }
-            });
-        }
 
         function startQuiz() {
             const nume = document.getElementById('nume').value.trim();
-            const functie = document.querySelector('input[name="functie"]:checked');
+            const functieElement = document.querySelector('input[name="functie"]:checked');
             const data = document.getElementById('data').value;
 
-            if (!nume || !functie || !data) {
-                alert('⚠️ Te rog completează toate câmpurile obligatorii!');
+            if (!nume || !functieElement || !data) {
+                alert('⚠️ Te rog completează toate câmpurile obligatorii (Nume, Funcție, Data)!');
                 return;
             }
 
             personalData = {
                 nume: nume,
-                functie: functie.value,
+                functie: functieElement.value, 
                 data: data
             };
 
             document.getElementById('personalInfo').style.display = 'none';
             document.getElementById('quizContent').style.display = 'block';
             renderQuiz();
-            
-            document.getElementById('checkBtn').style.display = 'inline-block';
-            document.getElementById('resetBtn').style.display = 'none';
-            
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
@@ -550,11 +597,12 @@
             const quizContent = document.getElementById('quizContent');
             let html = '';
 
-            questions.forEach(q => {
+            questions.forEach((q) => {
                 html += `
                     <div class="question-block" id="q${q.id}">
                         <div class="question-number">Întrebarea ${q.id}</div>
                         <div class="question-text">${q.text}</div>
+                        ${q.type === 'matching' ? q.content : ''}
                         <div class="options">
                 `;
 
@@ -576,54 +624,58 @@
             quizContent.innerHTML = html;
         }
 
+        function selectOption(questionId, optionIndex) {
+            if (checked) return;
+            
+            userAnswers[questionId] = optionIndex;
+            const radio = document.getElementById(`q${questionId}_opt${optionIndex}`);
+            radio.checked = true;
+        }
+
         function checkAnswers() {
             if (checked) return;
             
-            if (Object.keys(userAnswers).length !== totalQuestions) {
-                alert(`⚠️ Te rog răspunde la toate cele ${totalQuestions} de întrebări înainte de a verifica! Ai răspuns la ${Object.keys(userAnswers).length} întrebări.`);
-                return;
-            }
-            
             checked = true;
             let score = 0;
+            const totalQuestions = questions.length; 
 
             questions.forEach(q => {
                 const options = document.querySelectorAll(`#q${q.id} .option`);
                 const userAnswer = userAnswers[q.id];
-                let isCorrect = userAnswer === q.correct;
 
                 options.forEach((opt, index) => {
-                    opt.style.pointerEvents = 'none'; // Dezactivează clicurile
+                    opt.style.pointerEvents = 'none';
                     
                     if (index === q.correct) {
                         opt.classList.add('correct');
                     }
                     
-                    if (userAnswer !== undefined && index === userAnswer && !isCorrect) {
+                    if (userAnswer !== undefined && index === userAnswer && userAnswer !== q.correct) {
                         opt.classList.add('incorrect');
                     }
                 });
 
-                if (isCorrect) {
+                if (userAnswer === q.correct) {
                     score++;
                 }
             });
 
             const percentage = Math.round((score / totalQuestions) * 100);
+            
+            // Logica de calificare: A: 14-15; B: 11-13; C: 8-10; D: 0-7
             let message = '';
             let calificativ = '';
             let status = '❌ NECORESPUNZĂTOR';
-            
-            // Logica de calificare (15 întrebări)
-            if (score >= 14) { 
+
+            if (score >= 14) {
                 calificativ = 'A';
                 message = '🎉 Excelent! Cunoști foarte bine materia!';
                 status = '✅ CORESPUNZĂTOR';
-            } else if (score >= 11) { 
+            } else if (score >= 11) {
                 calificativ = 'B';
                 message = '👍 Foarte bine! Continuă să înveți!';
                 status = '✅ CORESPUNZĂTOR';
-            } else if (score >= 8) { 
+            } else if (score >= 8) {
                 calificativ = 'C';
                 message = '📚 Bine, dar mai este loc de îmbunătățire!';
                 status = '✅ CORESPUNZĂTOR';
@@ -644,36 +696,41 @@
 
             generateSummary(score, percentage, calificativ, status);
             document.getElementById('exportSection').classList.add('show');
-            
-            // AUTOMAT: Descarcă și Copiază
-            exportToText(); 
-            copyToClipboard(); 
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function generateSummary(score, percentage, calificativ, status) {
             const date = new Date(personalData.data);
-            const formattedDate = date.toLocaleDateString('ro-RO', { year: 'numeric', month: 'long', day: 'numeric' });
-            
-            let summary = `
- ╔════════════════════════════════════════════════════════════════╗
- ║ TEST MECANIC LOCOMOTIVĂ - PREGĂTIRI IARNĂ (Trim IV - 2025) ║
- ║ (VERIFICAREA CUNOȘTINȚELOR - ${totalQuestions} ÎNTREBĂRI) ║
- ╚════════════════════════════════════════════════════════════════╝
- 📋 DATE PERSONALE:
- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Nume și Prenume: ${personalData.nume}
- Funcția: ${personalData.functie}
- Data testului: ${formattedDate}
+            const formattedDate = date.toLocaleDateString('ro-RO', { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
 
- 📊 REZULTAT FINAL:
- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
- Punctaj obținut: ${score} / ${totalQuestions} (${percentage}%)
- Calificativ: ${calificativ} - ${status}
- 
- 📝 RĂSPUNSURI DETALIATE:
- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+            const totalQuestions = questions.length;
+
+            let summary = `
+╔════════════════════════════════════════════════════════════════╗
+║          TEST MECANIC LOCOMOTIVĂ - TRIM. IV 2025               ║
+║                  (PREGĂTIRI IARNĂ - ${totalQuestions} ÎNTREBĂRI)                  ║
+╚════════════════════════════════════════════════════════════════╝
+
+📋 DATE PERSONALE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Nume și Prenume: ${personalData.nume}
+   Funcția: ${personalData.functie}
+   Data testului: ${formattedDate}
+
+📊 REZULTATE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Punctaj: ${score} / ${totalQuestions}
+   Procent: ${percentage}%
+   Calificativ: ${calificativ}
+   Status: ${status}
+
+📝 RĂSPUNSURI DETALIATE:
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 `;
 
             questions.forEach(q => {
@@ -684,12 +741,17 @@
                 const givenAnswerText = userAnswer !== undefined ? q.options[userAnswer] : 'Niciun răspuns';
                 const correctAnswerText = q.options[q.correct];
 
+                // Elimină prefixul A), B), C) pentru claritate în sumar
+                const cleanGivenAnswer = givenAnswerText.replace(/^[A-C]\)\s*/, '');
+                const cleanCorrectAnswer = correctAnswerText.replace(/^[A-C]\)\s*/, '');
+
+
                 summary += `
 ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
    ${q.text}
    
-   Răspuns dat: ${givenAnswerText.replace(/^[A-C]\)\s*/, '')}
-   Răspuns corect: ${correctAnswerText.replace(/^[A-C]\)\s*/, '')}
+   Răspuns dat: ${cleanGivenAnswer}
+   Răspuns corect: ${cleanCorrectAnswer}
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 `;
             });
@@ -697,12 +759,13 @@ ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
             summary += `
 Întocmit
 Ecobici Marian
-═══════════════════════════════════════════════════════════════
-║ Document generat automat. Nu necesită semnătură olografă. ║
-═══════════════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════════
+║  Document generat automat - ${new Date().toLocaleString('ro-RO')}  ║
+╚════════════════════════════════════════════════════════════════╝
 `;
-            
+
             document.getElementById('summaryText').textContent = summary;
+            return summary;
         }
 
         function exportToText() {
@@ -711,8 +774,7 @@ Ecobici Marian
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            // Numele de fișier actualizat
-            a.download = `Test_${TEST_SLUG}_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`; 
+            a.download = `Test_Locomotiva_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -720,22 +782,21 @@ Ecobici Marian
         }
 
         function copyToClipboard() {
-            const summaryText = document.getElementById('summaryText').textContent;
-            navigator.clipboard.writeText(summaryText).then(() => {
-                console.log('Rezultatele au fost copiate în clipboard!');
+            const summary = document.getElementById('summaryText').textContent;
+            navigator.clipboard.writeText(summary).then(() => {
+                alert('✅ Rezultatele au fost copiate în clipboard!');
             }).catch(err => {
-                console.error('Eroare la copierea în clipboard:', err);
-                alert('Eroare la copierea în clipboard. Vă rugăm descărcați fișierul text.');
+                alert('❌ Eroare la copierea în clipboard: ' + err);
             });
         }
 
         function printResults() {
             const summary = document.getElementById('summaryText').textContent;
-            const printWindow = window.open('', '', 'height=600,width=800');
+            const printWindow = window.open('', '_blank');
             printWindow.document.write(`
                 <html>
                 <head>
-                    <title>Rezultate Test</title>
+                    <title>Test Mecanic Locomotivă - ${personalData.nume}</title>
                     <style>
                         body { font-family: 'Courier New', monospace; padding: 20px; }
                         pre { white-space: pre-wrap; line-height: 1.6; }
@@ -763,8 +824,7 @@ Ecobici Marian
             document.getElementById('quizContent').style.display = 'none';
             
             document.getElementById('nume').value = '';
-            document.getElementById('data').value = new Date().toISOString().split('T')[0]; // Resetează data la azi
-            document.querySelectorAll('input[name="functie"]').forEach(r => r.checked = false); 
+            document.querySelectorAll('input[name="functie"]').forEach(r => r.checked = false); // Debifează toate
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
