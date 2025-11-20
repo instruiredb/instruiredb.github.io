@@ -399,7 +399,7 @@
         <div class="quiz-content" id="quizContent" style="display:none;"></div>
 
         <div class="btn-container">
-            <button class="btn" id="checkBtn" onclick="checkAnswers()">Verifică Răspunsurile</button>
+            <button class="btn" id="checkBtn" onclick="checkAnswers()" style="display:none;">Verifică Răspunsurile</button>
             <button class="btn reset-btn" id="resetBtn" onclick="resetQuiz()" style="display:none;">Reia Testul</button>
         </div>
 
@@ -491,7 +491,7 @@
             },
             {
                 id: 8,
-                text: "Mecanicul de locomotivă pe timp de iarnă va urmarii modul de ridicare și coborare a pantografului şi de executare a RAC fară abateri de la program.",
+                text: "Mecanicul de locomotivă pe timp de iarnă va urmării modul de ridicare și coborare a pantografului şi de executare a RAC fară abateri de la program.",
                 options: [
                     "A) Adevărat.",
                     "B) Fals."
@@ -570,6 +570,8 @@
         let userAnswers = {};
         let checked = false;
         let personalData = {};
+        // Identificator unic al testului pentru numele fișierului
+        const TEST_SLUG = "Pregatiri_Iarna_2025";
 
         function startQuiz() {
             const nume = document.getElementById('nume').value.trim();
@@ -589,6 +591,8 @@
 
             document.getElementById('personalInfo').style.display = 'none';
             document.getElementById('quizContent').style.display = 'block';
+            // Arată butonul 'Verifică Răspunsurile' acum
+            document.getElementById('checkBtn').style.display = 'inline-block'; 
             renderQuiz();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -635,9 +639,16 @@
         function checkAnswers() {
             if (checked) return;
             
+            const totalQuestions = questions.length;
+            // NOU: Verificarea Răspunsurilor complete 
+            if (Object.keys(userAnswers).length !== totalQuestions) {
+                const missing = totalQuestions - Object.keys(userAnswers).length;
+                alert(`⚠️ Nu ai răspuns la toate întrebările! Ai încă ${missing} întrebări nerezolvate. Vă rugăm răspundeți la toate înainte de verificare.`);
+                return; 
+            }
+            
             checked = true;
             let score = 0;
-            const totalQuestions = questions.length; 
 
             questions.forEach(q => {
                 const options = document.querySelectorAll(`#q${q.id} .option`);
@@ -696,6 +707,9 @@
 
             generateSummary(score, percentage, calificativ, status);
             document.getElementById('exportSection').classList.add('show');
+            
+            // NOU: Descărcare automată ca text 
+            exportToText();
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -774,7 +788,7 @@ Ecobici Marian
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Test_Locomotiva_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
+            a.download = `Test_${TEST_SLUG}_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -818,7 +832,7 @@ Ecobici Marian
             
             document.getElementById('results').classList.remove('show');
             document.getElementById('exportSection').classList.remove('show');
-            document.getElementById('checkBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').style.display = 'none';
             document.getElementById('resetBtn').style.display = 'none';
             document.getElementById('personalInfo').style.display = 'block';
             document.getElementById('quizContent').style.display = 'none';

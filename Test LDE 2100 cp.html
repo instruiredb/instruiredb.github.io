@@ -6,6 +6,7 @@
     <title>Test LDE 2100 CP - 2025</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* CSS-ul rămâne neschimbat */
         * {
             margin: 0;
             padding: 0;
@@ -350,9 +351,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚂 Test Mecanic Locomotivă LDE 2100 CP</h1>
-            <p>Verificarea cunoștințelor - 2025</p>
-        </div>
+            <h1>🚂 Test LDE 2100 CP</h1>
+            <p>Verificarea Cunoștințelor - 15 Întrebări</p> </div>
 
         <div class="personal-info" id="personalInfo">
             <h2>Date Personale</h2>
@@ -383,7 +383,7 @@
         <div class="quiz-content" id="quizContent" style="display:none;"></div>
 
         <div class="btn-container">
-            <button class="btn" id="checkBtn" onclick="checkAnswers()">Verifică Răspunsurile</button>
+            <button class="btn" id="checkBtn" onclick="checkAnswers()" style="display:none;">Verifică Răspunsurile</button>
             <button class="btn reset-btn" id="resetBtn" onclick="resetQuiz()" style="display:none;">Reia Testul</button>
         </div>
 
@@ -401,163 +401,32 @@
             <div style="font-size: 14px; margin-bottom: 5px; color: #555;">Întocmit</div>
             <div class="signature">Ecobici Marian</div>
         </div>
-    </div>
+        </div>
 
     <script>
         const questions = [
-            {
-                id: 1,
-                text: "Câți cilindri are motorul diesel și cum sunt așezați?",
-                options: [
-                    "A) 12 cilindrii așezați pe 2 linii în formă de V.",
-                    "B) 16 cilindrii așezați pe 2 linii a câte 8 cilindri.",
-                    "C) 12 cilindri așezați pe 2 linii a câte 6 cilindri."
-                ],
-                correct: 2 
-            },
-            {
-                id: 2,
-                text: "Care este turația la mers în gol și turația maximă?",
-                options: [
-                    "A) 350/750 rot/min.",
-                    "B) 350/1000 rot/min.",
-                    "C) 340/850 rot/min."
-                ],
-                correct: 0 
-            },
-            {
-                id: 3,
-                text: "Din ce post de conducere se mai poate accesa panourile ale blocului de aparate electrice?",
-                options: [
-                    "A) Are acces din postul de conducere 1.",
-                    "B) Are acces numai din sala mașinilor.",
-                    "C) Are acces din postul de conducere 2."
-                ],
-                correct: 0 
-            },
-            {
-                id: 4,
-                text: "Antrenarea pompei de transfer combustibil și a pompei auxiliare de ulei se face de către un singur motor electric?",
-                options: [
-                    "A) Adevărat.",
-                    "B) Fals."
-                ],
-                correct: 0 
-            },
-            {
-                id: 5,
-                text: "Pompa auxiliară de ulei asigură ungerea preliminară motorului diesel și funcționează după oprirea acestuia câteva minute pentru a asigura ungerea și răcirea?",
-                options: [
-                    "A) Adevărat.",
-                    "B) Fals."
-                ],
-                correct: 0 
-            },
-            {
-                id: 6,
-                text: "Ce reprezinta componenta incercuita din imagine?",
-                image: "images/lde.6.jpg",
-                options: [
-                    "A) Filtrul centrifugal de ulei.",
-                    "B) Filtrul combinat de ulei.",
-                    "C) Filtrul principal de ulei."
-                ],
-                correct: 1 
-            },
-            {
-                id: 7,
-                text: "Care este presiunea minimă a uleiului pentru ungerea MD la temperatura lichidului de răcire de 70°C?",
-                options: [
-                    "A) 1.15 kgf/cm²",
-                    "B) 1.70 kgf/cm²",
-                    "C) 0.8 kgf/cm²"
-                ],
-                correct: 1 
-            },
-            {
-                id: 8,
-                text: "Instalatia din imagine reprezinta?",
-                image: "images/lde.8.jpg",
-                options: [
-                    "A) Instalația de combustibil.",
-                    "B) Instalația de răcire cu apă.",
-                    "C) Instalația de ungere a MD."
-                ],
-                correct: 2 
-            },
-            {
-                id: 9,
-                text: "Prin ce se asigură transferul de căldură dintre uleiul de ungere MD și lichidul de răcire în timpul funcționării MD?",
-                options: [
-                    "A) Cu ajutorul instalației MDA.",
-                    "B) Prin intermediul schimbătorului de căldură.",
-                    "C) Prin intermediul filtrului combinat."
-                ],
-                correct: 1 
-            },
-            {
-                id: 10,
-                text: "Care sunt elementele componente ale instalației hidrostat? (Selectați toate răspunsurile corecte)",
-                options: [
-                    "A) Pompa hidrostatică",
-                    "B) Motor hidrostatic",
-                    "C) Cilindri de comandă ai jaluzelelor."
-                ],
-                correct: [0, 1, 2]
-            },
-            {
-                id: 11,
-                text: "În cazul apariției unor avarii grave, prin circuitele de protecție se comandă frânarea rapidă a trenului și oprirea imediată a MD. În cazul unor avarii mai puțin grave se comandă scoaterea din sarcină a grupului MD-GP sau doar semnalizarea prin instalația de apel optic.",
-                options: [
-                    "A) Adevărat.",
-                    "B) Fals."
-                ],
-                correct: 0 
-            },
-            {
-                id: 12,
-                text: "Când se aduce MD la mers în gol și întreruperea tracțiunii? (Selectați toate răspunsurile corecte)",
-                options: [
-                    "A) Când presiunea din conducta generală a instalației de frână scade sub 1 kgf/cm²",
-                    "B) Când nivelul apei de răcire din rezervorul de compensare scade sub 160 l.",
-                    "C) Când apare punere la masă pe circuitul de forță."
-                ],
-                correct: [0, 1]
-            },
-            {
-                id: 13,
-                text: "Când se comandă oprirea necomandată a MD? (Selectați toate răspunsurile corecte)",
-                options: [
-                    "A) Când presiunea uleiului din instalația de ungere a MD scade sub valoarea de 0,85 kgf/cm²",
-                    "B) Când apare punere la masă pe circuitul auxiliar.",
-                    "C) Când presiunea apei din instalația de răcire a MD scade sub valoarea de 0,4 kgf/cm²."
-                ],
-                correct: [0, 2]
-            },
-            {
-                id: 14,
-                text: "Suspensia materialului rulant este alcătuită din suspensia elastică a boghiului pe osii (suspensia primară) și suspensia elastică a cutiei pe boghiuri (suspensia secundară).",
-                options: [
-                    "A) Adevărat.",
-                    "B) Fals."
-                ],
-                correct: 0 
-            },
-            {
-                id: 15,
-                text: "Suspensia cutiei pe boghiuri (suspensia secundară) se face prin sprijinirea cutiei în patru puncte pe boghiuri prin intermediul a patru arcuri duble în foi.",
-                options: [
-                    "A) Adevărat.",
-                    "B) Fals."
-                ],
-                correct: 0 
-            }
+            { id: 1, text: "Câți cilindri are motorul diesel și cum sunt așezați?", options: ["A) 12 cilindri așezați în V", "B) 16 cilindri așezați în V", "C) 12 cilindri așezați în linie"], correct: 0 },
+            { id: 2, text: "Care este regimul de turație al motorului Diesel la mersul în gol?", options: ["A) 750 rot/min", "B) 350 rot/min", "C) 850 rot/min"], correct: 1 },
+            { id: 3, text: "Care este turația maximă a motorului diesel?", options: ["A) 850 rot/min", "B) 750 rot/min", "C) 1000 rot/min"], correct: 2 },
+            { id: 4, text: "Care este presiunea de lansare a motorului diesel?", options: ["A) 28 kgf/cm²", "B) 25 kgf/cm²", "C) 20 kgf/cm²"], correct: 0 },
+            { id: 5, text: "Ce indică manometrul din imaginea de mai jos, în legătură cu Motorul Diesel?", options: ["A) Presiunea combustibilului la intrarea în MD.", "B) Presiunea aerului la turbosuflanta MD.", "C) Presiunea uleiului în circuitul de ungere al MD."], correct: 2, image: "images/2100.5.jpg" },
+            { id: 6, text: "Unde este amplasată instalația de preungere a motorului diesel (PMD)?", options: ["A) În compartimentul de răcire.", "B) În compartimentul Motorului Diesel.", "C) În compartimentul generatorului principal."], correct: 2 },
+            { id: 7, text: "Când pornește automat instalația de preungere a motorului diesel (PMD)? (Selectați toate răspunsurile corecte)", options: ["A) Când presiunea de ulei scade sub 1 kgf/cm² la oprirea MD", "B) Când temperatura lichidului de răcire scade sub 40 °C", "C) Când presiunea de aer scade sub 3 kgf/cm²"], correct: [0, 1], type: 'multiple', correct_text: "A, B" },
+            { id: 8, text: "Ce componentă este reprezentată în imaginea de mai jos?", options: ["A) Instalația de răcire a MD.", "B) Instalația de combustibil a MD.", "C) Instalația de ungere a MD."], correct: 2, image: "images/2100.8.jpg" },
+            { id: 9, text: "Prin ce se asigură transferul de căldură dintre uleiul de ungere MD și lichidul de răcire în timpul funcționării MD?", options: ["A) Cu ajutorul instalației MDA.", "B) Prin intermediul schimbătorului de căldură.", "C) Prin intermediul filtrului combinat."], correct: 1 },
+            { id: 10, text: "Care sunt elementele componente ale instalației hidrostat? (Selectați toate răspunsurile corecte)", options: ["A) Pompa hidrostatică", "B) Motor hidrostatic", "C) Cilindri de comandă ai jaluzelelor."], correct: [0, 1, 2], type: 'multiple', correct_text: "A, B, C" },
+            { id: 11, text: "În cazul apariției unor avarii grave, prin circuitele de protecție se comandă frânarea rapidă a trenului și oprirea imediată a MD. În cazul unor avarii mai puțin grave se comandă scoaterea din sarcină a grupului MD-GP sau doar semnalizarea prin instalația de apel optic.", options: ["A) Adevărat.", "B) Fals."], correct: 0 },
+            { id: 12, text: "Când se aduce MD la mers în gol și întreruperea tracțiunii? (Selectați toate răspunsurile corecte)", options: ["A) Când presiunea din conducta generală a instalației de frână scade sub 1 kgf/cm²", "B) Când lichidul de răcire atinge temperatura de 95°C", "C) Când apar patinări la mai mult de 4 motoare de tracțiune."], correct: [1, 2], type: 'multiple', correct_text: "B, C" },
+            { id: 13, text: "Ce indică manometrul din imagine?", options: ["A) Presiunea uleiului în circuitul de ungere al MD.", "B) Presiunea de aer în conducta generală a instalației de frână.", "C) Presiunea de aer a instalației pneumatice (rezervorul principal)."], correct: 1, image: "images/2100.13.jpg" },
+            { id: 14, text: "Ce se întâmplă dacă apa din instalația de răcire îngheață?", options: ["A) Se fisurează blocul motor.", "B) Se fisurează pompa de apă.", "C) Se fisurează termostatul."], correct: 0 },
+            { id: 15, text: "Ce indică termometrul din imaginea de mai jos, în legătură cu motorul Diesel?", options: ["A) Temperatura apei în circuitul de răcire.", "B) Temperatura uleiului în circuitul de ungere.", "C) Temperatura aerului din camera motorului."], correct: 0, image: "images/2100.15.jpg" }
         ];
 
         let userAnswers = {};
-        let userMultipleAnswers = {};
         let checked = false;
         let personalData = {};
+        const TEST_SLUG = "LDE_2100_CP";
+        const TOTAL_QUESTIONS = questions.length;
 
         function startQuiz() {
             const nume = document.getElementById('nume').value.trim();
@@ -577,6 +446,7 @@
 
             document.getElementById('personalInfo').style.display = 'none';
             document.getElementById('quizContent').style.display = 'block';
+            document.getElementById('checkBtn').style.display = 'inline-block'; 
             renderQuiz();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -588,7 +458,7 @@
             questions.forEach((q) => {
                 const isMultipleAnswer = Array.isArray(q.correct);
                 const inputType = isMultipleAnswer ? 'checkbox' : 'radio';
-                
+
                 html += `
                     <div class="question-block" id="q${q.id}">
                         <div class="question-number">Întrebarea ${q.id}</div>
@@ -602,14 +472,14 @@
                         </div>
                     `;
                 }
-
+                
                 html += `<div class="options">`;
 
                 q.options.forEach((option, optIndex) => {
                     if (isMultipleAnswer) {
                         html += `
                             <div class="option" onclick="selectMultipleOption(${q.id}, ${optIndex})">
-                                <input type="checkbox" name="q${q.id}" id="q${q.id}_opt${optIndex}" value="${optIndex}">
+                                <input type="checkbox" name="q${q.id}_opt${optIndex}" id="q${q.id}_opt${optIndex}" value="${optIndex}">
                                 <label for="q${q.id}_opt${optIndex}">${option}</label>
                             </div>
                         `;
@@ -634,7 +504,6 @@
 
         function selectOption(questionId, optionIndex) {
             if (checked) return;
-            
             userAnswers[questionId] = optionIndex;
             const radio = document.getElementById(`q${questionId}_opt${optionIndex}`);
             radio.checked = true;
@@ -643,63 +512,72 @@
         function selectMultipleOption(questionId, optionIndex) {
             if (checked) return;
             
-            const checkbox = document.getElementById(`q${questionId}_opt${optionIndex}`);
-            checkbox.checked = !checkbox.checked;
-            
-            if (!userMultipleAnswers[questionId]) {
-                userMultipleAnswers[questionId] = [];
+            if (!Array.isArray(userAnswers[questionId])) {
+                userAnswers[questionId] = [];
             }
             
-            if (checkbox.checked) {
-                if (!userMultipleAnswers[questionId].includes(optionIndex)) {
-                    userMultipleAnswers[questionId].push(optionIndex);
-                }
+            const indexInArray = userAnswers[questionId].indexOf(optionIndex);
+            const input = document.getElementById(`q${questionId}_opt${optionIndex}`);
+
+            if (indexInArray > -1) {
+                userAnswers[questionId].splice(indexInArray, 1);
+                input.checked = false;
             } else {
-                userMultipleAnswers[questionId] = userMultipleAnswers[questionId].filter(idx => idx !== optionIndex);
+                userAnswers[questionId].push(optionIndex);
+                input.checked = true;
             }
+
+            userAnswers[questionId].sort((a, b) => a - b);
+        }
+
+        function arraysEqual(a, b) {
+            if (a === b) return true;
+            if (a == null || b == null) return false;
+            if (a.length !== b.length) return false;
+            const sortedA = [...a].sort();
+            const sortedB = [...b].sort();
+            for (let i = 0; i < sortedA.length; i++) {
+                if (sortedA[i] !== sortedB[i]) return false;
+            }
+            return true;
         }
 
         function checkAnswers() {
             if (checked) return;
             
+            if (Object.keys(userAnswers).length !== TOTAL_QUESTIONS) {
+                const missing = TOTAL_QUESTIONS - Object.keys(userAnswers).length;
+                alert(`⚠️ Nu ai răspuns la toate întrebările! Ai încă ${missing} întrebări nerezolvate. Vă rugăm răspundeți la toate înainte de verificare.`);
+                return; 
+            }
+            
             checked = true;
             let score = 0;
-            const totalQuestions = questions.length; 
 
             questions.forEach(q => {
                 const options = document.querySelectorAll(`#q${q.id} .option`);
-                const isMultipleAnswer = Array.isArray(q.correct);
-                
+                const userAnswer = Array.isArray(q.correct) ? (userAnswers[q.id] || []) : userAnswers[q.id];
                 let isCorrect = false;
-                
-                if (isMultipleAnswer) {
-                    const userSelectedAnswers = userMultipleAnswers[q.id] || [];
-                    
-                    const correctAnswersSet = new Set(q.correct);
-                    const userAnswersSet = new Set(userSelectedAnswers);
-                    
-                    isCorrect = correctAnswersSet.size === userAnswersSet.size && 
-                               [...correctAnswersSet].every(ans => userAnswersSet.has(ans));
+
+                if (Array.isArray(q.correct)) {
+                    isCorrect = arraysEqual(userAnswer, q.correct);
                     
                     options.forEach((opt, index) => {
                         opt.style.pointerEvents = 'none';
+                        const isCorrectOption = q.correct.includes(index);
+                        const isUserSelected = userAnswer.includes(index);
                         
-                        if (q.correct.includes(index)) {
+                        if (isCorrectOption) {
                             opt.classList.add('correct');
                         }
-                        
-                        if (userSelectedAnswers.includes(index) && !q.correct.includes(index)) {
+                        if (isUserSelected && !isCorrectOption) {
                             opt.classList.add('incorrect');
                         }
                     });
-                    
-                    if (isCorrect) {
-                        score++;
-                    }
+
                 } else {
-                    const userAnswer = userAnswers[q.id];
                     isCorrect = userAnswer === q.correct;
-                    
+
                     options.forEach((opt, index) => {
                         opt.style.pointerEvents = 'none';
                         
@@ -711,14 +589,14 @@
                             opt.classList.add('incorrect');
                         }
                     });
-                    
-                    if (isCorrect) {
-                        score++;
-                    }
+                }
+
+                if (isCorrect) {
+                    score++;
                 }
             });
 
-            const percentage = Math.round((score / totalQuestions) * 100);
+            const percentage = Math.round((score / TOTAL_QUESTIONS) * 100);
             
             let message = '';
             let calificativ = '';
@@ -743,7 +621,7 @@
 
             document.getElementById('results').innerHTML = `
                 <h2>Rezultate Test</h2>
-                <div class="score">${score} / ${totalQuestions}</div>
+                <div class="score">${score} / ${TOTAL_QUESTIONS}</div>
                 <div class="score-message">${percentage}% - Calificativ: ${calificativ} - ${status}</div>
                 <div class="score-message">${message}</div>
             `;
@@ -753,8 +631,27 @@
 
             generateSummary(score, percentage, calificativ, status);
             document.getElementById('exportSection').classList.add('show');
+            
+            exportToText();
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function getAnswerText(q, userAnswer) {
+            if (userAnswer === undefined || userAnswer.length === 0) {
+                return 'Niciun răspuns';
+            }
+            if (Array.isArray(q.correct)) {
+                return userAnswer.map(index => q.options[index].replace(/^[A-C]\)\s*/, '')).join(' | ');
+            }
+            return q.options[userAnswer].replace(/^[A-C]\)\s*/, '');
+        }
+
+        function getCorrectAnswerText(q) {
+            if (Array.isArray(q.correct)) {
+                return q.correct.map(index => q.options[index].replace(/^[A-C]\)\s*/, '')).join(' | ');
+            }
+            return q.options[q.correct].replace(/^[A-C]\)\s*/, '');
         }
 
         function generateSummary(score, percentage, calificativ, status) {
@@ -765,13 +662,11 @@
                 day: 'numeric' 
             });
 
-            const totalQuestions = questions.length;
-
             let summary = `
-╔═══════════════════════════════════════════════════════════════╗
-║       TEST MECANIC LOCOMOTIVĂ LDE 2100 CP - 2025              ║
-║            (VERIFICAREA CUNOȘTINȚELOR - ${totalQuestions} ÎNTREBĂRI)            ║
-╚═══════════════════════════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════════╗
+║             TEST MECANIC LOCOMOTIVĂ - LDE 2100 CP              ║
+║               (VERIFICAREA CUNOȘTINȚELOR - ${TOTAL_QUESTIONS} ÎNTREBĂRI)              ║
+╚════════════════════════════════════════════════════════════════╝
 
 📋 DATE PERSONALE:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -781,7 +676,7 @@
 
 📊 REZULTATE:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   Punctaj: ${score} / ${totalQuestions}
+   Punctaj: ${score} / ${TOTAL_QUESTIONS}
    Procent: ${percentage}%
    Calificativ: ${calificativ}
    Status: ${status}
@@ -791,53 +686,36 @@
 `;
 
             questions.forEach(q => {
-                const isMultipleAnswer = Array.isArray(q.correct);
-                
-                let isCorrect;
-                let correctAnswerText;
-                let givenAnswerText;
-                
-                if (isMultipleAnswer) {
-                    const userSelectedAnswers = userMultipleAnswers[q.id] || [];
-                    const correctAnswersSet = new Set(q.correct);
-                    const userAnswersSet = new Set(userSelectedAnswers);
-                    
-                    isCorrect = correctAnswersSet.size === userAnswersSet.size && 
-                               [...correctAnswersSet].every(ans => userAnswersSet.has(ans));
-                    
-                    correctAnswerText = q.correct.map(idx => q.options[idx].replace(/^[A-C]\)\s*/, '')).join(' + ');
-                    
-                    if (userSelectedAnswers.length > 0) {
-                        givenAnswerText = userSelectedAnswers.map(idx => q.options[idx].replace(/^[A-C]\)\s*/, '')).join(' + ');
-                    } else {
-                        givenAnswerText = 'Niciun răspuns';
-                    }
+                const userAnswer = Array.isArray(q.correct) ? (userAnswers[q.id] || []) : userAnswers[q.id];
+                let isCorrect = false;
+
+                if (Array.isArray(q.correct)) {
+                    isCorrect = arraysEqual(userAnswer, q.correct);
                 } else {
-                    const userAnswer = userAnswers[q.id];
                     isCorrect = userAnswer === q.correct;
-                    correctAnswerText = q.options[q.correct].replace(/^[A-C]\)\s*/, '');
-                    givenAnswerText = userAnswer !== undefined ? q.options[userAnswer].replace(/^[A-C]\)\s*/, '') : 'Niciun răspuns';
                 }
                 
                 const statusIcon = isCorrect ? '✓' : '✗';
+                
+                const givenAnswerText = getAnswerText(q, userAnswer);
+                const correctAnswerText = getCorrectAnswerText(q);
 
                 summary += `
 ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
    ${q.text}
-   ${q.image ? `   [Imagine: ${q.image}]` : ''}
-   
+   ${q.image ? `[Imagine: ${q.image}]` : ''}
    Răspuns dat: ${givenAnswerText}
    Răspuns corect: ${correctAnswerText}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+─────────────────────────────────────────────────────────────────
 `;
             });
 
             summary += `
 Întocmit
 Ecobici Marian
-═══════════════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════════
 ║  Document generat automat - ${new Date().toLocaleString('ro-RO')}  ║
-╚═══════════════════════════════════════════════════════════════╝
+╚════════════════════════════════════════════════════════════════╝
 `;
 
             document.getElementById('summaryText').textContent = summary;
@@ -850,7 +728,7 @@ Ecobici Marian
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Test_LDE2100CP_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
+            a.download = `Test_${TEST_SLUG}_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -872,7 +750,7 @@ Ecobici Marian
             printWindow.document.write(`
                 <html>
                 <head>
-                    <title>Test Mecanic Locomotivă LDE 2100 CP - ${personalData.nume}</title>
+                    <title>Test LDE 2100 CP - ${personalData.nume}</title>
                     <style>
                         body { font-family: 'Courier New', monospace; padding: 20px; }
                         pre { white-space: pre-wrap; line-height: 1.6; }
@@ -890,12 +768,10 @@ Ecobici Marian
         function resetQuiz() {
             checked = false;
             userAnswers = {};
-            userMultipleAnswers = {};
-            personalData = {};
             
             document.getElementById('results').classList.remove('show');
             document.getElementById('exportSection').classList.remove('show');
-            document.getElementById('checkBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').style.display = 'none';
             document.getElementById('resetBtn').style.display = 'none';
             document.getElementById('personalInfo').style.display = 'block';
             document.getElementById('quizContent').style.display = 'none';

@@ -6,6 +6,7 @@
     <title>Test LDH BR 290 - 2025</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* CSS-ul rămâne neschimbat */
         * {
             margin: 0;
             padding: 0;
@@ -350,9 +351,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚂 Test Mecanic Locomotivă LDH BR 290</h1>
-            <p>Verificarea cunoștințelor - 2025</p>
-        </div>
+            <h1>🚂 Test LDH BR 290</h1>
+            <p>Verificarea Cunoștințelor - 15 Întrebări</p> </div>
 
         <div class="personal-info" id="personalInfo">
             <h2>Date Personale</h2>
@@ -383,7 +383,7 @@
         <div class="quiz-content" id="quizContent" style="display:none;"></div>
 
         <div class="btn-container">
-            <button class="btn" id="checkBtn" onclick="checkAnswers()">Verifică Răspunsurile</button>
+            <button class="btn" id="checkBtn" onclick="checkAnswers()" style="display:none;">Verifică Răspunsurile</button>
             <button class="btn reset-btn" id="resetBtn" onclick="resetQuiz()" style="display:none;">Reia Testul</button>
         </div>
 
@@ -401,164 +401,32 @@
             <div style="font-size: 14px; margin-bottom: 5px; color: #555;">Întocmit</div>
             <div class="signature">Ecobici Marian</div>
         </div>
-    </div>
+        </div>
 
     <script>
         const questions = [
-            {
-                id: 1,
-                text: "Compresor eliciodal de tip Bk 34-s /10 bar este antrenat de?",
-                options: [
-                    "a) Mecanism hidrostatic de antrenare.",
-                    "b) Motor electric trifazat.",
-                    "c) Motor electric monofazat."
-                ],
-                correct: 0
-            },
-            {
-                id: 2,
-                text: "Viteza maxima constructiva este de 80 km/h in regim greu si 40 km/h in regim usor?",
-                options: [
-                    "a) Adevarat.",
-                    "b) Fals."
-                ],
-                correct: 1
-            },
-            {
-                id: 3,
-                text: "Conditii preliminare pentru lansarea MD?",
-                options: [
-                    "a) Controlerul pe pozitia 0, inversorul de mers inainte sau inapoi, instalatia LOOS-AST in pozitia START, Lss F29-F32 in pozitia pornit.",
-                    "b) Controlerul pe pozitia 1, inversorul de mers inainte sau inapoi, instalatia LOOS-AST in pozitia START, Lss F29-F32 in pozitia pornit.",
-                    "c) Controlerul pe pozitia 0, inversorul de mers in pozitia 0, instalatia LOOS-AST in pozitia START, Lss F29-F32 in pozitia pornit."
-                ],
-                correct: 0
-            },
-            {
-                id: 4,
-                text: "Tensiunea minima in baterie este de?",
-                options: [
-                    "a) 110 V.",
-                    "b) 128 V.",
-                    "c) 99 V."
-                ],
-                correct: 2
-            },
-            {
-                id: 5,
-                text: "Temperatura minima a apei de racire MD trebuie sa fie?",
-                options: [
-                    "a) Mai mare de 30°C.",
-                    "b) Mai mare de 40°C.",
-                    "c) Mai mare de 20°C."
-                ],
-                correct: 0
-            },
-            {
-                id: 6,
-                text: "Ce componenta este reprezentata in imagine?",
-                image: "images/290.6.jpeg",
-                options: [
-                    "a) Compresorul principal.",
-                    "b) Pompa hidrostat.",
-                    "c) Instalatia A.S.T.."
-                ],
-                correct: 2
-            },
-            {
-                id: 7,
-                text: "Alarma galbena (led alb) porneste daca?",
-                options: [
-                    "a) Temperatura apei de racire este mai mica de 40°C.",
-                    "b) Temperatura apei de racire este mai mica de 30°C.",
-                    "c) Nivelul apei de racire este intre minim si maxim."
-                ],
-                correct: 0
-            },
-            {
-                id: 8,
-                text: "Ce componenta este reprezentata in imagine?",
-                image: "images/290.8.jpeg",
-                options: [
-                    "a) Dispozitiv supraturare MD.",
-                    "b) Bolt asigurare levier pentru comanda regimului de mers.",
-                    "c) Dispozitiv supraturare TH."
-                ],
-                correct: 2
-            },
-            {
-                id: 9,
-                text: "La apariţia alarmei roşii motorul Diesel este menţinut în marea majoritate a cazurilor la mers în gol - in baza parametrilor de monitorizare a acestuia. Dacă motorul diesel este oprit, datorita aparitiei alarmei de culoare rosie atunci trebuie luate în considerare cauze grave.",
-                options: [
-                    "a) Adevarat.",
-                    "b) Fals."
-                ],
-                correct: 0
-            },
-            {
-                id: 10,
-                text: "După acţionarea tastei reset, comanda acesteia poate declanşa, în funcţie de starea actuală a defectului, urmatoarele posibilitati? (Selectați toate răspunsurile corecte)",
-                options: [
-                    "a) Alarmă roşie va fi ştearsă, asta înseamnă că defectul nu mai are efect în momentul când acţionăm tasta.",
-                    "b) Alarmă roşie nu este ştearsă, asta înseamnă că defectul persista si trebuie identificat.",
-                    "c) Alarmă roşie va fi ştearsă, asta înseamnă că defectul persista si trebuie identificat."
-                ],
-                correct: [0, 1]
-            },
-            {
-                id: 11,
-                text: "Transmisia hidraulica transmite puterea de la motorul diesel la osiile motoare prin intermediul reductorului inversor, al axelor cardanice si al atacurilor de osie?",
-                options: [
-                    "a) Adevarat.",
-                    "b) Fals."
-                ],
-                correct: 0
-            },
-            {
-                id: 12,
-                text: "In interiorul transmisiei hidraulice sunt doua convertizoare si anume:",
-                options: [
-                    "a) Unul de regim greu (CG) si unul de regim usor (CU)",
-                    "b) Unul de pornire (CP) si unul de mers (CM).",
-                    "c) Un singur convertizor."
-                ],
-                correct: 1
-            },
-            {
-                id: 13,
-                text: "Atunci cand locomotive circula la roata in stare remorcata este necesar ca ,, mufa de regim ,, sa fie pusa in pozitie neutra. Pentru acest lucru levierul pentru comutarea regimului de mers trebuie sa fie in pozitie mediana.",
-                options: [
-                    "a) Adevarat.",
-                    "b) Fals."
-                ],
-                correct: 0
-            },
-            {
-                id: 14,
-                text: "Aprinderea semnalizatorului luminos Lima /Compresor ne indica probleme la?",
-                options: [
-                    "a) instalatia de incarcare a bateriilor de acumulatori.",
-                    "b) la compresorul principal.",
-                    "c) instalatia de incarcare a bateriilor de acumulatori sau la compresorul principal."
-                ],
-                correct: 2
-            },
-            {
-                id: 15,
-                text: "Circuitul de alimentare cu combustibil al MD este compus din?",
-                options: [
-                    "a) Circuit de joasa presiune 7 bar.",
-                    "b) Circuit de inalta presiune 700 – 1400 bar.",
-                    "c) Circuit de joasa presiune si circuit de inalta presiune."
-                ],
-                correct: 2
-            }
+            { id: 1, text: "Care este regimul de funcţionare al MD pe poziţia REMIZAT la LDH BR 290?", options: ["a) 350 rot/min.", "b) 750 rot/min.", "c) 650 rot/min."], correct: 0 },
+            { id: 2, text: "Care este presiunea uleiului la pornirea motorului Diesel?", options: ["a) Min. 1 bar", "b) Min. 0.5 bar", "c) Min. 0.2 bar"], correct: 1 },
+            { id: 3, text: "Care este regimul de funcţionare al MD pe poziţia 1 de mers la LDH BR 290?", options: ["a) 750 rot/min.", "b) 350 rot/min.", "c) 650 rot/min."], correct: 2 },
+            { id: 4, text: "Ce indică manometrul din imagine, în legătură cu transmisia hidromecanică (TH)?", options: ["a) Presiunea în circuitul de înaltă presiune al TH.", "b) Presiunea în circuitul de joasă presiune al TH.", "c) Presiunea de aer pentru funcţionarea TH."], correct: 1, image: "images/290.4.jpg" },
+            { id: 5, text: "Ce indică manometrul din imagine, în legătură cu Transmisia Hidromecanică (TH)?", options: ["a) Presiunea în circuitul de înaltă presiune al TH.", "b) Presiunea în circuitul de joasă presiune al TH.", "c) Presiunea de aer pentru funcţionarea TH."], correct: 0, image: "images/290.5.jpg" },
+            { id: 6, text: "Care este rolul bolțului de siguranţă din imagine, în legătură cu TH?", options: ["a) Asigurarea levierului pentru comanda regimului de mers.", "b) Asigurarea levierului pentru comanda schimbării de sens (înapoi).", "c) Asigurarea levierului pentru comanda regimului de mers (înapoi)."], correct: 0, image: "images/290.6.jpg" },
+            { id: 7, text: "La ce presiune de aer se comandă cuplarea transmisiei hidromecanice?", options: ["a) 3-4 bar", "b) 5 bar", "c) 6-7 bar"], correct: 2 },
+            { id: 8, text: "Ce este reprezentat în imagine?", options: ["a) Dispozitiv supraturare MD.", "b) Bolt asigurare levier pentru comanda regimului de mers.", "c) Dispozitiv supraturare TH."], correct: 2, image: "images/290.8.jpg" },
+            { id: 9, text: "La apariţia alarmei roşii motorul Diesel este menţinut în marea majoritate a cazurilor la mers în gol - in baza parametrilor de monitorizare a acestuia. Dacă motorul diesel este oprit, datorita aparitiei alarmei de culoare rosie atunci trebuie luate în considerare cauze grave.", options: ["a) Adevarat.", "b) Fals."], correct: 0 },
+            { id: 10, text: "După acţionarea tastei reset, comanda acesteia poate declanşa, în funcţie de starea actuală a defectului, urmatoarele posibilitati? (Selectați toate răspunsurile corecte)", options: ["a) Alarmă roşie va fi ştearsă, asta înseamnă că defectul nu mai are efect în momentul când acţionăm tasta.", "b) Alarmă roşie nu este ştearsă, asta înseamnă că defectul persista si trebuie identificat.", "c) Alarmă roşie va fi ştearsă, asta înseamnă că defectul persista si trebuie identificat."], correct: [0, 1], type: 'multiple', correct_text: "a, b" },
+            { id: 11, text: "Ce se comanda la aparitia defectului de presiune aer frana sau la caderea presiunii din CG sub 3.6 bar?", options: ["a) Comandă scoatere din sarcină, semnalizare luminoasă la postul de conducere", "b) Comandă oprire MD, semnalizare luminoasă la postul de conducere", "c) Comandă oprire forțată a trenului"], correct: 0 },
+            { id: 12, text: "Care din urmatoarele defecte pot comanda oprirea necomandata a MD? (Selectați toate răspunsurile corecte)", options: ["a) Temperatura lichidului de răcire depăşeşte 95 °C", "b) Presiunea de ulei de ungere scade sub 1 bar.", "c) Turaţia MD depăşeşte 1600 rot/min."], correct: [0, 1, 2], type: 'multiple', correct_text: "a, b, c" },
+            { id: 13, text: "Oprirea necomandata a MD poate fi comandata si de cresterea temparaturii lichidului de racire la o temperatura mai mare de 95°C", options: ["a) Adevărat.", "b) Fals."], correct: 0 },
+            { id: 14, text: "Transmisia hidromecanică (TH) tip THy 33-31 are următoarele subansamble: (Selectați toate răspunsurile corecte)", options: ["a) Doua convertizoare hidraulice si un cuplaj hidraulic.", "b) Doua convertizoare hidraulice si un convertizor hidraulic.", "c) Doua convertizoare hidraulice si un ambreiaj mecanic."], correct: [0, 1], type: 'multiple', correct_text: "a, b" },
+            { id: 15, text: "Din ce este compus circuitul de ungere al Transmisiei Hidromecanice?", options: ["a) Circuit de joasă presiune și circuit de înaltă presiune 700 – 1400 bar.", "b) Circuit de joasă presiune și circuit de înaltă presiune 250 – 500 bar.", "c) Circuit de joasa presiune si circuit de inalta presiune."], correct: 2 }
         ];
 
         let userAnswers = {};
-        let userMultipleAnswers = {};
         let checked = false;
         let personalData = {};
+        const TEST_SLUG = "LDH_BR_290";
+        const TOTAL_QUESTIONS = questions.length;
 
         function startQuiz() {
             const nume = document.getElementById('nume').value.trim();
@@ -572,12 +440,13 @@
 
             personalData = {
                 nume: nume,
-                functie: functieElement.value,
+                functie: functieElement.value, 
                 data: data
             };
 
             document.getElementById('personalInfo').style.display = 'none';
             document.getElementById('quizContent').style.display = 'block';
+            document.getElementById('checkBtn').style.display = 'inline-block'; 
             renderQuiz();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -589,7 +458,7 @@
             questions.forEach((q) => {
                 const isMultipleAnswer = Array.isArray(q.correct);
                 const inputType = isMultipleAnswer ? 'checkbox' : 'radio';
-                
+
                 html += `
                     <div class="question-block" id="q${q.id}">
                         <div class="question-number">Întrebarea ${q.id}</div>
@@ -603,14 +472,14 @@
                         </div>
                     `;
                 }
-
+                
                 html += `<div class="options">`;
 
                 q.options.forEach((option, optIndex) => {
                     if (isMultipleAnswer) {
                         html += `
                             <div class="option" onclick="selectMultipleOption(${q.id}, ${optIndex})">
-                                <input type="checkbox" name="q${q.id}" id="q${q.id}_opt${optIndex}" value="${optIndex}">
+                                <input type="checkbox" name="q${q.id}_opt${optIndex}" id="q${q.id}_opt${optIndex}" value="${optIndex}">
                                 <label for="q${q.id}_opt${optIndex}">${option}</label>
                             </div>
                         `;
@@ -635,7 +504,6 @@
 
         function selectOption(questionId, optionIndex) {
             if (checked) return;
-            
             userAnswers[questionId] = optionIndex;
             const radio = document.getElementById(`q${questionId}_opt${optionIndex}`);
             radio.checked = true;
@@ -644,63 +512,72 @@
         function selectMultipleOption(questionId, optionIndex) {
             if (checked) return;
             
-            const checkbox = document.getElementById(`q${questionId}_opt${optionIndex}`);
-            checkbox.checked = !checkbox.checked;
-            
-            if (!userMultipleAnswers[questionId]) {
-                userMultipleAnswers[questionId] = [];
+            if (!Array.isArray(userAnswers[questionId])) {
+                userAnswers[questionId] = [];
             }
             
-            if (checkbox.checked) {
-                if (!userMultipleAnswers[questionId].includes(optionIndex)) {
-                    userMultipleAnswers[questionId].push(optionIndex);
-                }
+            const indexInArray = userAnswers[questionId].indexOf(optionIndex);
+            const input = document.getElementById(`q${questionId}_opt${optionIndex}`);
+
+            if (indexInArray > -1) {
+                userAnswers[questionId].splice(indexInArray, 1);
+                input.checked = false;
             } else {
-                userMultipleAnswers[questionId] = userMultipleAnswers[questionId].filter(idx => idx !== optionIndex);
+                userAnswers[questionId].push(optionIndex);
+                input.checked = true;
             }
+
+            userAnswers[questionId].sort((a, b) => a - b);
+        }
+
+        function arraysEqual(a, b) {
+            if (a === b) return true;
+            if (a == null || b == null) return false;
+            if (a.length !== b.length) return false;
+            const sortedA = [...a].sort();
+            const sortedB = [...b].sort();
+            for (let i = 0; i < sortedA.length; i++) {
+                if (sortedA[i] !== sortedB[i]) return false;
+            }
+            return true;
         }
 
         function checkAnswers() {
             if (checked) return;
             
+            if (Object.keys(userAnswers).length !== TOTAL_QUESTIONS) {
+                const missing = TOTAL_QUESTIONS - Object.keys(userAnswers).length;
+                alert(`⚠️ Nu ai răspuns la toate întrebările! Ai încă ${missing} întrebări nerezolvate. Vă rugăm răspundeți la toate înainte de verificare.`);
+                return; 
+            }
+            
             checked = true;
             let score = 0;
-            const totalQuestions = questions.length;
 
             questions.forEach(q => {
                 const options = document.querySelectorAll(`#q${q.id} .option`);
-                const isMultipleAnswer = Array.isArray(q.correct);
-                
+                const userAnswer = Array.isArray(q.correct) ? (userAnswers[q.id] || []) : userAnswers[q.id];
                 let isCorrect = false;
-                
-                if (isMultipleAnswer) {
-                    const userSelectedAnswers = userMultipleAnswers[q.id] || [];
-                    
-                    const correctAnswersSet = new Set(q.correct);
-                    const userAnswersSet = new Set(userSelectedAnswers);
-                    
-                    isCorrect = correctAnswersSet.size === userAnswersSet.size && 
-                               [...correctAnswersSet].every(ans => userAnswersSet.has(ans));
+
+                if (Array.isArray(q.correct)) {
+                    isCorrect = arraysEqual(userAnswer, q.correct);
                     
                     options.forEach((opt, index) => {
                         opt.style.pointerEvents = 'none';
+                        const isCorrectOption = q.correct.includes(index);
+                        const isUserSelected = userAnswer.includes(index);
                         
-                        if (q.correct.includes(index)) {
+                        if (isCorrectOption) {
                             opt.classList.add('correct');
                         }
-                        
-                        if (userSelectedAnswers.includes(index) && !q.correct.includes(index)) {
+                        if (isUserSelected && !isCorrectOption) {
                             opt.classList.add('incorrect');
                         }
                     });
-                    
-                    if (isCorrect) {
-                        score++;
-                    }
+
                 } else {
-                    const userAnswer = userAnswers[q.id];
                     isCorrect = userAnswer === q.correct;
-                    
+
                     options.forEach((opt, index) => {
                         opt.style.pointerEvents = 'none';
                         
@@ -712,14 +589,14 @@
                             opt.classList.add('incorrect');
                         }
                     });
-                    
-                    if (isCorrect) {
-                        score++;
-                    }
+                }
+
+                if (isCorrect) {
+                    score++;
                 }
             });
 
-            const percentage = Math.round((score / totalQuestions) * 100);
+            const percentage = Math.round((score / TOTAL_QUESTIONS) * 100);
             
             let message = '';
             let calificativ = '';
@@ -744,7 +621,7 @@
 
             document.getElementById('results').innerHTML = `
                 <h2>Rezultate Test</h2>
-                <div class="score">${score} / ${totalQuestions}</div>
+                <div class="score">${score} / ${TOTAL_QUESTIONS}</div>
                 <div class="score-message">${percentage}% - Calificativ: ${calificativ} - ${status}</div>
                 <div class="score-message">${message}</div>
             `;
@@ -754,8 +631,27 @@
 
             generateSummary(score, percentage, calificativ, status);
             document.getElementById('exportSection').classList.add('show');
+            
+            exportToText();
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function getAnswerText(q, userAnswer) {
+            if (userAnswer === undefined || userAnswer.length === 0) {
+                return 'Niciun răspuns';
+            }
+            if (Array.isArray(q.correct)) {
+                return userAnswer.map(index => q.options[index].replace(/^[A-C]\)\s*|^[a-c]\)\s*/, '')).join(' | ');
+            }
+            return q.options[userAnswer].replace(/^[A-C]\)\s*|^[a-c]\)\s*/, '');
+        }
+
+        function getCorrectAnswerText(q) {
+            if (Array.isArray(q.correct)) {
+                return q.correct.map(index => q.options[index].replace(/^[A-C]\)\s*|^[a-c]\)\s*/, '')).join(' | ');
+            }
+            return q.options[q.correct].replace(/^[A-C]\)\s*|^[a-c]\)\s*/, '');
         }
 
         function generateSummary(score, percentage, calificativ, status) {
@@ -766,67 +662,48 @@
                 day: 'numeric' 
             });
 
-            const totalQuestions = questions.length;
-
             let summary = `
-╔═══════════════════════════════════════════════════════════════╗
-║       TEST MECANIC LOCOMOTIVĂ LDH BR 290 - 2025               ║
-║            (VERIFICAREA CUNOȘTINȚELOR - ${totalQuestions} ÎNTREBĂRI)            ║
-╚═══════════════════════════════════════════════════════════════╝
+╔════════════════════════════════════════════════════════════════╗
+║              TEST MECANIC LOCOMOTIVĂ - LDH BR 290              ║
+║               (VERIFICAREA CUNOȘTINȚELOR - ${TOTAL_QUESTIONS} ÎNTREBĂRI)              ║
+╚════════════════════════════════════════════════════════════════╝
 
 📋 DATE PERSONALE:
-─────────────────────────────────────────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    Nume și Prenume: ${personalData.nume}
    Funcția: ${personalData.functie}
    Data testului: ${formattedDate}
 
 📊 REZULTATE:
-─────────────────────────────────────────────────────────────────
-   Punctaj: ${score} / ${totalQuestions}
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   Punctaj: ${score} / ${TOTAL_QUESTIONS}
    Procent: ${percentage}%
    Calificativ: ${calificativ}
    Status: ${status}
 
 📝 RĂSPUNSURI DETALIATE:
-─────────────────────────────────────────────────────────────────
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 `;
 
             questions.forEach(q => {
-                const isMultipleAnswer = Array.isArray(q.correct);
-                
-                let isCorrect;
-                let correctAnswerText;
-                let givenAnswerText;
-                
-                if (isMultipleAnswer) {
-                    const userSelectedAnswers = userMultipleAnswers[q.id] || [];
-                    const correctAnswersSet = new Set(q.correct);
-                    const userAnswersSet = new Set(userSelectedAnswers);
-                    
-                    isCorrect = correctAnswersSet.size === userAnswersSet.size && 
-                               [...correctAnswersSet].every(ans => userAnswersSet.has(ans));
-                    
-                    correctAnswerText = q.correct.map(idx => q.options[idx].replace(/^[a-c]\)\s*/i, '')).join(' + ');
-                    
-                    if (userSelectedAnswers.length > 0) {
-                        givenAnswerText = userSelectedAnswers.map(idx => q.options[idx].replace(/^[a-c]\)\s*/i, '')).join(' + ');
-                    } else {
-                        givenAnswerText = 'Niciun răspuns';
-                    }
+                const userAnswer = Array.isArray(q.correct) ? (userAnswers[q.id] || []) : userAnswers[q.id];
+                let isCorrect = false;
+
+                if (Array.isArray(q.correct)) {
+                    isCorrect = arraysEqual(userAnswer, q.correct);
                 } else {
-                    const userAnswer = userAnswers[q.id];
                     isCorrect = userAnswer === q.correct;
-                    correctAnswerText = q.options[q.correct].replace(/^[a-c]\)\s*/i, '');
-                    givenAnswerText = userAnswer !== undefined ? q.options[userAnswer].replace(/^[a-c]\)\s*/i, '') : 'Niciun răspuns';
                 }
                 
                 const statusIcon = isCorrect ? '✓' : '✗';
+                
+                const givenAnswerText = getAnswerText(q, userAnswer);
+                const correctAnswerText = getCorrectAnswerText(q);
 
                 summary += `
 ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
    ${q.text}
-   ${q.image ? `   [Imagine: ${q.image}]` : ''}
-   
+   ${q.image ? `[Imagine: ${q.image}]` : ''}
    Răspuns dat: ${givenAnswerText}
    Răspuns corect: ${correctAnswerText}
 ─────────────────────────────────────────────────────────────────
@@ -836,9 +713,9 @@ ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
             summary += `
 Întocmit
 Ecobici Marian
-═══════════════════════════════════════════════════════════════
+════════════════════════════════════════════════════════════════
 ║  Document generat automat - ${new Date().toLocaleString('ro-RO')}  ║
-╚═══════════════════════════════════════════════════════════════╝
+╚════════════════════════════════════════════════════════════════╝
 `;
 
             document.getElementById('summaryText').textContent = summary;
@@ -851,7 +728,7 @@ Ecobici Marian
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Test_LDH_BR290_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
+            a.download = `Test_${TEST_SLUG}_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -873,7 +750,7 @@ Ecobici Marian
             printWindow.document.write(`
                 <html>
                 <head>
-                    <title>Test Mecanic Locomotivă LDH BR 290 - ${personalData.nume}</title>
+                    <title>Test LDH BR 290 - ${personalData.nume}</title>
                     <style>
                         body { font-family: 'Courier New', monospace; padding: 20px; }
                         pre { white-space: pre-wrap; line-height: 1.6; }
@@ -891,12 +768,10 @@ Ecobici Marian
         function resetQuiz() {
             checked = false;
             userAnswers = {};
-            userMultipleAnswers = {};
-            personalData = {};
             
             document.getElementById('results').classList.remove('show');
             document.getElementById('exportSection').classList.remove('show');
-            document.getElementById('checkBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').style.display = 'none';
             document.getElementById('resetBtn').style.display = 'none';
             document.getElementById('personalInfo').style.display = 'block';
             document.getElementById('quizContent').style.display = 'none';

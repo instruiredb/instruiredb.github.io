@@ -350,8 +350,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🚂 TEST LDE 232 Ludmila</h1>
-            <p>Verificarea cunoștințelor Ludmila</p>
+            <h1>🚂 Test LDE 232 Ludmila</h1>
+            <p>Verificarea Cunoștințelor - 15 Întrebări</p>
         </div>
 
         <div class="personal-info" id="personalInfo">
@@ -383,7 +383,7 @@
         <div class="quiz-content" id="quizContent" style="display:none;"></div>
 
         <div class="btn-container">
-            <button class="btn" id="checkBtn" onclick="checkAnswers()">Verifică Răspunsurile</button>
+            <button class="btn" id="checkBtn" onclick="checkAnswers()" style="display:none;">Verifică Răspunsurile</button>
             <button class="btn reset-btn" id="resetBtn" onclick="resetQuiz()" style="display:none;">Reia Testul</button>
         </div>
 
@@ -405,163 +405,29 @@
 
     <script>
         const questions = [
-            {
-                id: 1,
-                text: "In zona carui post de conducere se afla camera de inalta tensiune?",
-                options: [
-                    "A) PC I.",
-                    "B) Se afla in sala masini.",
-                    "C) PC II."
-                ],
-                correct: 0 
-            },
-            {
-                id: 2,
-                text: "Prin ce se realizeaza preungerea motorului diesel?",
-                options: [
-                    "A) Pompa principala de ungere actionata de arborele cotit al MD.",
-                    "B) Pompa de preungere actionata de motorul electric prin manipularea intrerupatorului „pompa de preungere\".",
-                    "C) Pompa principala de ungere si pompa de preungere."
-                ],
-                correct: 1 
-            },
-            {
-                id: 3,
-                text: "Prin ce realizeaza alimentarea cu combustibil a instalatiei de combustil din rezervor?",
-                options: [
-                    "A) Pompa de combustibil antrenata de motorul electric.",
-                    "B) Pompa de combustibil actionata de arborele cotit al MD.",
-                    "C) Pompa de combustibil actionata de mororul electric care actioneaza si pompa de ulei."
-                ],
-                correct: 0 
-            },
-            {
-                id: 4,
-                text: "Care este rolul clapetilor de explozie?",
-                options: [
-                    "A) Protectie fata de cresterea compresiei in baia de ulei la o presiune mai mare de 1,1 bari.",
-                    "B) Protectie fata de cresterea compresiei in baia de ulei la o presiune mai mare de 1,5 bari.",
-                    "C) Protectie fata de cresterea compresiei in camera de ardere a MD la o presiune mai mare de 1,1 bari."
-                ],
-                correct: 0 
-            },
-            {
-                id: 5,
-                text: "Prin ce se realizeaza filtrarea combustibilului?",
-                options: [
-                    "A) Filtrele fine de combustibil.",
-                    "B) Filtrul brut de combustibil.",
-                    "C) Filtrul brut de combustibil si filtrele fine de combustibil."
-                ],
-                correct: 2 
-            },
-            {
-                id: 6,
-                text: "Ce componenta este reprezentata in imagine?",
-                image: "images/232.6.jpg",
-                options: [
-                    "A) Filtru fin de combustibil.",
-                    "B) Filtru centrifugal pentru ulei MD.",
-                    "C) Filtrul brut de combustibil."
-                ],
-                correct: 2, 
-            },
-            {
-                id: 7,
-                text: "Care este presiunea minima a uleiului la preungerea MD pentru lansare?",
-                options: [
-                    "A) 0.5 bari.",
-                    "B) 1.1 bari.",
-                    "C) 0.2 bari."
-                ],
-                correct: 2 
-            },
-            {
-                id: 8,
-                text: "Ce componenta este reprezentata in imagine?",
-                image: "images/232.8.jpg",
-                options: [
-                    "A) Instalatia tip AST-LOOS.",
-                    "B) Filtrul micronic.",
-                    "C) Filtrul de ulei centrifugal."
-                ],
-                correct: 1, 
-            },
-            {
-                id: 9,
-                text: "Pe ce instrumente se mai poate citi diferenta de presiune de ulei la intrarea si iesirea uleiului in filtrul micronic?",
-                options: [
-                    "A) Pe panoul de manometre aflat pe peretele dintre camera de racire si camera motorului diesel.",
-                    "B) Pe panoul de manometre aflat in postul de conducere.",
-                    "C) Pe panoul de manometre aflat pe peretele dintre postul de conducere si camera motorului."
-                ],
-                correct: 0 
-            },
-            {
-                id: 10,
-                text: "Cum este presiunea uluiului la intrarea si iesirea din filtrul micronic atunci cand ambele cadrane sunt de culoarea gri ?",
-                options: [
-                    "A) Diferenta de presiune este sub 1 bari.",
-                    "B) Diferenta de presiune este mai mare de 1 bari.",
-                    "C) Presiunea este egala ata la intrare cat si la iesire."
-                ],
-                correct: 2 
-            },
-            {
-                id: 11,
-                text: "Cum este presiunea uluiului la intrarea si iesirea din filtrul micronic atunci cand cele doua cadrane sunt partial rosu/partial gri ?",
-                options: [
-                    "A) Diferenta de presiune este sub 1 bari.",
-                    "B) Diferenta de presiune este sub 0.8 bari.",
-                    "C) Diferenta de presiune este mai mare de 0.8 bari."
-                ],
-                correct: 1 
-            },
-            {
-                id: 12,
-                text: "Care este diferenta de presiune uleiului la intrarea si iesirea din filtrul micronic ce nu trebuie depasita cand ambele cadrane sunt de culoare rosie?",
-                options: [
-                    "A) 1,5 bari.",
-                    "B) 0.8 bari.",
-                    "C) Nu exista presiune maxima, filtrul se va curata in cadrul reviziilor intermediare."
-                ],
-                correct: 0 
-            },
-            {
-                id: 13,
-                text: "Oprirea necomandata a MD poate fi cauzata de cresterea presiunii de gaze in carterul MD ?",
-                options: [
-                    "A) Adevărat.",
-                    "B) Fals."
-                ],
-                correct: 0 
-            },
-            {
-                id: 14,
-                text: "Indicatia Py 2/3 AB al indicatorului de avarii in cazul lipsei de tractiune se datoreaza?",
-                options: [
-                    "A) Curentului pe motoarele de tractiune mai mare de 6600 A.",
-                    "B) Tensiunea prea mica sau inexistenta la generatorul auxiliar.",
-                    "C) Ventilatia motoarele de tractiune nu functioneaza."
-                ],
-                correct: [0, 1, 2], 
-                type: 'multiple', 
-                correct_text: "A, B, C"
-            },
-            {
-                id: 15,
-                text: "Oprirea necomandata a MD poate fi comandata si de cresterea temparaturii lichidului de racire la o temperatura mai mare de 95°C",
-                options: [
-                    "A) Adevărat.",
-                    "B) Fals."
-                ],
-                correct: 1 
-            }
+            { id: 1, text: "Care este regimul de funcţionare al MD pe poziţia REMIZAT la LDE 232?", options: ["A) 750 rot/min.", "B) 350 rot/min.", "C) 650 rot/min."], correct: 1 },
+            { id: 2, text: "Care este temperatura la care porneste automat MDA pe pozitia REMIZAT?", options: ["A) 40 °C.", "B) 30 °C.", "C) 25 °C."], correct: 2 },
+            { id: 3, text: "Care este presiunea minima a uleiului la preungerea MD pentru lansare?", options: ["A) 0.5 bari.", "B) 1.1 bari.", "C) 0.2 bari."], correct: 2 },
+            { id: 4, text: "Ce componente se rotesc la lansarea MD la LDE 232?", options: ["A) Motorul diesel, generatorul principal, generatorul auxiliar, compresorul de aer şi grupul de pompe hidraulice.", "B) Motorul diesel, generatorul principal şi grupul de pompe hidraulice.", "C) Motorul diesel, generatorul principal, generatorul auxiliar şi grupul de pompe hidraulice."], correct: 2 },
+            { id: 5, text: "Ce componenta asigura preungerea MD la LDE 232?", options: ["A) Pompa de preungere de ulei de ungere.", "B) Pompa de combustibil.", "C) Pompa de preungere de apa de racire."], correct: 0 },
+            { id: 6, text: "Care din urmatoarele elemente de protecţie pot comanda scoaterea din sarcina a grupului MD-GP? (Selectați toate răspunsurile corecte)", options: ["A) Scoaterea din sarcina a grupului MD-GP", "B) Semnalizare prin instalaţia de apel optic", "C) Tensiunea bateriei este prea mică sau inexistenta"], correct: [0, 1], type: 'multiple', correct_text: "A, B" },
+            { id: 7, text: "Care este presiunea minima a uleiului la preungerea MD pentru lansare?", options: ["A) 0.5 bari.", "B) 1.1 bari.", "C) 0.2 bari."], correct: 2 },
+            { id: 8, text: "Ce componenta este reprezentata in imagine?", options: ["A) Instalatia tip AST-LOOS.", "B) Filtrul micronic.", "C) Filtrul de ulei centrifugal."], correct: 1, image: "images/232.8.jpg" },
+            { id: 9, text: "Pe ce instrumente se mai poate citi diferenta de presiune de ulei la intrarea si iesirea uleiului in filtrul micronic?", options: ["A) Pe panoul de manometre aflat pe peretele dintre camera de racire si camera motorului diesel.", "B) Pe panoul de manometre aflat in postul de conducere.", "C) Pe panoul de manometre aflat pe peretele dintre postul de conducere si camera motorului."], correct: 0 },
+            { id: 10, text: "Cum este presiunea uluiului la intrarea si iesirea din filtrul micronic atunci cand ambele cadrane sunt de culoarea gri ?", options: ["A) Diferenta de presiune este sub 0.2 bar.", "B) Diferenta de presiune este peste 0.5 bar.", "C) Diferenta de presiune este intre 0.2 si 0.5 bar."], correct: 0 },
+            { id: 11, text: "Ce semnalizează supapa indicatoare a filtrului de ulei de ungere când apare culoarea roşu-alb ?", options: ["A) Inundaţia cu ulei a MD", "B) Filtru înfundat - uleiul se scurge în carter", "C) Scurgerea apei de răcire în carterul MD"], correct: 1 },
+            { id: 12, text: "Oprirea necomandata a MD la LDE 232, este comandata de unul din următoarele motive: (Selectați toate răspunsurile corecte)", options: ["A) Presiunea apei de racire scade sub 0.3 bar", "B) Presiunea uleiului de ungere scade sub 1.5 bar", "C) Turaţia MD depăşeşte 1150 rot/min"], correct: [0, 1, 2], type: 'multiple', correct_text: "A, B, C" },
+            { id: 13, text: "Ce se comanda la aparitia defectului de presiune aer frana sau la caderea presiunii din CG sub 3.6 bar?", options: ["A) Comandă scoatere din sarcină, semnalizare luminoasă la postul de conducere", "B) Comandă oprire MD, semnalizare luminoasă la postul de conducere", "C) Comandă oprire forțată a trenului"], correct: 0 },
+            { id: 14, text: "Care din urmatoarele defecte pot comanda oprirea necomandata a MD? (Selectați toate răspunsurile corecte)", options: ["A) Temperatura lichidului de răcire depăşeşte 95 °C", "B) Intensitatea curentului de tracţiune mai mare de 6600 A.", "C) Ventilatia motoarele de tractiune nu functioneaza."], correct: [0, 1, 2], type: 'multiple', correct_text: "A, B, C" },
+            { id: 15, text: "Oprirea necomandata a MD poate fi comandata si de cresterea temparaturii lichidului de racire la o temperatura mai mare de 95°C", options: ["A) Adevărat.", "B) Fals."], correct: 1 }
         ];
 
         let userAnswers = {};
         let checked = false;
         let personalData = {};
+        // Identificator unic al testului pentru numele fișierului
+        const TEST_SLUG = "LDE_232_Ludmila";
+        const TOTAL_QUESTIONS = questions.length;
 
         function startQuiz() {
             const nume = document.getElementById('nume').value.trim();
@@ -581,6 +447,8 @@
 
             document.getElementById('personalInfo').style.display = 'none';
             document.getElementById('quizContent').style.display = 'block';
+            // Arată butonul 'Verifică Răspunsurile' acum
+            document.getElementById('checkBtn').style.display = 'inline-block'; 
             renderQuiz();
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -592,8 +460,7 @@
             questions.forEach((q) => {
                 const isMultipleAnswer = Array.isArray(q.correct);
                 const inputType = isMultipleAnswer ? 'checkbox' : 'radio';
-                const inputName = `q${q.id}`;
-                
+
                 html += `
                     <div class="question-block" id="q${q.id}">
                         <div class="question-number">Întrebarea ${q.id}</div>
@@ -607,26 +474,25 @@
                         </div>
                     `;
                 }
-
+                
                 html += `<div class="options">`;
 
                 q.options.forEach((option, optIndex) => {
-                    // Verifică starea anterioară pentru a menține selecția la reset/re-render
-                    let isChecked = false;
-                    if (q.type === 'multiple') {
-                        isChecked = (userAnswers[q.id] || []).includes(optIndex);
+                    if (isMultipleAnswer) {
+                        html += `
+                            <div class="option" onclick="selectMultipleOption(${q.id}, ${optIndex})">
+                                <input type="checkbox" name="q${q.id}_opt${optIndex}" id="q${q.id}_opt${optIndex}" value="${optIndex}">
+                                <label for="q${q.id}_opt${optIndex}">${option}</label>
+                            </div>
+                        `;
                     } else {
-                        isChecked = userAnswers[q.id] === optIndex;
+                        html += `
+                            <div class="option" onclick="selectOption(${q.id}, ${optIndex})">
+                                <input type="radio" name="q${q.id}" id="q${q.id}_opt${optIndex}" value="${optIndex}">
+                                <label for="q${q.id}_opt${optIndex}">${option}</label>
+                            </div>
+                        `;
                     }
-                    
-                    const checkedAttr = isChecked ? 'checked' : '';
-
-                    html += `
-                        <div class="option" onclick="selectOption(${q.id}, ${optIndex}, '${inputType}')">
-                            <input type="${inputType}" name="${inputName}" id="q${q.id}_opt${optIndex}" value="${optIndex}" ${checkedAttr}>
-                            <label for="q${q.id}_opt${optIndex}">${option}</label>
-                        </div>
-                    `;
                 });
 
                 html += `
@@ -638,85 +504,91 @@
             quizContent.innerHTML = html;
         }
 
-        function selectOption(questionId, optionIndex, inputType) {
+        function selectOption(questionId, optionIndex) {
+            if (checked) return;
+            userAnswers[questionId] = optionIndex;
+            const radio = document.getElementById(`q${questionId}_opt${optionIndex}`);
+            radio.checked = true;
+        }
+
+        function selectMultipleOption(questionId, optionIndex) {
             if (checked) return;
             
-            const input = document.getElementById(`q${questionId}_opt${optionIndex}`);
-            
-            if (inputType === 'radio') {
-                userAnswers[questionId] = optionIndex;
-                input.checked = true;
-            } else if (inputType === 'checkbox') {
-                if (!userAnswers[questionId]) {
-                    userAnswers[questionId] = [];
-                }
-                
-                if (input.checked) {
-                    // Dacă e bifat, scoate-l din array (pentru a-l debifa la click-ul exterior)
-                    const index = userAnswers[questionId].indexOf(optionIndex);
-                    if (index > -1) {
-                        userAnswers[questionId].splice(index, 1);
-                    }
-                } else {
-                    // Dacă e nebifat, adaugă-l în array (pentru a-l bifa la click-ul exterior)
-                    userAnswers[questionId].push(optionIndex);
-                }
-                input.checked = !input.checked; // Inversează starea de bifare
+            // Logica de actualizare pentru răspunsurile multiple
+            if (!Array.isArray(userAnswers[questionId])) {
+                userAnswers[questionId] = [];
             }
+            
+            const indexInArray = userAnswers[questionId].indexOf(optionIndex);
+            const input = document.getElementById(`q${questionId}_opt${optionIndex}`);
+
+            if (indexInArray > -1) {
+                userAnswers[questionId].splice(indexInArray, 1); // Remove
+                input.checked = false;
+            } else {
+                userAnswers[questionId].push(optionIndex); // Add
+                input.checked = true;
+            }
+
+            // Asigură sortarea pentru a facilita comparația ulterioară
+            userAnswers[questionId].sort((a, b) => a - b);
         }
-        
-        // Funcție ajutătoare pentru a compara array-uri
+
+        // Funcție ajutătoare pentru a compara array-uri (răspunsuri multiple)
         function arraysEqual(a, b) {
             if (a === b) return true;
             if (a == null || b == null) return false;
             if (a.length !== b.length) return false;
-
             const sortedA = [...a].sort();
             const sortedB = [...b].sort();
-
             for (let i = 0; i < sortedA.length; i++) {
                 if (sortedA[i] !== sortedB[i]) return false;
             }
             return true;
         }
 
-
         function checkAnswers() {
             if (checked) return;
             
+            // NOU: Verificarea Răspunsurilor complete 
+            if (Object.keys(userAnswers).length !== TOTAL_QUESTIONS) {
+                const missing = TOTAL_QUESTIONS - Object.keys(userAnswers).length;
+                alert(`⚠️ Nu ai răspuns la toate întrebările! Ai încă ${missing} întrebări nerezolvate. Vă rugăm răspundeți la toate înainte de verificare.`);
+                return; 
+            }
+            
             checked = true;
             let score = 0;
-            const totalQuestions = questions.length; 
 
             questions.forEach(q => {
                 const options = document.querySelectorAll(`#q${q.id} .option`);
-                const userAnswer = q.type === 'multiple' ? (userAnswers[q.id] || []) : userAnswers[q.id];
+                const userAnswer = Array.isArray(q.correct) ? (userAnswers[q.id] || []) : userAnswers[q.id];
                 let isCorrect = false;
 
-                if (q.type === 'multiple') {
+                if (Array.isArray(q.correct)) {
                     // Logica pentru răspuns multiplu
                     isCorrect = arraysEqual(userAnswer, q.correct);
-
+                    
                     options.forEach((opt, index) => {
                         opt.style.pointerEvents = 'none';
                         const input = opt.querySelector('input');
-                        
                         const isCorrectOption = q.correct.includes(index);
                         const isUserSelected = userAnswer.includes(index);
-
+                        
+                        // Marchează opțiunile corecte
                         if (isCorrectOption) {
                             opt.classList.add('correct');
                         }
-
+                        // Marchează opțiunile selectate incorect (sau lipsa celor corecte)
                         if (isUserSelected && !isCorrectOption) {
                             opt.classList.add('incorrect');
-                        } 
+                        }
                     });
 
                 } else {
                     // Logica pentru răspuns simplu (radio)
                     isCorrect = userAnswer === q.correct;
-                    
+
                     options.forEach((opt, index) => {
                         opt.style.pointerEvents = 'none';
                         
@@ -729,15 +601,15 @@
                         }
                     });
                 }
-                
+
                 if (isCorrect) {
                     score++;
                 }
             });
 
-            const percentage = Math.round((score / totalQuestions) * 100);
+            const percentage = Math.round((score / TOTAL_QUESTIONS) * 100);
             
-            // Logica de calificare: A: 14-15; B: 11-13; C: 8-10; D: 0-7 
+            // Logica de calificare: A: 14-15; B: 11-13; C: 8-10; D: 0-7
             let message = '';
             let calificativ = '';
             let status = '❌ NECORESPUNZĂTOR';
@@ -761,7 +633,7 @@
 
             document.getElementById('results').innerHTML = `
                 <h2>Rezultate Test</h2>
-                <div class="score">${score} / ${totalQuestions}</div>
+                <div class="score">${score} / ${TOTAL_QUESTIONS}</div>
                 <div class="score-message">${percentage}% - Calificativ: ${calificativ} - ${status}</div>
                 <div class="score-message">${message}</div>
             `;
@@ -771,8 +643,28 @@
 
             generateSummary(score, percentage, calificativ, status);
             document.getElementById('exportSection').classList.add('show');
+            
+            // NOU: Descărcare automată ca text 
+            exportToText();
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function getAnswerText(q, userAnswer) {
+            if (userAnswer === undefined || userAnswer.length === 0) {
+                return 'Niciun răspuns';
+            }
+            if (Array.isArray(q.correct)) {
+                return userAnswer.map(index => q.options[index].replace(/^[A-C]\)\s*/, '')).join(' | ');
+            }
+            return q.options[userAnswer].replace(/^[A-C]\)\s*/, '');
+        }
+
+        function getCorrectAnswerText(q) {
+            if (Array.isArray(q.correct)) {
+                return q.correct.map(index => q.options[index].replace(/^[A-C]\)\s*/, '')).join(' | ');
+            }
+            return q.options[q.correct].replace(/^[A-C]\)\s*/, '');
         }
 
         function generateSummary(score, percentage, calificativ, status) {
@@ -783,12 +675,10 @@
                 day: 'numeric' 
             });
 
-            const totalQuestions = questions.length;
-
             let summary = `
 ╔════════════════════════════════════════════════════════════════╗
 ║             TEST MECANIC LOCOMOTIVĂ - LDE 232 Ludmila          ║
-║                  (VERIFICAREA CUNOȘTINȚELOR - ${totalQuestions} ÎNTREBĂRI)                  ║
+║               (VERIFICAREA CUNOȘTINȚELOR - ${TOTAL_QUESTIONS} ÎNTREBĂRI)              ║
 ╚════════════════════════════════════════════════════════════════╝
 
 📋 DATE PERSONALE:
@@ -799,7 +689,7 @@
 
 📊 REZULTATE:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-   Punctaj: ${score} / ${totalQuestions}
+   Punctaj: ${score} / ${TOTAL_QUESTIONS}
    Procent: ${percentage}%
    Calificativ: ${calificativ}
    Status: ${status}
@@ -809,43 +699,27 @@
 `;
 
             questions.forEach(q => {
-                const userAnswer = q.type === 'multiple' ? (userAnswers[q.id] || []) : userAnswers[q.id];
+                const userAnswer = Array.isArray(q.correct) ? (userAnswers[q.id] || []) : userAnswers[q.id];
                 let isCorrect = false;
 
-                if (q.type === 'multiple') {
+                if (Array.isArray(q.correct)) {
                     isCorrect = arraysEqual(userAnswer, q.correct);
                 } else {
                     isCorrect = userAnswer === q.correct;
                 }
                 
-                const statusIcon = isCorrect ? '✓' : '✗' ;
+                const statusIcon = isCorrect ? '✓' : '✗';
                 
-                let givenAnswerText;
-                let correctAnswerText;
-
-                if (q.type === 'multiple') {
-                    const givenOptions = userAnswer.map(index => q.options[index]).filter(o => o !== undefined);
-                    const correctOptions = q.correct.map(index => q.options[index]).filter(o => o !== undefined);
-                    
-                    givenAnswerText = givenOptions.length > 0 ? givenOptions.map(opt => opt.replace(/^[A-C]\)\s*/, '')).join(' / ') : 'Niciun răspuns';
-                    correctAnswerText = correctOptions.map(opt => opt.replace(/^[A-C]\)\s*/, '')).join(' / ');
-                    
-                } else {
-                    givenAnswerText = userAnswer !== undefined ? q.options[userAnswer] : 'Niciun răspuns';
-                    correctAnswerText = q.options[q.correct];
-
-                    givenAnswerText = givenAnswerText.replace(/^[A-C]\)\s*/, '');
-                    correctAnswerText = correctAnswerText.replace(/^[A-C]\)\s*/, '');
-                }
+                const givenAnswerText = getAnswerText(q, userAnswer);
+                const correctAnswerText = getCorrectAnswerText(q);
 
                 summary += `
 ${statusIcon} Întrebarea ${q.id}: ${isCorrect ? 'CORECT' : 'GREȘIT'}
    ${q.text}
-   ${q.image ? `   [Imagine: ${q.image}]` : ''}
-   
+   ${q.image ? `[Imagine: ${q.image}]` : ''}
    Răspuns dat: ${givenAnswerText}
    Răspuns corect: ${correctAnswerText}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+─────────────────────────────────────────────────────────────────
 `;
             });
 
@@ -867,7 +741,7 @@ Ecobici Marian
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `Test_LDE232Ludmila_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
+            a.download = `Test_${TEST_SLUG}_${personalData.nume.replace(/\s+/g, '_')}_${personalData.data}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -889,7 +763,7 @@ Ecobici Marian
             printWindow.document.write(`
                 <html>
                 <head>
-                    <title>Test LDE 232 Ludmila - ${personalData.nume}</title>
+                    <title>Test Mecanic Locomotivă - ${personalData.nume}</title>
                     <style>
                         body { font-family: 'Courier New', monospace; padding: 20px; }
                         pre { white-space: pre-wrap; line-height: 1.6; }
@@ -907,11 +781,10 @@ Ecobici Marian
         function resetQuiz() {
             checked = false;
             userAnswers = {};
-            personalData = {};
             
             document.getElementById('results').classList.remove('show');
             document.getElementById('exportSection').classList.remove('show');
-            document.getElementById('checkBtn').style.display = 'inline-block';
+            document.getElementById('checkBtn').style.display = 'none';
             document.getElementById('resetBtn').style.display = 'none';
             document.getElementById('personalInfo').style.display = 'block';
             document.getElementById('quizContent').style.display = 'none';
