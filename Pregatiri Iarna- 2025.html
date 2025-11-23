@@ -708,6 +708,40 @@
             generateSummary(score, percentage, calificativ, status);
             document.getElementById('exportSection').classList.add('show');
             
+            // === SALVARE AUTOMATĂ ÎN BAZA DE DATE PENTRU AUDIT ===
+fetch('/save_results.php', {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+        test_name: 'Pregătiri Iarnă 2025',  // SCHIMBĂ pentru fiecare test diferit!
+        test_description: 'Test Mecanic Locomotivă - Trim IV 2025',
+        nume: personalData.nume,
+        functie: personalData.functie,
+        data: personalData.data,
+        score: score,
+        totalQuestions: totalQuestions,
+        percentage: percentage,
+        calificativ: calificativ,
+        promovat: status.includes('CORESPUNZĂTOR'),
+        raspunsuri: userAnswers,
+        questions_data: questions  // Trimite și întrebările pentru audit complet
+    })
+})
+.then(response => response.json())
+.then(data => {
+    if (data.success) {
+        console.log('✅ Rezultate salvate! ID Sesiune:', data.sesiune_id);
+    } else {
+        console.error('❌ Eroare salvare:', data.error);
+    }
+})
+.catch(error => {
+    console.error('❌ Eroare conexiune:', error);
+});
+// === SFÂRȘIT COD SALVARE ===
+            
             // NOU: Descărcare automată ca text 
             exportToText();
 
